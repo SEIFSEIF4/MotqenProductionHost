@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -8,7 +9,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <img className="h-8 w-auto" src="/logo.svg" alt="Logo" />
+              <Image width={50} height={50} className="h-8 w-auto" src="/logo.svg" alt="Logo" />
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
