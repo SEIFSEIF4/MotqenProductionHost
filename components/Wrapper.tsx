@@ -1,34 +1,37 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-function PageWrapper({
-  children,
-  className,
-}: {
+interface PageWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-}) {
+}
+
+function PageWrapper({ children, className, ...props }: PageWrapperProps) {
   return (
     <div
       className={cn(
-        "mx-auto flex min-h-[inherit] w-full max-w-base flex-col items-start", //px-3 py-5 md:px-5 md:py-8 lg:px-10
+        "mx-auto flex min-h-[inherit] w-full max-w-base flex-col items-start",
         className,
       )}
+      {...props}
     >
       {children}
     </div>
   );
 }
 
+interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
+  id: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
 function SectionWrapper({
   id,
   children,
   className,
-}: {
-  id: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+  ...props
+}: SectionWrapperProps) {
   return (
     <section
       id={id}
@@ -36,6 +39,7 @@ function SectionWrapper({
         "w-full px-10 py-verticalSpace md:px-horizontalSpace",
         className,
       )}
+      {...props}
     >
       {children}
     </section>

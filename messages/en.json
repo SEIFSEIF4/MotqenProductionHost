@@ -41,7 +41,19 @@
       }
     },
     "StaticsSection": {
-      "title": ""
+      "title": "Statistics and Numbers",
+      "statics1": {
+        "title": "Mutqan",
+        "description": "In various tracks"
+      },
+      "statics2": {
+        "title": "Volunteer",
+        "description": "With the Mutqan Association"
+      },
+      "statics3": {
+        "title": "Certified",
+        "description": "connected to the Prophet ﷺ"
+      }
     }
   }
 }

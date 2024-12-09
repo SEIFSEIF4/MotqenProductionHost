@@ -13,6 +13,7 @@ export default function HomePage() {
       <About />
       <Goals />
       <Statics />
+      <section id="hero" className="min-h-96"></section>
     </PageWrapper>
   );
 }

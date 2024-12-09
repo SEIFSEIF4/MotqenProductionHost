@@ -41,7 +41,19 @@
       }
     },
     "StaticsSection": {
-      "title": "احصائيات وأرقام"
+      "title": "احصائيات وأرقام",
+      "statics1": {
+        "title": "مــتقن",
+        "description": "في مختلف المسارات"
+      },
+      "statics2": {
+        "title": "متطوع",
+        "description": "مع جمعية متقن"
+      },
+      "statics3": {
+        "title": "مجاز",
+        "description": "بسند متصل للنبي ﷺ"
+      }
     }
   }
 }
