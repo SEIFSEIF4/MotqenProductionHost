@@ -14,7 +14,7 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = "Mutqan | متقن",
+  title = "Motqen | متقن",
   description = "جمعية متقن لتعليم القرآن الكريم هي جمعية تعنى بالبرامـج القرآنية النوعية المحكمة، التي تركز على إتقان حفظ القرآن الكريم وتعليمه، وفق المنهج التخصصي الصحيح، بأحدث الوسائل التعليمية والتقنية المساعدة على تعظيم الأثر وتوسيع نطاق المستفيدين.",
   image = "/thumbnail.png",
   icons = "/favicon.ico",

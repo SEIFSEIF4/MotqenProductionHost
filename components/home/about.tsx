@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-import Image from "next/image"; // Import the Image component
+import Image from "next/image";
 
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";

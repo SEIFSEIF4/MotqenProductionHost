@@ -1,8 +1,17 @@
 {
   "HomePage": {
+    "Navbar": {
+      "aboutUs": "About Us",
+      "programsAndPaths": "Programs & Paths",
+      "associationNews": "Association News",
+      "store": "Store",
+      "contactUs": "Contact Us",
+      "search": "Search",
+      "english": "العربية"
+    },
     "AboutSection": {
-      "title": "About the Mutqan Association",
-      "about": "The Mutqan Association is dedicated to specialized Quranic programs focusing on the mastery of Quran memorization and teaching, using the correct specialized methods and modern educational tools to maximize impact and broaden the reach of beneficiaries.",
+      "title": "About the Motqen Association",
+      "about": "The Motqen Association is dedicated to specialized Quranic programs focusing on the mastery of Quran memorization and teaching, using the correct specialized methods and modern educational tools to maximize impact and broaden the reach of beneficiaries.",
       "vision": {
         "title": "Our Vision",
         "description": "Leadership in mastering Quran memorization and recitation with the latest tools and techniques."
@@ -20,7 +29,7 @@
       }
     },
     "GoalsSection": {
-      "title": "Goals of Mutqan",
+      "title": "Goals of Motqen",
       "Goals": {
         "goal1": {
           "title": "Qualification",
@@ -43,17 +52,22 @@
     "StaticsSection": {
       "title": "Statistics and Numbers",
       "statics1": {
-        "title": "Mutqan",
+        "title": "Motqen",
         "description": "In various tracks"
       },
       "statics2": {
         "title": "Volunteer",
-        "description": "With the Mutqan Association"
+        "description": "With the Motqen Association"
       },
       "statics3": {
         "title": "Certified",
         "description": "connected to the Prophet ﷺ"
       }
+    },
+    "NewsSection": {
+      "title": "Association News",
+      "button": "View all",
+      "button2": "Read more"
     }
   }
 }

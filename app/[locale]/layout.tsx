@@ -9,6 +9,7 @@ import { Locale, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 
 import { constructMetadata } from "@/lib/utils";
+import NavbarProvider from "@/components/NavbarProvider";
 import "./globals.css";
 
 const ibmArabic = IBM({
@@ -58,6 +59,7 @@ export default async function RootLayout({
           <meta name="theme-color" content="white" />
         </head>
         <body className={isArabic ? ibmArabic.className : inter.className}>
+          {/* <NavbarProvider /> */}
           <main className="mx-auto min-h-dvh w-full max-w-base">
             <NextIntlClientProvider messages={messages}>
               {children}

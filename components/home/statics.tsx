@@ -8,7 +8,7 @@ import { SubTitle } from "../ui/heading";
 import Count from "@/components/count";
 import { STATICS_FIXED_HEIGHT } from "@/constant/common";
 
-import Statics from "@/images/statics.png";
+import StaticsBg from "@/images/statics.png";
 import Statics1 from "@/images/statics-1.png";
 import Statics2 from "@/images/static-2.png";
 import Statics3 from "@/images/static-3.png";
@@ -34,7 +34,7 @@ const staticsData = [
   },
 ] as const;
 
-function Goals() {
+function Statics() {
   const t = useTranslations("HomePage.StaticsSection");
 
   return (
@@ -46,8 +46,8 @@ function Goals() {
       }}
     >
       <Image
-        alt="Statics"
-        src={Statics}
+        alt="Statics background"
+        src={StaticsBg}
         placeholder="blur"
         quality={100}
         sizes="100vw"
@@ -96,4 +96,4 @@ function Goals() {
   );
 }
 
-export default Goals;
+export default Statics;
