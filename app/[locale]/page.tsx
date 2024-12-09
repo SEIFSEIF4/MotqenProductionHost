@@ -1,13 +1,18 @@
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
-import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
+import React from "react";
+
+import About from "@/components/home/about";
+import Goals from "@/components/home/goals";
+import Statics from "@/components/home/statics";
+
+import { PageWrapper } from "@/components/Wrapper";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
   return (
-    <div>
-      <h1>{t("title")}</h1>
-      <Link href="/about">{t("about")}</Link>
-    </div>
+    <PageWrapper className="">
+      <section id="hero" className="min-h-96"></section>
+      <About />
+      <Goals />
+      <Statics />
+    </PageWrapper>
   );
 }

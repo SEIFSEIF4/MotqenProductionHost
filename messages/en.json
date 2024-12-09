@@ -1,6 +1,47 @@
 {
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+    "AboutSection": {
+      "title": "About the Mutqan Association",
+      "about": "The Mutqan Association is dedicated to specialized Quranic programs focusing on the mastery of Quran memorization and teaching, using the correct specialized methods and modern educational tools to maximize impact and broaden the reach of beneficiaries.",
+      "vision": {
+        "title": "Our Vision",
+        "description": "Leadership in mastering Quran memorization and recitation with the latest tools and techniques."
+      },
+      "values": {
+        "title": "Our Values",
+        "value1": "Perfection",
+        "value2": "Mastery",
+        "value3": "Discipline",
+        "value4": "Quality"
+      },
+      "mission": {
+        "title": "Our Mission",
+        "description": "Improving, organizing, and utilizing human and technical resources in the field of mastering Quran memorization and recitation."
+      }
+    },
+    "GoalsSection": {
+      "title": "Goals of Mutqan",
+      "Goals": {
+        "goal1": {
+          "title": "Qualification",
+          "description": "Graduates to learn the Qur'an in memorization circles and lead the prayers."
+        },
+        "goal2": {
+          "title": "Preparation",
+          "description": "Special programs for students and graduates according to the best curricula and latest technologies."
+        },
+        "goal3": {
+          "title": "Dissemination",
+          "description": "Knowledge of recitations between the memorizers and facilitating access for the readers."
+        },
+        "goal4": {
+          "title": "Care",
+          "description": "Instilling the value of commitment and preserving the Holy Qur'an and perfecting its recitation."
+        }
+      }
+    },
+    "StaticsSection": {
+      "title": ""
+    }
   }
 }
