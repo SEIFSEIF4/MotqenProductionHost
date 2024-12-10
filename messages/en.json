@@ -1,4 +1,19 @@
 {
+  "Footer": {
+    "logoAlt": "Logo",
+    "location": "Jeddah, Saudi Arabia",
+    "terms": "Terms and Conditions",
+    "privacy": "Privacy Policy",
+    "rights": "All rights reserved to © Motqen {year}",
+    "ariaLabels": {
+      "whatsApp": "WhatsApp",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedIn": "LinkedIn",
+      "phone": "Call +966 55 000 0000",
+      "email": "Send an email to email@example.com"
+    }
+  },
   "HomePage": {
     "Navbar": {
       "aboutUs": "About Us",
@@ -63,6 +78,128 @@
         "title": "Certified",
         "description": "connected to the Prophet ﷺ"
       }
+    },
+    "ProgramsSection": {
+      "title": "Our Programs",
+      "button": "More",
+      "programs": [
+        {
+          "title": "Hifz Path",
+          "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
+          "programs": [
+            {
+              "title": "Two Faces Path",
+              "list": [
+                { "label": "Duration", "value": "One year" },
+                {
+                  "label": "Amount",
+                  "value": "Two faces daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            },
+            {
+              "title": "One Face Path",
+              "list": [
+                { "label": "Duration", "value": "Two years" },
+                {
+                  "label": "Amount",
+                  "value": "One face daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            },
+            {
+              "title": "Three Faces Path",
+              "list": [
+                { "label": "Duration", "value": "One year" },
+                {
+                  "label": "Amount",
+                  "value": "Two faces daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ittqan Path",
+          "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
+          "programs": [
+            {
+              "title": "Two Faces Path",
+              "list": [
+                { "label": "Duration", "value": "One year" },
+                {
+                  "label": "Amount",
+                  "value": "Two faces daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            },
+            {
+              "title": "One Face Path",
+              "list": [
+                { "label": "Duration", "value": "Two years" },
+                {
+                  "label": "Amount",
+                  "value": "One face daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Iqra Path",
+          "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
+          "programs": [
+            {
+              "title": "Two Faces Path",
+              "list": [
+                { "label": "Duration", "value": "One year" },
+                {
+                  "label": "Amount",
+                  "value": "Two faces daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            },
+            {
+              "title": "One Face Path",
+              "list": [
+                { "label": "Duration", "value": "Two years" },
+                {
+                  "label": "Amount",
+                  "value": "One face daily"
+                },
+                {
+                  "label": "Days",
+                  "value": "daily"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "NewsSection": {
       "title": "Association News",

@@ -11,6 +11,7 @@ import { getMessages } from "next-intl/server";
 import { constructMetadata } from "@/lib/utils";
 import NavbarProvider from "@/components/NavbarProvider";
 import "./globals.css";
+import Footer from "@/components/footr";
 
 const ibmArabic = IBM({
   subsets: ["arabic"],
@@ -65,6 +66,7 @@ export default async function RootLayout({
               {children}
             </NextIntlClientProvider>
           </main>
+          <Footer />
         </body>
       </html>
     </ViewTransitions>

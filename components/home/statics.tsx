@@ -84,9 +84,9 @@ function Statics() {
                 number={item.count}
                 className="text-4xl font-bold text-[#6FA0A7]"
               />
-              <h3 className="text-xl font-semibold text-white">
+              <h2 className="text-xl font-semibold text-white">
                 {t(item.titleKey)}
-              </h3>
+              </h2>
               <p className="text-sm text-white">{t(item.descriptionKey)}</p>
             </div>
           ))}

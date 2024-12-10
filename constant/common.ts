@@ -1,1 +1,2 @@
 export const STATICS_FIXED_HEIGHT = 548;
+export const PROGRAMS_FIXED_HEIGHT = 486;

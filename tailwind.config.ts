@@ -64,6 +64,20 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        fadeIn: "fadeIn 1s ease-in-out",
+        fadeout: "fadeOut 1s ease-in-out",
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        fadeout: {
+          from: { opacity: "1" },
+          to: { opacity: "0" },
+        },
+      },
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
