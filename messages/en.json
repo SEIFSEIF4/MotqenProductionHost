@@ -206,5 +206,10 @@
       "button": "View all",
       "button2": "Read more"
     }
+  },
+  "AboutMotqen": {
+    "title": "",
+    "about": "",
+    "about2": ""
   }
 }
