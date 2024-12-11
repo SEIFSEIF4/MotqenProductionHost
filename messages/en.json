@@ -1,4 +1,8 @@
 {
+  "Breadcrumbs": {
+    "home": "Home",
+    "members": "Association Members"
+  },
   "Footer": {
     "logoAlt": "Logo",
     "location": "Jeddah, Saudi Arabia",
