@@ -6,6 +6,8 @@ export interface IconSvgProps extends React.SVGProps<SVGSVGElement> {
   width?: number;
   height?: number;
   className?: string;
+  color?: string;
+  altColor?: string;
 }
 
 export const FooterIcons = {
@@ -13,34 +15,37 @@ export const FooterIcons = {
     size = 24,
     color = "#FFF",
     className,
+    altColor,
     ...props
   }: IconSvgProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill={color}
-      className={cn("h-6 w-6", {
-        className,
-      })}
+      fill={altColor ?? color}
+      className={cn("h-6 w-6", className)}
       {...props}
     >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M10.6376 5.47494V7.59618C11.0818 6.91953 11.6941 6.36981 12.4146 6.00082C13.135 5.63184 13.9389 5.45623 14.7476 5.49119C19.0663 5.49119 20.0001 8.19117 20.0001 11.7036V18.8548H16.0001V12.5149C16.0001 11.0024 15.6951 9.05742 13.3401 9.05742C11.0564 9.05742 10.6664 10.7037 10.6664 12.4024V18.8548H6.67891V5.47494H10.6376ZM4.00018 2.11247C3.99968 2.50872 3.88223 2.896 3.66253 3.22577C3.44283 3.55554 3.13067 3.81312 2.76518 3.9662C2.39985 4.11805 1.99759 4.15777 1.60961 4.08031C1.22163 4.00285 0.865466 3.81171 0.58645 3.53121C0.306909 3.25053 0.116597 2.89347 0.0394442 2.50492C-0.0377081 2.11637 0.00174494 1.71369 0.152841 1.3475C0.303938 0.98132 0.559932 0.667985 0.888631 0.446902C1.21733 0.225819 1.60406 0.106858 2.00019 0.10498C2.26346 0.104979 2.52415 0.156957 2.76729 0.257934C3.01043 0.358912 3.23124 0.506901 3.41705 0.693412C3.60287 0.879923 3.75003 1.10129 3.85009 1.3448C3.95016 1.58832 4.00116 1.84919 4.00018 2.11247Z"
-        fill="white"
+        fill={altColor ?? color}
       />
-      <path d="M3.99997 5.49121H0V18.8549H3.99997V5.49121Z" fill="white" />
+      <path
+        d="M3.99997 5.49121H0V18.8549H3.99997V5.49121Z"
+        fill={altColor ?? color}
+      />
     </svg>
   ),
   Twitter: ({
     size = 24,
     color = "#FFF",
     className,
+    altColor,
     ...props
   }: IconSvgProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill={color}
+      fill={altColor ?? color}
       className={cn("h-6 w-6", {
         className,
       })}
@@ -63,7 +68,7 @@ export const FooterIcons = {
         <g mask="url(#mask0_32_1809)">
           <path
             d="M15.7491 1.41736H18.8163L12.1163 9.0945L19.9991 19.5431H13.8277L8.99057 13.2074L3.462 19.5431H0.392003L7.55772 11.3288L-0.000854492 1.41879H6.32772L10.6934 7.20879L15.7491 1.41736ZM14.6706 17.7031H16.3706L5.39915 3.16164H3.57629L14.6706 17.7031Z"
-            fill="white"
+            fill={altColor ?? color}
           />
         </g>
       </g>
@@ -72,7 +77,7 @@ export const FooterIcons = {
           <rect
             width="20"
             height="20"
-            fill="white"
+            fill={altColor ?? color}
             transform="translate(0 0.47998)"
           />
         </clipPath>
@@ -235,6 +240,19 @@ export const HomeIcons = {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M26.819 -7.52002V3.45141C29.0431 3.45141 32.9612 3.65933 32.9614 13.6757V18.88H23.4666V40.48H42.6666V18.88V13.6757C42.6666 5.80082 40.8551 -0.0471144 36.8973 -3.70589C34.1595 -6.23679 30.9159 -7.52002 26.819 -7.52002ZM3.35228 -7.52002V3.45141C5.57642 3.45141 9.49446 3.65933 9.49469 13.6757V18.88H-9.91821e-05V40.48H19.1999V18.88V13.6757C19.1999 5.80082 17.3884 -0.0471144 13.4306 -3.70589C10.6927 -6.23679 7.44922 -7.52002 3.35228 -7.52002Z"
+      />
+    </svg>
+  ),
+  LargeLeaf: ({ size = 24, className, ...props }: IconSvgProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn("h-48 w-36", className)}
+      {...props}
+      fill="none"
+    >
+      <path
+        fill="#9CC2C7"
+        d="M72.9458 193.8C170.342 101.926 167.415 89.6767 72.9458 0.199951C-23.6491 86.2147 -24.7144 104.589 72.9458 193.8Z"
       />
     </svg>
   ),
