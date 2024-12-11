@@ -1,12 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { Navbar } from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 
 export default async function NavbarProvider() {
   const t = await getTranslations("HomePage.Navbar");
 
   const translations = {
-    aboutUs: t("aboutUs"),
-    programsAndPaths: t("programsAndPaths"),
+    aboutUs: t("aboutUs.mainTitle"),
+    programsAndPaths: t("programsAndPaths.mainTitle"),
     associationNews: t("associationNews"),
     store: t("store"),
     contactUs: t("contactUs"),

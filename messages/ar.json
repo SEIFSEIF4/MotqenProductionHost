@@ -21,8 +21,24 @@
   },
   "HomePage": {
     "Navbar": {
-      "aboutUs": "عن متقن",
-      "programsAndPaths": "برامج ومسارات",
+      "aboutUs": {
+        "mainTitle": "عن متقن",
+        "megaMenuTitle1": "تأسيس الجمعية",
+        "description1": "مسار يتكون من قسمين",
+        "megaMenuTitle2": "أعضاء مجلس الإدارة",
+        "description2": "مسار يتكون من قسم واحد",
+        "megaMenuTitle3": "الحوكمة",
+        "description3": "مسار يتكون من قسم واحد"
+      },
+      "programsAndPaths": {
+        "mainTitle": "برامج ومسارات",
+        "megaMenuTitle1": "مسار الحفظ",
+        "description1": "مسار يتكون من قسمين",
+        "megaMenuTitle2": "مسار الإتقان",
+        "description2": "مسار يتكون من قسم واحد",
+        "megaMenuTitle3": "مسار الإقراء",
+        "description3": "مسار يتكون من قسم واحد"
+      },
       "associationNews": "أخبار الجمعية",
       "store": "متجر الجمعية",
       "contactUs": "تواصل معنا",
