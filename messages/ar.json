@@ -14,7 +14,6 @@
       "email": "إرسال بريد إلكتروني إلى email@example.com"
     }
   },
-
   "HomePage": {
     "Navbar": {
       "aboutUs": "عن متقن",
@@ -164,6 +163,9 @@
       "title": "أخبار الجمعية",
       "button": "عرض الكل",
       "button2": "قراءة المزيد"
+    },
+    "SaidSections": {
+      "title": "قالوا عنا"
     }
   }
 }

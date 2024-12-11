@@ -6,6 +6,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/images/longLogo.png";
 import { FooterIcons } from "@/components/icons";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 const Footer = () => {
   const t = useTranslations("Footer");
@@ -19,7 +20,9 @@ const Footer = () => {
       {/* Top Section */}
       <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0 ltr:flex-row-reverse">
         <div>
-          <Image src={logo} alt={t("logoAlt")} />
+          <Link href="/">
+            <Image src={logo} alt={t("logoAlt")} />
+          </Link>
         </div>
         <div className="flex items-center space-x-4 rtl:space-x-reverse">
           <a

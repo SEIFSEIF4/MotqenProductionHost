@@ -31,7 +31,7 @@ function About() {
           <Image
             priority
             placeholder="blur"
-            quality={50} // 50 is enough for background
+            quality={100}
             src={Vision}
             alt="About Vision"
             fill
@@ -60,7 +60,7 @@ function About() {
           <Image
             priority
             placeholder="blur"
-            quality={50}
+            quality={100}
             src={Values}
             alt="About Values"
             fill

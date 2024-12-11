@@ -59,8 +59,8 @@ function Programs() {
               <div
                 className={cn(
                   "static right-0 top-0 flex flex-col justify-between p-10 transition-all delay-200 duration-500 group-hover:absolute group-hover:h-[70%]",
-                  "duration-[1000ms] h-0 opacity-0 transition-all",
-                  "group-hover:animate-fadeIn group-hover:h-[70%] group-hover:opacity-100",
+                  "h-0 opacity-0 transition-all duration-1000",
+                  "group-hover:h-[70%] group-hover:animate-fadeIn group-hover:opacity-100",
                 )}
               >
                 <div>
@@ -82,8 +82,8 @@ function Programs() {
               <div
                 className={cn(
                   "z-10 flex w-full flex-row gap-4 overflow-hidden p-3",
-                  "duration-[1500ms] h-0 opacity-0 transition-all",
-                  "group-hover:animate-fadeIn group-hover:h-[30%] group-hover:opacity-100",
+                  "dduration-1000 h-0 opacity-0 transition-all",
+                  "group-hover:h-[30%] group-hover:animate-fadeIn group-hover:opacity-100",
                   "animate-fadeOut",
                 )}
               >
