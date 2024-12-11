@@ -1,7 +1,8 @@
 {
   "Breadcrumbs": {
     "home": "Home",
-    "members": "Association Members"
+    "members": "Association Members",
+    "about-motqen": ""
   },
   "Footer": {
     "logoAlt": "Logo",
@@ -217,5 +218,10 @@
   "MembersPage": {
     "title": "Board Members",
     "description": "This section contains information about the board members of Motqen Association, who contribute their vision and expertise to guide the association's path and achieve its goals."
+  },
+  "AboutMotqen": {
+    "title": "",
+    "about": "",
+    "about2": ""
   }
 }
