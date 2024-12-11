@@ -209,6 +209,13 @@
       "title": "Association News",
       "button": "View all",
       "button2": "Read more"
+    },
+    "SaidSections": {
+      "title": "Said About Us"
     }
+  },
+  "MembersPage": {
+    "title": "Board Members",
+    "description": "This section contains information about the board members of Motqen Association, who contribute their vision and expertise to guide the association's path and achieve its goals."
   }
 }
