@@ -21,8 +21,24 @@
   },
   "HomePage": {
     "Navbar": {
-      "aboutUs": "About Us",
-      "programsAndPaths": "Programs & Paths",
+      "aboutUs": {
+        "mainTitle": "About Us",
+        "megaMenuTitle1": "",
+        "description1": "",
+        "megaMenuTitle2": "",
+        "description2": "",
+        "megaMenuTitle3": "",
+        "description3": ""
+      },
+      "programsAndPaths": {
+        "mainTitle": "Programs & Paths",
+        "megaMenuTitle1": "",
+        "description1": "",
+        "megaMenuTitle2": "",
+        "description2": "",
+        "megaMenuTitle3": "",
+        "description3": ""
+      },
       "associationNews": "Association News",
       "store": "Store",
       "contactUs": "Contact Us",
