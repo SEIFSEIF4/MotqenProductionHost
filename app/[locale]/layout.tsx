@@ -60,13 +60,13 @@ export default async function RootLayout({
           <meta name="theme-color" content="white" />
         </head>
         <body className={isArabic ? ibmArabic.className : inter.className}>
-          <NavbarProvider />
-          <main className="mx-auto min-h-dvh w-full max-w-base">
-            <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages}>
+            <NavbarProvider />
+            <main className="mx-auto min-h-dvh w-full max-w-base">
               {children}
-            </NextIntlClientProvider>
-            <Footer />
-          </main>
+              <Footer />
+            </main>
+          </NextIntlClientProvider>
         </body>
       </html>
     </ViewTransitions>
