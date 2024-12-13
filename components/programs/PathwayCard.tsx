@@ -34,10 +34,10 @@ const PathwayCard = ({ order }: { order: string }) => {
           {order === "third" && (
             <div className="mb-4 flex rounded-xl border lg:rounded-lg">
               <div className="flex flex-1 items-center justify-center rounded-xl bg-[#6FA0A7] p-3 text-base font-bold text-white lg:rounded-lg lg:p-6 lg:text-lg">
-                <p>مسار وجهين</p>
+                <p>{t("pathType.two")}</p>
               </div>
               <div className="flex flex-1 items-center justify-center p-3 text-base font-bold lg:p-6 lg:text-lg">
-                <p>مسار وجه واحد</p>
+                <p>{t("pathType.one")}</p>
               </div>
             </div>
           )}

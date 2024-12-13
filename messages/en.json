@@ -25,22 +25,22 @@
   "HomePage": {
     "Navbar": {
       "aboutUs": {
-        "mainTitle": "About Us",
-        "megaMenuTitle1": "",
-        "description1": "",
-        "megaMenuTitle2": "",
-        "description2": "",
-        "megaMenuTitle3": "",
-        "description3": ""
+        "mainTitle": "About Motqen",
+        "megaMenuTitle1": "Association Establishment",
+        "description1": "A track consisting of two parts",
+        "megaMenuTitle2": "Board Members",
+        "description2": "A track consisting of one part",
+        "megaMenuTitle3": "Governance",
+        "description3": "A track consisting of one part"
       },
       "programsAndPaths": {
         "mainTitle": "Programs & Paths",
-        "megaMenuTitle1": "",
-        "description1": "",
-        "megaMenuTitle2": "",
-        "description2": "",
-        "megaMenuTitle3": "",
-        "description3": ""
+        "hifzPath": "Hifz Path",
+        "hifzDescription": "A track consisting of two parts",
+        "ittqanPath": "Ittqan Path",
+        "ittqanDescription": "A track consisting of one part",
+        "iqraPath": "Iqra Path",
+        "iqraDescription": "A track consisting of one part"
       },
       "associationNews": "Association News",
       "store": "Store",
@@ -239,64 +239,77 @@
     "description": "This section contains information about the board members of Motqen Association, who contribute their vision and expertise to guide the association's path and achieve its goals."
   },
   "AboutMotqen": {
-    "title": "",
-    "about": "",
-    "about2": ""
+    "title": "Establishment of the Association",
+    "about": "Motqen Association is the fruit of the Motqen program, which began its work in 1436 AH. It aims to refine the outcomes of those who wish to master their memorization of the Book of Allah from Quran memorization circles and others. The program has developed over the years to suit all beneficiaries, focusing on work evaluation through periodic and diverse evaluation tools and enabling the staff from program graduates to achieve human sustainability.",
+    "about2": "Based on the pressing need we observed to expand the program's scope, which served 5,000 applicants annually, and due to the evident demand in the Quran memorization sector for such successful individual initiatives, we worked diligently, relying on Allah, to transform the program into an independent association. This association specializes in this field to achieve integration and fill the missing link alongside similar organizations. We ask Allah to make this work sincerely for His sake and a source of light for all who contributed to it."
   },
   "Programs": {
     "first": {
-      "title": "",
-      "subtitle": ["", ""],
-      "description": "",
+      "title": "Iqraa Path",
+      "subtitle": ["One Path", "For Men and Women"],
+      "description": "This path is for those who have mastered the Book of Allah and wish to advance their skills and performance under a structured and monitored framework with daily follow-up.",
       "duration": {
-        "title": "",
-        "description": ""
+        "title": "Path Duration",
+        "description": "One year"
       },
       "howMuch": {
-        "title": "",
-        "description": ""
+        "title": "Daily Review Amount",
+        "description": "Four to five Juz’ (parts)"
       },
       "days": {
-        "title": "",
-        "description": ""
+        "title": "Registration Condition",
+        "description": "Graduation from the Itqan Path"
       },
-      "buttons": { "men": "", "women": "" }
+      "buttons": {
+        "men": "More Details for Men",
+        "women": "More Details for Women"
+      }
     },
     "second": {
-      "title": "",
-      "subtitle": ["", ""],
-      "description": "",
+      "title": "Itqan Path",
+      "subtitle": ["One Path", "For Men and Women"],
+      "description": "This path is for those who have previously memorized the Book of Allah without achieving precision and wish to master it under a structured and monitored framework with daily follow-up.",
       "duration": {
-        "title": "",
-        "description": ""
+        "title": "Path Duration",
+        "description": "7-8 months"
       },
       "howMuch": {
-        "title": "",
-        "description": ""
+        "title": "Daily Review Amount",
+        "description": "Four pages"
       },
       "days": {
-        "title": "",
-        "description": ""
+        "title": "Memorization Days",
+        "description": "All days of the week"
       },
-      "buttons": { "men": "", "women": "" }
+      "buttons": {
+        "men": "More Details for Men",
+        "women": "More Details for Women"
+      }
     },
     "third": {
-      "title": "",
-      "subtitle": ["", ""],
-      "description": "",
+      "title": "Memorization Path",
+      "subtitle": ["Two Paths", "For Men and Women"],
+      "pathType": {
+        "one": "One Page Path",
+        "two": "Two Pages Path"
+      },
+      "description": "This path is for memorizing and mastering the Quran, following a structured framework where participants complete memorization of the entire Quran with precision and mastery.",
       "duration": {
-        "title": "",
-        "description": ""
+        "title": "Path Duration",
+        "description": "One year"
       },
       "howMuch": {
-        "title": "",
-        "description": ""
+        "title": "Daily Memorization Amount",
+        "description": "Two pages daily"
       },
       "days": {
-        "title": "",
-        "description": ""
+        "title": "Memorization Days",
+        "description": "All days of the week"
       },
-      "buttons": { "men": "", "women": "" }
+      "buttons": {
+        "men": "More Details for Men",
+        "women": "More Details for Women"
+      }
     }
   }
 }
