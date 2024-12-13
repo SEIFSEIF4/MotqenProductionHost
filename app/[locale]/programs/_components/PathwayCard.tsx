@@ -20,8 +20,10 @@ const PathwayCard = ({ order }: { order: string }) => {
           <h1 className={`text-3xl font-bold text-white`}>{t("title")}</h1>
         </div>
 
-        {subtitle.map((label: string) => (
-          <span className="m-2 rounded-lg border p-2 text-sm">{label}</span>
+        {subtitle.map((label: string, idx: number) => (
+          <span key={label + idx} className="m-2 rounded-lg border p-2 text-sm">
+            {label}
+          </span>
         ))}
 
         <div className="absolute left-1/2 top-[90%] w-[80vw] -translate-x-1/2 rounded-lg bg-white p-4 text-gray-900 shadow-md">
