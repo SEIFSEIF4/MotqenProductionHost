@@ -2,12 +2,10 @@
   "Breadcrumbs": {
     "home": "Home",
     "members": "Association Members",
-    "about-motqen": "",
-    "programs": {
-      "1": "",
-      "2": "",
-      "3": ""
-    }
+    "about-motqen": "About Motqen",
+    "iqra-path": "Iqra Path",
+    "ittqan-path": "Ittqan Path",
+    "hifz-path": "Hifz Path"
   },
   "Footer": {
     "logoAlt": "Logo",
