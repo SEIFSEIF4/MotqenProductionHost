@@ -2,7 +2,12 @@
   "Breadcrumbs": {
     "home": "Home",
     "members": "Association Members",
-    "about-motqen": ""
+    "about-motqen": "",
+    "programs": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "Footer": {
     "logoAlt": "Logo",
@@ -239,5 +244,61 @@
     "title": "",
     "about": "",
     "about2": ""
+  },
+  "Programs": {
+    "first": {
+      "title": "",
+      "subtitle": ["", ""],
+      "description": "",
+      "duration": {
+        "title": "",
+        "description": ""
+      },
+      "howMuch": {
+        "title": "",
+        "description": ""
+      },
+      "days": {
+        "title": "",
+        "description": ""
+      },
+      "buttons": { "men": "", "women": "" }
+    },
+    "second": {
+      "title": "",
+      "subtitle": ["", ""],
+      "description": "",
+      "duration": {
+        "title": "",
+        "description": ""
+      },
+      "howMuch": {
+        "title": "",
+        "description": ""
+      },
+      "days": {
+        "title": "",
+        "description": ""
+      },
+      "buttons": { "men": "", "women": "" }
+    },
+    "third": {
+      "title": "",
+      "subtitle": ["", ""],
+      "description": "",
+      "duration": {
+        "title": "",
+        "description": ""
+      },
+      "howMuch": {
+        "title": "",
+        "description": ""
+      },
+      "days": {
+        "title": "",
+        "description": ""
+      },
+      "buttons": { "men": "", "women": "" }
+    }
   }
 }
