@@ -7,11 +7,16 @@ import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 export default function HomePage() {
   return (
     <PageWrapper>
-      <SectionWrapper id="about" className="rounded-lg bg-[#F3F4F6]">
-        <DynamicBreadcrumb />
+      <section
+        id="iqra-path"
+        className="w-full rounded-lg bg-[#F3F4F6] py-verticalSpace"
+      >
+        <div className="px-10, md:px-horizontalSpace">
+          <DynamicBreadcrumb />
+        </div>
 
         <PathwayCard order="first" />
-      </SectionWrapper>
+      </section>
     </PageWrapper>
   );
 }
