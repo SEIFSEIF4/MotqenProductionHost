@@ -245,10 +245,10 @@
     "about": "",
     "about2": ""
   },
-  "Programs": [
-    {
+  "Programs": {
+    "first": {
       "title": "",
-      "subtitle": { "one": "", "two": "" },
+      "subtitle": ["", ""],
       "description": "",
       "duration": {
         "title": "",
@@ -262,12 +262,11 @@
         "title": "",
         "description": ""
       },
-      "button1": "",
-      "button2": ""
+      "buttons": { "men": "", "women": "" }
     },
-    {
+    "second": {
       "title": "",
-      "subtitle": { "one": "", "two": "" },
+      "subtitle": ["", ""],
       "description": "",
       "duration": {
         "title": "",
@@ -281,12 +280,11 @@
         "title": "",
         "description": ""
       },
-      "button1": "",
-      "button2": ""
+      "buttons": { "men": "", "women": "" }
     },
-    {
+    "third": {
       "title": "",
-      "subtitle": { "one": "", "two": "" },
+      "subtitle": ["", ""],
       "description": "",
       "duration": {
         "title": "",
@@ -300,8 +298,7 @@
         "title": "",
         "description": ""
       },
-      "button1": "",
-      "button2": ""
+      "buttons": { "men": "", "women": "" }
     }
-  ]
+  }
 }
