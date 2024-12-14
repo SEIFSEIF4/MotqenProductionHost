@@ -11,7 +11,7 @@ export default function HomePage() {
         id="hifz-path"
         className="w-full rounded-lg bg-[#F3F4F6] py-verticalSpace"
       >
-        <div className="px-10, md:px-horizontalSpace">
+        <div className="px-5 md:px-horizontalSpace lg:px-10">
           <DynamicBreadcrumb />
         </div>
 

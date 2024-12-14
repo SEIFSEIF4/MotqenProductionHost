@@ -5,27 +5,35 @@ const SearchBox = ({
   Search,
   locale,
   title,
+  isOpen,
+  setIsOpen,
+  setShowMobileMenu,
 }: {
   Search: any;
   locale: string;
   title: string;
+  isOpen: boolean;
+  setIsOpen: any;
+  setShowMobileMenu: any;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   return (
     <>
       {/* Trigger Buttons */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="hidden items-center gap-2 rounded p-1 hover:text-blue-500 lg:flex"
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setShowMobileMenu(false);
+        }}
+        className="items-center gap-2 rounded p-1 hover:text-blue-500 lg:flex"
       >
         <Image
           src={Search}
           alt="Search"
           className="inline-block aspect-square w-5 rounded-md object-cover"
         />
-        <span className="hidden md:block">{title}</span>
+        <span className="hidden lg:block">{title}</span>
       </button>
 
       {/* Search Box */}

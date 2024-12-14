@@ -5,30 +5,36 @@ import Image from "next/image";
 import { Locale, routing, usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
-export default function LocaleSwitcher() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const params = useParams();
-  const localeLang: string = useLocale();
-  const lang: { en: string; ar: string } = {
-    en: "العربية",
-    ar: "English",
-  };
+export default function LocaleSwitcher({
+  handleClick,
+  langLabel,
+}: {
+  handleClick: any;
+  langLabel: string;
+}) {
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // const params = useParams();
+  // const localeLang: string = useLocale();
+  // const lang: { en: string; ar: string } = {
+  //   en: "العربية",
+  //   ar: "English",
+  // };
 
-  let nextLocale = null;
+  // let nextLocale = null;
 
-  if (localeLang === "en") nextLocale = "ar";
-  else if (localeLang === "ar") nextLocale = "en";
+  // if (localeLang === "en") nextLocale = "ar";
+  // else if (localeLang === "ar") nextLocale = "en";
 
-  const handleClick = () => {
-    router.replace(
-      // @ts-expect-error -- TypeScript will validate that only known `params`
-      // are used in combination with a given `pathname`. Since the two will
-      // always match for the current route, we can skip runtime checks.
-      { pathname, params },
-      { locale: nextLocale as Locale },
-    );
-  };
+  // const handleClick = () => {
+  //   router.replace(
+  //     // @ts-expect-error -- TypeScript will validate that only known `params`
+  //     // are used in combination with a given `pathname`. Since the two will
+  //     // always match for the current route, we can skip runtime checks.
+  //     { pathname, params },
+  //     { locale: nextLocale as Locale },
+  //   );
+  // };
 
   return (
     <div className="hidden items-center gap-2 lg:flex">
@@ -42,7 +48,7 @@ export default function LocaleSwitcher() {
         className="hidden hover:text-blue-500 lg:inline-block"
         onClick={handleClick}
       >
-        {lang[localeLang as "en" | "ar"]}
+        {langLabel}
       </button>
       {/* <LocaleSwitcherSelect defaultValue={locale} label="Select a locale">
         {routing.locales.map((cur) => (
