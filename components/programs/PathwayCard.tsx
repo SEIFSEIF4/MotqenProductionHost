@@ -108,45 +108,6 @@ const PathwayCard = ({ order }: { order: string }) => {
         </div>
       </div>
     </div>
-
-    // <div className="bg-[#155C67] p-6 text-white shadow-md md:flex md:items-center md:justify-between">
-    //   <div>
-    //     <SubTitle text={t("title")} />
-    //     <h2 className="mb-2 text-xl font-bold">مسار الإقراء</h2>
-    //     <p className="mb-4">
-    //       هو مسار يعني بمن أتقن كتاب الله، وأراد الترقِّي في درجات المهارة
-    //       والأداء، تحت إطار منهج مرسوم ومتابعة يومية.
-    //     </p>
-    //     <div className="space-y-3">
-    //       <div className="flex items-center gap-2">
-    //         <span className="material-icons rounded-full bg-teal-900 p-2">
-    //           calendar_today
-    //         </span>
-    //         <span>مدة المسار: سنة واحدة</span>
-    //       </div>
-    //       <div className="flex items-center gap-2">
-    //         <span className="material-icons rounded-full bg-teal-900 p-2">
-    //           menu_book
-    //         </span>
-    //         <span>مقدار المراجعة اليومية: أربعة - خمسة أجزاء</span>
-    //       </div>
-    //       <div className="flex items-center gap-2">
-    //         <span className="material-icons rounded-full bg-teal-900 p-2">
-    //           school
-    //         </span>
-    //         <span>شرط التسجيل: التخرج من مسار الإتقان</span>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div className="mt-4 flex gap-4 md:mt-0">
-    //     <button className="rounded-lg bg-teal-800 px-4 py-2 text-white hover:bg-teal-900">
-    //       تفاصيل أكثر للرجال
-    //     </button>
-    //     <button className="rounded-lg bg-teal-800 px-4 py-2 text-white hover:bg-teal-900">
-    //       تفاصيل أكثر للنساء
-    //     </button>
-    //   </div>
-    // </div>
   );
 };
 
