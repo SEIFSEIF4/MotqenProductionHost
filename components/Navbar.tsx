@@ -97,7 +97,7 @@ export default function Navbar({ translations }: NavbarProps) {
       },
       {
         title: t("aboutUs.megaMenuTitle2"),
-        href: `/${locale}/about-motqen`,
+        href: `/${locale}/members`,
         description: t("aboutUs.description2"),
       },
       {
