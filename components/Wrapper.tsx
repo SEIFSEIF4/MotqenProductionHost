@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -22,14 +24,16 @@ function PageWrapper({ children, className, ...props }: PageWrapperProps) {
 
 interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
   id: string;
-  children: React.ReactNode;
+  isSinglePage?: boolean;
   className?: string;
+  children: React.ReactNode;
 }
 
 function SectionWrapper({
   id,
-  children,
   className,
+  children,
+  isSinglePage = false,
   ...props
 }: SectionWrapperProps) {
   return (
@@ -38,6 +42,7 @@ function SectionWrapper({
       className={cn(
         "w-full px-10 py-verticalSpace md:px-horizontalSpace",
         className,
+        isSinglePage && "min-h-[inherit]",
       )}
       {...props}
     >
@@ -46,4 +51,21 @@ function SectionWrapper({
   );
 }
 
-export { PageWrapper, SectionWrapper };
+interface BodyClassWrapperProps {
+  className: string;
+  children: React.ReactNode;
+}
+
+function BodyClassWrapper({ className, children }: BodyClassWrapperProps) {
+  React.useEffect(() => {
+    document.body.classList.add(className);
+
+    return () => {
+      document.body.classList.remove(className);
+    };
+  }, [className]);
+
+  return <>{children}</>;
+}
+
+export { PageWrapper, SectionWrapper, BodyClassWrapper };

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
-import { SectionWrapper } from "@/components/Wrapper";
+import { BodyClassWrapper, SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";
 import Image from "next/image";
 import About from "@/images/contact.jpg";
@@ -11,9 +11,10 @@ import CardDetails from "./_components/card-details";
 
 export default function ContactPage() {
   const t = useTranslations("contactUsPage");
+
   return (
-    <>
-      <SectionWrapper id="contactUs" className="bg-[#F3F4F6]">
+    <BodyClassWrapper className="bg-[#F3F4F6]">
+      <SectionWrapper isSinglePage id="contactUs" className="bg-[#F3F4F6]">
         <DynamicBreadcrumb />
         <SubTitle text={t("title")} />
         <p className="mt-4">{t("description")}</p>
@@ -34,6 +35,6 @@ export default function ContactPage() {
           </div>
         </div>
       </SectionWrapper>
-    </>
+    </BodyClassWrapper>
   );
 }

@@ -61,11 +61,13 @@ export default async function RootLayout({
         </head>
         <body className={isArabic ? ibmArabic.className : inter.className}>
           <NextIntlClientProvider messages={messages}>
-            <NavbarProvider />
-            <main className="mx-auto min-h-dvh w-full max-w-base">
-              {children}
+            <div className="flex min-h-screen flex-col">
+              <NavbarProvider />
+              <main className="mx-auto w-full max-w-base flex-1 overflow-auto">
+                {children}
+              </main>
               <Footer />
-            </main>
+            </div>
           </NextIntlClientProvider>
           <Toaster />
         </body>

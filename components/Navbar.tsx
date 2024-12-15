@@ -169,7 +169,7 @@ export default function Navbar({ translations }: NavbarProps) {
   return (
     <header className="relative mx-auto w-full max-w-base rounded-b-sm shadow-md">
       {/* Top Navbar */}
-      <div className="flex items-center justify-between px-8 py-4 md:px-16">
+      <div className="flex items-center justify-between bg-white px-8 py-4 md:px-16">
         {/* Left: Logo */}
         <div className="order-2 flex flex-1 items-start justify-center lg:order-none">
           <Link href="/">
@@ -238,7 +238,7 @@ export default function Navbar({ translations }: NavbarProps) {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href={`/${locale}/contactus`} legacyBehavior passHref>
+                <Link href={`/${locale}/contact`} legacyBehavior passHref>
                   <NavigationMenuLink
                     className={`${navigationMenuTriggerStyle()} cursor-pointer text-gray-800 hover:text-blue-500`}
                   >

@@ -39,7 +39,7 @@ const Hero = () => {
               />
               <HomeIcons.Carousel className="absolute top-0 z-10 max-w-[50%] md:max-w-full ltr:right-0 rtl:right-0" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(11,70,79,0.4)] via-transparent to-[rgba(11,70,79,0.4)]" />
-              <div className="content absolute top-0 z-20 flex h-full max-w-full flex-col items-start justify-center gap-y-3 p-20 text-white md:max-w-[50%] ltr:right-0 rtl:right-0">
+              <div className="content absolute top-0 z-20 flex h-full max-w-full flex-col items-start justify-center gap-y-3 p-20 text-white lg:max-w-[50%] ltr:right-0 rtl:right-0">
                 <h1 className="text-5xl font-semibold md:text-6xl">
                   تأسيس مُــتـقــن
                 </h1>
@@ -55,8 +55,8 @@ const Hero = () => {
                 priority
                 src={BookCarouselImg}
                 alt={"alt"}
-                sizes="100vw"
-                quality={100} // Maybe lower quality for performance
+                sizes="(max-width: 1440px) 100vw, 1440px"
+                quality={80} // Maybe lower quality for performance
                 style={{
                   objectFit: "cover",
                 }}
