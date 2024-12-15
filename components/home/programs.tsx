@@ -53,9 +53,9 @@ function Programs() {
                 "opacity-100 transition-all delay-200 duration-500 group-hover:from-[rgba(0,12,13,0)] group-hover:to-[rgba(22,22,22,0.9)]",
               )}
             >
-              <h3 className="absolute bottom-8 z-10 p-3 text-2xl font-bold opacity-100 group-hover:opacity-0">
+              <h2 className="absolute bottom-8 z-10 p-3 text-2xl font-bold opacity-100 group-hover:opacity-0">
                 {item.title}
-              </h3>
+              </h2>
               <div
                 className={cn(
                   "static right-0 top-0 flex flex-col justify-between p-10 transition-all delay-200 duration-500 group-hover:absolute group-hover:h-[70%]",
