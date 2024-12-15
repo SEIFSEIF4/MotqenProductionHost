@@ -7,12 +7,11 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
-import { SectionWrapper } from "@/components/Wrapper";
 
 import BookCarouselImg from "@/images/hero-4.jpg";
 import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
+import { Button } from "../ui/button";
 
 const Hero = () => {
   return (
@@ -20,7 +19,7 @@ const Hero = () => {
       <Carousel
         className={cn("w-full")}
         carouselOptions={{
-          // autoplay: true,
+          autoplay: true,
           active: true,
           loop: true,
           dragFree: false,
@@ -32,7 +31,7 @@ const Hero = () => {
           style={{ height: HERO_CAROUSEL_FIXED_HEIGHT }}
           className="relative h-full"
         >
-          {[1, 2, 3].map((_, index) => (
+          {[1, 2, 3, 4].map((_, index) => (
             <SliderMainItem key={index} className="relative h-full">
               <div
                 className="absolute inset-0 z-10 bg-gradient-to-l from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl"
@@ -40,6 +39,17 @@ const Hero = () => {
               />
               <HomeIcons.Carousel className="absolute top-0 z-10 max-w-[50%] md:max-w-full ltr:right-0 rtl:right-0" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(11,70,79,0.4)] via-transparent to-[rgba(11,70,79,0.4)]" />
+              <div className="content absolute top-0 z-20 flex h-full max-w-full flex-col items-start justify-center gap-y-3 p-20 text-white md:max-w-[50%] ltr:right-0 rtl:right-0">
+                <h1 className="text-5xl font-semibold md:text-6xl">
+                  تأسيس مُــتـقــن
+                </h1>
+                <p className="text-2xl font-medium md:text-3xl">
+                  بذور الأمس .. ثمار اليوم
+                </p>
+                <Button variant="outline" className="mt-8 text-black">
+                  تصفح برامجنا
+                </Button>
+              </div>
               <Image
                 fill
                 priority
@@ -54,16 +64,16 @@ const Hero = () => {
               />
             </SliderMainItem>
           ))}
-          <CarouselThumbsContainer className="CarouselThumbsContainer">
-            {[1, 2, 3].map((_, index) => (
-              <CarouselIndicator
-                className="bg-mainColor mx-1 h-3 w-3 rounded-full"
-                key={index}
-                index={index}
-              />
-            ))}
-          </CarouselThumbsContainer>
         </CarouselMainContainer>
+        <CarouselThumbsContainer containerClassName="absolute bottom-10 left-1/2  transform -translate-x-1/2 -translate-y-1/2">
+          {[1, 2, 3, 4].map((_, index) => (
+            <CarouselIndicator
+              className="mx-1 data-[active='false']:bg-[rgba(229,231,235,0.2)] data-[active='true']:bg-white"
+              key={index}
+              index={index}
+            />
+          ))}
+        </CarouselThumbsContainer>
       </Carousel>
     </section>
   );

@@ -84,7 +84,7 @@ export default async function News() {
 
       {/* News Cards */}
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {newsItems.map((newsItem) => (
+        {newsItems.slice(0, 3).map((newsItem) => (
           <Card
             key={newsItem.id}
             className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md"

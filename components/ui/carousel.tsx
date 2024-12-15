@@ -249,12 +249,17 @@ CarouselMainContainer.displayName = "CarouselMainContainer";
 
 const CarouselThumbsContainer = forwardRef<
   HTMLDivElement,
-  {} & React.HTMLAttributes<HTMLDivElement>
->(({ className, dir, children, ...props }, ref) => {
+  { containerClassName?: string } & React.HTMLAttributes<HTMLDivElement>
+>(({ containerClassName, className, dir, children, ...props }, ref) => {
   const { thumbsRef, orientation, direction } = useCarousel();
 
   return (
-    <div {...props} ref={thumbsRef} className="overflow-hidden" dir={direction}>
+    <div
+      {...props}
+      ref={thumbsRef}
+      className={cn("overflow-hidden", containerClassName)}
+      dir={direction}
+    >
       <div
         ref={ref}
         className={cn(
@@ -337,9 +342,9 @@ const CarouselIndicator = forwardRef<
       ref={ref}
       size="icon"
       className={cn(
-        className,
-        "h-1 w-6 rounded-full",
+        "h-1 w-6 rounded-lg",
         "data-[active='true']:w-11 data-[active='false']:bg-[#E5E7EB] data-[active='true']:bg-[#E3E2CF]",
+        className,
       )}
       data-active={isSlideActive}
       onClick={() => onThumbClick(index)}
