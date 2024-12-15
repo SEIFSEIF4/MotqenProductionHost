@@ -12,14 +12,20 @@ import { PageWrapper } from "@/components/Wrapper";
 
 export default function HomePage() {
   return (
-    <PageWrapper className="">
+    <>
       <Hero />
-      <About />
-      <Goals />
-      <Statics />
-      <Programs />
-      <News />
-      <Said />
-    </PageWrapper>
+      <PageWrapper className="-translate-y-2">
+        <div
+          className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
+          aria-hidden
+        />
+        <About />
+        <Goals />
+        <Statics />
+        <Programs />
+        <News />
+        <Said />
+      </PageWrapper>
+    </>
   );
 }

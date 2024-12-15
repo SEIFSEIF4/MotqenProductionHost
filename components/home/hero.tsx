@@ -10,85 +10,62 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionWrapper } from "@/components/Wrapper";
 
-export const NUMBER_OF_SLIDES = 3;
-
-export const homeBookCovers = [
-  {
-    title: "أهمية اللاقراءة: مراجعة لكتاب كيف تتحدث عن كتاب لم تقرأه؟",
-    author: "نجيب غلاء سمير أنس ",
-    img: "../../public/Images/book-cover/home-book-1.jpg",
-    slug: "book-not-read",
-  },
-  {
-    title:
-      'صراع اللغة والهوية والوجود: مُراجعة لكتاب "اللغة العربية في ساحات الوغى".',
-    author: "غلاء سمير أنس ",
-    img: "../../public/Images/book-cover/home-book-3.jpeg",
-    slug: "allughat-walwujud",
-  },
-  {
-    title: "السر وراء بناء العادات: مراجعة لكتاب العادات الذريّة",
-    author: "إيمان علي حسين",
-    img: "../../public/Images/book-cover/home-book-2.jpg",
-    slug: "atomic-standards",
-  },
-];
-
-import BookCarouselImg from "@/images/hero-2.png";
+import BookCarouselImg from "@/images/hero-4.jpg";
+import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
+import { HomeIcons } from "@/components/icons";
 
 const Hero = () => {
   return (
-    <SectionWrapper id="hero" className="relative">
+    <section id="hero" className="w-full">
       <Carousel
         className={cn("w-full")}
         carouselOptions={{
+          // autoplay: true,
+          active: true,
           loop: true,
           dragFree: false,
           align: "center",
-          direction: "ltr",
+          direction: "rtl",
         }}
       >
-        <div className="relative">
-          <CarouselMainContainer className="h-[400px]">
-            {homeBookCovers.map((book, index) => (
-              <SliderMainItem key={index} className="bg-transparent">
-                <div className="relative flex h-full items-center justify-center rounded-xl bg-background outline outline-1 outline-border">
-                  <Link href={`${book.slug}`}>
-                    <Image
-                      src={BookCarouselImg}
-                      width={500}
-                      height={700}
-                      alt={book.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </Link>
-                </div>
-                <div className="absolute bottom-0 flex w-full flex-col bg-gradient-to-t from-[#22414dc2] to-[#22414D] p-7 text-right"></div>
-                <div className="">
-                  <Link href={`${book.slug}`}>
-                    <h3 className="py-2 text-xl text-white">{book.title}</h3>
-                  </Link>
-                  <p className="p-2 text-lg font-normal text-white">
-                    {book.author}
-                  </p>
-                </div>
-              </SliderMainItem>
+        <CarouselMainContainer
+          style={{ height: HERO_CAROUSEL_FIXED_HEIGHT }}
+          className="relative h-full"
+        >
+          {[1, 2, 3].map((_, index) => (
+            <SliderMainItem key={index} className="relative h-full">
+              <div
+                className="absolute inset-0 z-10 bg-gradient-to-l from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl"
+                aria-hidden="true"
+              />
+              <HomeIcons.Carousel className="absolute top-0 z-10 max-w-[50%] md:max-w-full ltr:right-0 rtl:right-0" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(11,70,79,0.4)] via-transparent to-[rgba(11,70,79,0.4)]" />
+              <Image
+                fill
+                priority
+                src={BookCarouselImg}
+                alt={"alt"}
+                sizes="100vw"
+                quality={100} // Maybe lower quality for performance
+                style={{
+                  objectFit: "cover",
+                }}
+                className="h-full w-full bg-[rgba(11,70,79,0.4)]"
+              />
+            </SliderMainItem>
+          ))}
+          <CarouselThumbsContainer className="CarouselThumbsContainer">
+            {[1, 2, 3].map((_, index) => (
+              <CarouselIndicator
+                className="bg-mainColor mx-1 h-3 w-3 rounded-full"
+                key={index}
+                index={index}
+              />
             ))}
-          </CarouselMainContainer>
-          <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
-            <CarouselThumbsContainer className="gap-x-1">
-              {homeBookCovers.map((_, index) => (
-                <CarouselIndicator
-                  className="bg-mainColor mx-1 h-3 w-3 rounded-full"
-                  key={index}
-                  index={index}
-                />
-              ))}
-            </CarouselThumbsContainer>
-          </div>
-        </div>
+          </CarouselThumbsContainer>
+        </CarouselMainContainer>
       </Carousel>
-    </SectionWrapper>
+    </section>
   );
 };
 

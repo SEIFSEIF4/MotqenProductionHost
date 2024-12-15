@@ -12,7 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { DirectionProvider } from "@radix-ui/react-direction";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import Search from "@/images/search.png";
 import Logo from "@/images/logo.png";
@@ -172,7 +172,9 @@ export default function Navbar({ translations }: NavbarProps) {
       <div className="flex items-center justify-between px-8 py-4 md:px-16">
         {/* Left: Logo */}
         <div className="order-2 flex flex-1 items-start justify-center lg:order-none">
-          <Image src={Logo} alt="Logo" className="w-12 object-contain" />
+          <Link href="/">
+            <Image src={Logo} alt="Logo" className="w-12 object-contain" />
+          </Link>
         </div>
 
         {/* Middle: Navigation Links */}

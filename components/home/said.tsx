@@ -44,7 +44,7 @@ const Said = () => {
       <Carousel
         className={cn("mt-4 w-full")}
         carouselOptions={{
-          // autoplay: true,
+          autoplay: true,
           active: true,
           loop: true,
           dragFree: false,
