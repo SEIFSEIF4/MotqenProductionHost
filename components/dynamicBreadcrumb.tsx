@@ -17,14 +17,16 @@ import { cn } from "@/lib/utils";
 
 export default function DynamicBreadcrumb({
   className,
+  isDynamicRoute,
 }: {
   className?: string;
+  isDynamicRoute?: string;
 }) {
   const pathname = usePathname(); // Get the current URL
   const locale = useLocale(); // Retrieve the current locale en/ar
   const direction = getLangDir(locale); // Determine the text direction (rtl/ltr)
 
-  const t = useTranslations("Breadcrumbs"); //Get translation based on locale
+  const t = useTranslations("Breadcrumbs"); // Get translation based on locale
 
   // Split the pathname into segments and remove the locale part
   const segments = pathname.split("/").filter(Boolean).slice(1);
@@ -54,7 +56,7 @@ export default function DynamicBreadcrumb({
               ) : (
                 // Current page
                 <BreadcrumbPage className="text-[#9DA4AE]">
-                  {t(segment)}
+                  {!!isDynamicRoute ? t(isDynamicRoute) : t(segment)}
                 </BreadcrumbPage>
               )}
             </BreadcrumbItem>

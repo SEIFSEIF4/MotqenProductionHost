@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { Locale, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
-
+import { Toaster } from "@/components/ui/sonner";
 import { constructMetadata } from "@/lib/utils";
 import NavbarProvider from "@/components/NavbarProvider";
 import "./globals.css";
@@ -72,3 +72,4 @@ export default async function RootLayout({
     </ViewTransitions>
   );
 }
+

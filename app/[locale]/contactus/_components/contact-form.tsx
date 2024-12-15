@@ -16,21 +16,33 @@ import {
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useState } from "react";
+import { TEXTAREA_MAX_CHARACTER } from "@/constant/common";
 
-const formSchema = z.object({
+const contactFormSchema = z.object({
   about: z.string().min(4).max(50),
   name: z.string().min(10).max(50),
   email: z.string(),
   phone: z.string(),
-  message: z.string(),
+  message: z.string().min(5).max(TEXTAREA_MAX_CHARACTER),
 });
 
 export default function ContactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof contactFormSchema>>({
+    resolver: zodResolver(contactFormSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const maxCharacter = TEXTAREA_MAX_CHARACTER; //Fixed number
+  const [characterCount, setCharacterCount] = useState<number>(0);
+
+  // Update character count when the field value changes
+  useEffect(() => {
+    const currentValue = form.getValues("message") || "";
+    setCharacterCount(currentValue.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.watch("message")]);
+
+  function onSubmit(values: z.infer<typeof contactFormSchema>) {
     try {
       console.log(values);
       toast(
@@ -48,110 +60,123 @@ export default function ContactForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto max-w-3xl space-y-8 py-10"
+        className="grid max-w-3xl flex-1 grid-cols-1 space-y-6 p-10 pl-0"
       >
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6">
-            <FormField
-              control={form.control}
-              name="about"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>العنوان</FormLabel>
-                  <FormControl>
-                    <Input placeholder="اكتب موضوعك" type="text" {...field} />
-                  </FormControl>
+        <h2 className="text-2xl font-bold">نموذج التواصل</h2>
+        <div className="flex w-full flex-col gap-6 md:flex-row">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="w-full md:w-1/2">
+                <FormLabel>الاسم الرباعي</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="ادخل الاسم الرباعي"
+                    type="text"
+                    {...field}
+                  />
+                </FormControl>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="about"
+            render={({ field }) => (
+              <FormItem className="w-full md:w-1/2">
+                <FormLabel>العنوان</FormLabel>
+                <FormControl>
+                  <Input placeholder="اكتب موضوعك" type="text" {...field} />
+                </FormControl>
 
-          <div className="col-span-6">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>الاسم الرباعي</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="ادخل الاسم الرباعي"
-                      type="text"
-                      {...field}
-                    />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>البريد الالكتروني</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="ادخل البريد الالكتروني"
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
+        <div className="flex w-full flex-col gap-6 md:flex-row">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="w-full md:w-1/2">
+                <FormLabel>البريد الالكتروني</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="ادخل البريد الالكتروني"
+                    type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <div className="col-span-6">
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem className="flex flex-col items-start">
-                  <FormLabel>رقم الجوال</FormLabel>
-                  <FormControl className="w-full">
-                    <PhoneInput
-                      placeholder="00 000 0000"
-                      {...field}
-                      defaultCountry="SA"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem className="w-full text-start md:w-1/2">
+                <FormLabel isRequired className="pt-1">
+                  رقم الجوال
+                </FormLabel>
+                <FormControl className="w-full">
+                  <PhoneInput
+                    placeholder="00 000 0000"
+                    {...field}
+                    defaultCountry="SA"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
         <FormField
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>نص الرسالة</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="اكتب الرسالة"
-                  className="resize-none"
-                  {...field}
-                />
+                <div>
+                  <Textarea
+                    placeholder="اكتب الرسالة"
+                    className="h-20 resize-none"
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setCharacterCount(e.target.value.length);
+                    }}
+                  />
+                  <div className="mx-1 mt-1 text-right text-sm text-gray-500">
+                    <span
+                      className={
+                        characterCount > maxCharacter
+                          ? "px-1 text-red-500"
+                          : "px-1"
+                      }
+                    >
+                      {characterCount}
+                    </span>
+                    / {maxCharacter}
+                  </div>
+                </div>
               </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-fit">
+          إرسال
+        </Button>
       </form>
     </Form>
   );

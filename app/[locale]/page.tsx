@@ -13,7 +13,6 @@ import { PageWrapper } from "@/components/Wrapper";
 export default function HomePage() {
   return (
     <PageWrapper className="">
-      <section className="min-h-96"></section>
       <Hero />
       <About />
       <Goals />

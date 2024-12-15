@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { toast } from "sonner";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text);
+  toast.success("تم نسخ النص إلى الحافظة!");
+};
 
 export function absoluteUrl(path: string) {
   if (typeof window !== "undefined") return path;

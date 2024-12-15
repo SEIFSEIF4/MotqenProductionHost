@@ -4,7 +4,7 @@ import { createNavigation } from "next-intl/navigation";
 export const routing = defineRouting({
   // A list of all locales Motqen will support
   locales: ["ar", "en"],
-
+  localePrefix: "always",
   // Used when no locale matches
   defaultLocale: "ar",
 });
@@ -14,3 +14,4 @@ export const routing = defineRouting({
 export type Locale = (typeof routing.locales)[number];
 export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
+
