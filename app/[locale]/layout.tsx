@@ -67,9 +67,9 @@ export default async function RootLayout({
               <Footer />
             </main>
           </NextIntlClientProvider>
+          <Toaster />
         </body>
       </html>
     </ViewTransitions>
   );
 }
-
