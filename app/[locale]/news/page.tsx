@@ -1,6 +1,6 @@
 // pages/[locale]/news.tsx
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 import { SectionWrapper } from "@/components/Wrapper";
@@ -16,6 +16,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import NewsDummyImg from "@/images/card-2.jpg";
 import { NewsDummyData } from "@/data/news";
+import Link from "next/link";
 
 type NewsItem = {
   id: string;
@@ -27,6 +28,11 @@ type NewsItem = {
 export default function NewsPage({}) {
   const t = useTranslations("NewsPage");
 
+  const locale: string = useLocale();
+
+  const newsItems: NewsItem[] =
+    NewsDummyData[locale as "en" | "ar"] ?? NewsDummyData.ar;
+
   return (
     <SectionWrapper id="news" className="bg-[#F3F4F6]">
       <DynamicBreadcrumb />
@@ -34,7 +40,7 @@ export default function NewsPage({}) {
       <p className="mt-4">{t("description")}</p>
       {/* News Cards */}
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {NewsDummyData.ar.map((newsItem) => (
+        {newsItems.map((newsItem) => (
           <Card
             key={newsItem.id}
             className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md"
@@ -59,9 +65,14 @@ export default function NewsPage({}) {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Button className="w-full hover:opacity-75">
-                  {t("button2")}
-                </Button>
+                <Link
+                  href={`/${locale}/news/${newsItem.id}`}
+                  className="w-full"
+                >
+                  <Button className="w-full hover:opacity-75">
+                    {t("button2")}
+                  </Button>
+                </Link>
               </CardFooter>
             </div>
           </Card>

@@ -5,7 +5,10 @@
     "about-motqen": "About Motqen",
     "iqra-path": "Iqra Path",
     "ittqan-path": "Ittqan Path",
-    "hifz-path": "Hifz Path"
+    "hifz-path": "Hifz Path",
+    "contact": "Contact Us",
+    "news": "Association News",
+    "dynamicNews": "News Details"
   },
   "Footer": {
     "logoAlt": "Logo",
@@ -47,6 +50,11 @@
       "contactUs": "Contact Us",
       "search": "Search",
       "english": "العربية"
+    },
+    "HeroSection": {
+      "title": "The Establishment of Motqen",
+      "description": "Yesterday's seeds... Today's fruits",
+      "button": "Browse Our Programs"
     },
     "AboutSection": {
       "title": "About the Motqen Association",
@@ -108,6 +116,7 @@
       "button": "More",
       "programs": [
         {
+          "id": 1,
           "title": "Hifz Path",
           "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
           "programs": [
@@ -156,6 +165,7 @@
           ]
         },
         {
+          "id": 2,
           "title": "Ittqan Path",
           "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
           "programs": [
@@ -190,6 +200,7 @@
           ]
         },
         {
+          "id": 3,
           "title": "Iqra Path",
           "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
           "programs": [
@@ -245,7 +256,7 @@
   },
   "Programs": {
     "first": {
-      "title": "Iqraa Path",
+      "title": "Iqra Path",
       "subtitle": ["One Path", "For Men and Women"],
       "description": "This path is for those who have mastered the Book of Allah and wish to advance their skills and performance under a structured and monitored framework with daily follow-up.",
       "duration": {
@@ -266,7 +277,7 @@
       }
     },
     "second": {
-      "title": "Itqan Path",
+      "title": "Ittqan Path",
       "subtitle": ["One Path", "For Men and Women"],
       "description": "This path is for those who have previously memorized the Book of Allah without achieving precision and wish to master it under a structured and monitored framework with daily follow-up.",
       "duration": {
@@ -287,7 +298,7 @@
       }
     },
     "third": {
-      "title": "Memorization Path",
+      "title": "Hifz Path",
       "subtitle": ["Two Paths", "For Men and Women"],
       "pathType": {
         "one": "One Page Path",
@@ -311,5 +322,10 @@
         "women": "More Details for Women"
       }
     }
+  },
+  "NewsPage": {
+    "title": "Association News",
+    "description": "Stay updated with the latest news, events, and initiatives organized by Motqen Association",
+    "button2": "Read More"
   }
 }

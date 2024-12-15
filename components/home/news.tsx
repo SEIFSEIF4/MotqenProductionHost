@@ -21,6 +21,8 @@ import { DirectionProvider } from "@radix-ui/react-direction";
 //data
 import { NewsDummyData } from "@/data/news";
 import NewsDummyImg from "@/images/card-2.jpg";
+import Link from "next/link";
+import { getLocale } from "next-intl/server";
 
 type NewsItem = {
   id: string;
@@ -69,7 +71,7 @@ export default async function News() {
   // const isArabic = locale === "ar";
 
   // //data
-  const locale = "ar";
+  const locale = await getLocale();
   const newsItems = await getData(locale);
 
   return (
@@ -77,9 +79,11 @@ export default async function News() {
       {/* Section Header */}
       <div className="flex w-full items-center justify-between">
         <SubTitle text={t("title")} />
-        <Button variant="outline" className="hover:opacity-75">
-          {t("button")}
-        </Button>
+        <Link href={`/${locale}/news`}>
+          <Button variant="outline" className="hover:opacity-75">
+            {t("button")}
+          </Button>
+        </Link>
       </div>
 
       {/* News Cards */}
@@ -111,9 +115,14 @@ export default async function News() {
               </CardHeader>
 
               <CardFooter>
-                <Button className="w-full hover:opacity-75">
-                  {t("button2")}
-                </Button>
+                <Link
+                  href={`/${locale}/news/${newsItem.id}`}
+                  className="w-full"
+                >
+                  <Button className="w-full hover:opacity-75">
+                    {t("button2")}
+                  </Button>
+                </Link>
               </CardFooter>
             </div>
           </Card>

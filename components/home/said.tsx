@@ -9,35 +9,28 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { SectionWrapper } from "@/components/Wrapper";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { SubTitle } from "@/components/ui/heading";
 import { SAID_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
+import { SaidDummyData } from "@/data/said";
 
 export const NUMBER_OF_SLIDES = 3;
-export const SaidDummyData = [
-  {
-    title:
-      "جمعية متقن تقدم نموذجًا متميزًا في تعليم القرآن الكريم، مستفيدة من أفضل الأساليب الحديثة لتحقيق رسالتها السامية.",
-    author: "د.أحمد صالح",
-    subTitle: "دكتور دراسات إسلامية",
-  },
-  {
-    title:
-      "جمعية متقن تقدم نموذجًا متميزًا في تعليم القرآن الكريم، مستفيدة من أفضل الأساليب الحديثة لتحقيق رسالتها السامية.",
-    author: "د.أحمد صالح",
-    subTitle: "دكتور دراسات إسلامية",
-  },
-  {
-    title:
-      "جمعية متقن تقدم نموذجًا متميزًا في تعليم القرآن الكريم، مستفيدة من أفضل الأساليب الحديثة لتحقيق رسالتها السامية.",
-    author: "د.أحمد صالح",
-    subTitle: "دكتور دراسات إسلامية",
-  },
-] as const;
+
+type SaidItem = {
+  title: string;
+  author: string;
+  subTitle: string;
+};
 
 const Said = () => {
   const t = useTranslations("HomePage.SaidSections");
+
+  const locale: string = useLocale();
+
+  const saidItems: SaidItem[] =
+    SaidDummyData[locale as "en" | "ar"] ?? SaidDummyData.ar;
+
   return (
     <SectionWrapper id="said">
       <SubTitle text={t("title")} />
@@ -59,7 +52,7 @@ const Said = () => {
             width: "100%",
           }}
         >
-          {SaidDummyData.map((item, index) => (
+          {saidItems.map((item, index) => (
             <SliderMainItem
               key={index}
               className="flex-shrink-0 flex-grow-0 basis-full bg-transparent"
@@ -77,7 +70,7 @@ const Said = () => {
         </CarouselMainContainer>
         <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
           <CarouselThumbsContainer className="gap-x-1">
-            {SaidDummyData.map((_, index) => (
+            {saidItems.map((_, index) => (
               <CarouselIndicator className="mx-1" key={index} index={index} />
             ))}
           </CarouselThumbsContainer>
