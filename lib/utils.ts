@@ -8,9 +8,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const copyToClipboard = (text: string) => {
+export const copyToClipboard = (text: string, toastMessage?: string) => {
   navigator.clipboard.writeText(text);
-  toast.success("تم نسخ النص إلى الحافظة!");
+  toast.success(toastMessage ?? "تم نسخ النص إلى الحافظة!");
 };
 
 export function absoluteUrl(path: string) {

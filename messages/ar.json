@@ -278,9 +278,59 @@
     "contactInfo": "معلومات التواصل",
     "phone": "رقم الجوال",
     "email": "البريد الالكتروني",
+    "address": "جدة، المملكة العربية السعودية",
     "location": "الموقع",
     "followUs": "تابعنا على",
-    "imageAlt": "تواصل معنا"
+    "copy": "نسخ",
+    "open": "افتح",
+    "imageAlt": "تواصل معنا",
+    "toastMessage": "تم نسخ النص إلى الحافظة",
+    "socialMedia": {
+      "twitter": "تويتر",
+      "instagram": "إنستغرام",
+      "linkedin": "لينكدإن",
+      "whatsapp": "واتساب"
+    },
+    "contactUsForm": {
+      "formTitle": "نموذج التواصل",
+      "name": {
+        "label": "الاسم الرباعي",
+        "placeholder": "ادخل الاسم الرباعي",
+        "errorMin": "يجب أن يحتوي الاسم على 10 أحرف على الأقل",
+        "errorMax": "يجب ألا يزيد الاسم عن 50 حرفًا",
+        "errorRequired": "يرجى إدخال الاسم"
+      },
+      "about": {
+        "label": "العنوان",
+        "placeholder": "اكتب موضوعك",
+        "errorMin": "يجب أن يحتوي الموضوع على 4 أحرف على الأقل",
+        "errorMax": "يجب ألا يزيد الموضوع عن 50 حرفًا",
+        "errorRequired": "يرجى ادخال الموضوع"
+      },
+      "email": {
+        "label": "البريد الالكتروني",
+        "placeholder": "ادخل البريد الالكتروني",
+        "errorInvalid": "يرجى إدخال بريد إلكتروني صالح",
+        "errorRequired": "يرجى إدخال البريد الإلكتروني"
+      },
+      "phone": {
+        "label": "رقم الجوال",
+        "placeholder": "00 000 0000",
+        "errorInvalid": "الرجاء إدخال رقم هاتف صالح",
+        "errorRequired": "يرجى إدخال رقم الهاتف"
+      },
+      "message": {
+        "label": "نص الرسالة",
+        "placeholder": "اكتب الرسالة",
+        "errorMin": "يجب أن تحتوي الرسالة على 5 أحرف على الأقل",
+        "errorMax": "يجب ألا تزيد الرسالة عن {maxCharacter} حرفًا",
+        "errorRequired": "يرجى إدخال الرسالة",
+        "characterCount": "{current}/{max}"
+      },
+      "submitButton": "إرسال",
+      "toastSuccess": "تم إرسال النموذج بنجاح",
+      "toastError": "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."
+    }
   },
   "NewsPage": {
     "title": "أخبار الجمعية",

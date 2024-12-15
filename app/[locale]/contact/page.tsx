@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-
-import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
-import { BodyClassWrapper, SectionWrapper } from "@/components/Wrapper";
-import { SubTitle } from "@/components/ui/heading";
 import Image from "next/image";
-import About from "@/images/contact.jpg";
+
+// Global Components
+import { SubTitle } from "@/components/ui/heading";
+import { BodyClassWrapper, SectionWrapper } from "@/components/Wrapper";
+import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
+
+// Page based Components
+import Contact from "@/images/contact.jpg";
 import ContactForm from "./_components/contact-form";
 import CardDetails from "./_components/card-details";
 
@@ -14,11 +17,11 @@ export default function ContactPage() {
 
   return (
     <BodyClassWrapper className="bg-[#F3F4F6]">
-      <SectionWrapper isSinglePage id="contactUs" className="bg-[#F3F4F6]">
+      <SectionWrapper isSinglePage id="contactUs" className="bg-[#F3F4F6] px-6">
         <DynamicBreadcrumb />
         <SubTitle text={t("title")} />
         <p className="mt-4">{t("description")}</p>
-        <div className="mt-8 flex w-full flex-col items-start justify-between overflow-hidden rounded-lg bg-white md:flex-row">
+        <div className="mt-8 flex w-full flex-col items-start justify-between gap-5 overflow-hidden rounded-lg bg-white lg:flex-row">
           <ContactForm />
           <div className="relative h-full">
             <div
@@ -27,10 +30,10 @@ export default function ContactPage() {
             />
             <CardDetails />
             <Image
-              src={About}
               quality={50}
-              alt="Contact us"
-              className="aspect-square h-[514px] w-auto max-w-[416px] shrink-0 rounded-lg object-cover"
+              src={Contact}
+              alt={t("imageAlt")}
+              className="aspect-square min-h-[514px] w-auto rounded-lg object-cover lg:max-w-[416px]"
             />
           </div>
         </div>
