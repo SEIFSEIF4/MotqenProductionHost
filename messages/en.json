@@ -5,7 +5,10 @@
     "about-motqen": "About Motqen",
     "iqra-path": "Iqra Path",
     "ittqan-path": "Ittqan Path",
-    "hifz-path": "Hifz Path"
+    "hifz-path": "Hifz Path",
+    "contact": "Contact Us",
+    "news": "Association News",
+    "dynamicNews": "News Details"
   },
   "Footer": {
     "logoAlt": "Logo",
@@ -311,5 +314,70 @@
         "women": "More Details for Women"
       }
     }
+  },
+  "contactUsPage": {
+    "title": "Contact Us",
+    "description": "We welcome your inquiries and feedback with utmost attention.",
+    "contactInfo": "Contact Information",
+    "phone": "Phone Number",
+    "email": "Email Address",
+    "address": "Jeddah, Saudi Arabia",
+    "location": "Location",
+    "followUs": "Follow us on",
+    "copy": "Copy",
+    "open": "Open",
+    "imageAlt": "Contact Us",
+    "toastMessage": "Text copied to clipboard",
+    "socialMedia": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp"
+    },
+    "contactUsForm": {
+      "formTitle": "Contact Form",
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name",
+        "errorMin": "The name must be at least 10 characters long.",
+        "errorMax": "The name must not exceed 50 characters.",
+        "errorRequired": "Please enter your name."
+      },
+      "about": {
+        "label": "Subject",
+        "placeholder": "Write your subject",
+        "errorMin": "The subject must be at least 4 characters long.",
+        "errorMax": "The subject must not exceed 50 characters.",
+        "errorRequired": "Please enter a subject."
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address",
+        "errorInvalid": "Please enter a valid email address.",
+        "errorRequired": "Please enter your email address."
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "00 000 0000",
+        "errorInvalid": "Please enter a valid phone number.",
+        "errorRequired": "Please enter your phone number."
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Write your message",
+        "errorMin": "The message must be at least 5 characters long.",
+        "errorMax": "The message must not exceed {maxCharacter} characters.",
+        "errorRequired": "Please enter a message.",
+        "characterCount": "{current}/{max}"
+      },
+      "submitButton": "Send",
+      "toastSuccess": "The form was submitted successfully.",
+      "toastError": "An error occurred during submission. Please try again."
+    }
+  },
+  "NewsPage": {
+    "title": "Association News",
+    "description": "Stay updated with the latest news, events, and initiatives organized by the Mutqan Association.",
+    "button2": "Read More"
   }
 }

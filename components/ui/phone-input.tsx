@@ -84,7 +84,10 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
     <div className="w-full">
       <Input
-        className={cn("rounded-e-none rounded-s-lg", className)}
+        className={cn(
+          "rounded-e-sm rounded-s-none ltr:rounded-e-none ltr:rounded-s-sm",
+          className,
+        )}
         {...props}
         ref={ref}
       />
