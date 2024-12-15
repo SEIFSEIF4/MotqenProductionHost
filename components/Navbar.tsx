@@ -167,9 +167,9 @@ export default function Navbar({ translations }: NavbarProps) {
   ListItem.displayName = "ListItem";
 
   return (
-    <header className="relative mx-auto w-full max-w-base rounded-b-sm shadow-md">
+    <header className="relative w-full bg-white shadow-sm">
       {/* Top Navbar */}
-      <div className="flex items-center justify-between gap-0 bg-white px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
+      <div className="mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
         {/* Left: Logo */}
         <div className="order-2 flex items-start justify-center lg:order-none">
           <Link href="/">

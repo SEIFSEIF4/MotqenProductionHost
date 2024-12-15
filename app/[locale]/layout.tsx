@@ -8,10 +8,11 @@ import { NextIntlClientProvider } from "next-intl";
 import { Locale, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
-import { constructMetadata } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import NavbarProvider from "@/components/NavbarProvider";
 import "./globals.css";
 import Footer from "@/components/footer";
+import Providers from "@/components/providers";
 
 const ibmArabic = IBM({
   subsets: ["arabic"],
@@ -59,15 +60,18 @@ export default async function RootLayout({
           />
           <meta name="theme-color" content="white" />
         </head>
-        <body className={isArabic ? ibmArabic.className : inter.className}>
+        <body
+          className={cn(
+            isArabic ? ibmArabic.className : inter.className,
+            "flex min-h-screen flex-col",
+          )}
+        >
           <NextIntlClientProvider messages={messages}>
-            <div className="flex min-h-screen flex-col">
-              <NavbarProvider />
-              <main className="mx-auto w-full max-w-base flex-1 overflow-auto">
-                {children}
-              </main>
-              <Footer />
-            </div>
+            <NavbarProvider />
+            <main className="mx-auto w-full max-w-base flex-1 overflow-auto">
+              <Providers>{children}</Providers>
+            </main>
+            <Footer />
           </NextIntlClientProvider>
           <Toaster />
         </body>

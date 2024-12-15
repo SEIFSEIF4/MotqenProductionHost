@@ -9,10 +9,12 @@ const AboutMotqen = () => {
   return (
     <>
       <div className="mx-auto my-10 max-w-7xl rounded-md bg-white p-4 shadow-md">
-        <div className="flex flex-col-reverse lg:flex-row-reverse">
+        <div className="flex flex-col-reverse gap-6 lg:flex-row-reverse">
           <div className="flex justify-center lg:w-1/3">
             <Image
+              priority
               src={About}
+              placeholder="blur"
               alt="Mentor Program"
               className="aspect-square rounded-md object-cover"
             />
