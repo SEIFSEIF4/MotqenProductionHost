@@ -16,7 +16,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import NewsDummyImg from "@/images/card-2.jpg";
 import { NewsDummyData } from "@/data/news";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 type NewsItem = {
   id: string;

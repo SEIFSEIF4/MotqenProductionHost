@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -65,10 +65,16 @@ export default function ContactForm() {
   const maxCharacter = TEXTAREA_MAX_CHARACTER;
   const [characterCount, setCharacterCount] = useState<number>(0);
 
+  // Watch the 'message' field using useWatch
+  const watchedMessage = useWatch({
+    control: form.control,
+    name: "message",
+  });
+
+  // Update character count whenever 'message' changes
   useEffect(() => {
-    const currentValue = form.getValues("message") || "";
-    setCharacterCount(currentValue.length);
-  }, [form.watch("message")]);
+    setCharacterCount(watchedMessage?.length || 0);
+  }, [watchedMessage]);
 
   function onSubmit(values: z.infer<typeof contactFormSchema>) {
     try {
