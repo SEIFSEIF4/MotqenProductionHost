@@ -22,7 +22,7 @@ export default function ContactPage() {
           <ContactForm />
           <div className="relative h-full">
             <div
-              className="absolute inset-0 z-10 rounded-2xl bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
+              className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
               aria-hidden="true"
             />
             <CardDetails />
@@ -30,7 +30,7 @@ export default function ContactPage() {
               src={About}
               quality={50}
               alt="Contact us"
-              className="aspect-square h-[514px] w-auto max-w-[416px] rounded-lg object-cover"
+              className="aspect-square h-[514px] w-auto max-w-[416px] shrink-0 rounded-lg object-cover"
             />
           </div>
         </div>

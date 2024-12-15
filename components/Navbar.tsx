@@ -367,7 +367,7 @@ export default function Navbar({ translations }: NavbarProps) {
               </NavigationMenuItem>
               <Separator />
               <NavigationMenuItem className="w-full">
-                <Link href={`/${locale}/contactus`} legacyBehavior passHref>
+                <Link href={`/${locale}/contact`} legacyBehavior passHref>
                   <NavigationMenuLink
                     className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-base text-gray-800`}
                     style={{
