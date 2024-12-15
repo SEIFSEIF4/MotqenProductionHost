@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";
@@ -13,11 +13,13 @@ import { MoveRight } from "lucide-react";
 
 import { ProgramsTextType } from "@/data/programs";
 import { PROGRAMS_FIXED_HEIGHT } from "@/constant/common";
+import Link from "next/link";
 const images = [ProgramImg1, ProgramImg2, ProgramImg3];
 
 function Programs() {
   const t = useTranslations("HomePage.ProgramsSection");
   const programs: ProgramsTextType = t.raw("programs");
+  const locale = useLocale();
 
   return (
     <SectionWrapper id="programs" className="bg-[#F3F4F6]">
@@ -72,12 +74,41 @@ function Programs() {
                     <p className="text-start text-xl">{item.details}</p>
                   </div>
                 </div>
-                <Button
-                  variant="secondary"
-                  className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
-                >
-                  <MoveRight /> {t("button")}
-                </Button>
+                {item.id === 1 ? (
+                  <Link href={`/${locale}/hifz-path`}>
+                    <Button
+                      variant="secondary"
+                      className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
+                    >
+                      <MoveRight /> {t("button")}
+                    </Button>
+                  </Link>
+                ) : item.id === 2 ? (
+                  <Link href={`/${locale}/ittqan-path`}>
+                    <Button
+                      variant="secondary"
+                      className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
+                    >
+                      <MoveRight /> {t("button")}
+                    </Button>
+                  </Link>
+                ) : item.id === 3 ? (
+                  <Link href={`/${locale}/iqra-path`}>
+                    <Button
+                      variant="secondary"
+                      className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
+                    >
+                      <MoveRight /> {t("button")}
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button
+                    variant="secondary"
+                    className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
+                  >
+                    <MoveRight /> {t("button")}
+                  </Button>
+                )}
               </div>
               <div
                 className={cn(

@@ -97,7 +97,7 @@ export default function Navbar({ translations }: NavbarProps) {
       },
       {
         title: t("aboutUs.megaMenuTitle2"),
-        href: `/${locale}/about-motqen`,
+        href: `/${locale}/members`,
         description: t("aboutUs.description2"),
       },
       {
@@ -169,9 +169,9 @@ export default function Navbar({ translations }: NavbarProps) {
   return (
     <header className="relative mx-auto w-full max-w-base rounded-b-sm shadow-md">
       {/* Top Navbar */}
-      <div className="flex items-center justify-between bg-white px-8 py-4 md:px-16">
+      <div className="flex items-center justify-between gap-0 bg-white px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
         {/* Left: Logo */}
-        <div className="order-2 flex flex-1 items-start justify-center lg:order-none">
+        <div className="order-2 flex items-start justify-center lg:order-none">
           <Link href="/">
             <Image src={Logo} alt="Logo" className="w-12 object-contain" />
           </Link>
@@ -181,11 +181,11 @@ export default function Navbar({ translations }: NavbarProps) {
         <NavigationMenu className="hidden lg:flex lg:flex-1">
           <DirectionProvider dir="rtl">
             <NavigationMenuList
-              className={`flex space-x-6 ${locale === "ar" && "flex-row-reverse"}`}
+              className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800`}
             >
               <NavigationMenuItem>
                 <NavigationMenuTrigger
-                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800 hover:text-blue-500`}
+                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-base hover:text-blue-500`}
                 >
                   {translations.aboutUs}
                 </NavigationMenuTrigger>
@@ -203,7 +203,7 @@ export default function Navbar({ translations }: NavbarProps) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger
-                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800 hover:text-blue-500`}
+                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-base hover:text-blue-500`}
                 >
                   {translations.programsAndPaths}
                 </NavigationMenuTrigger>
@@ -222,7 +222,8 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavigationMenuItem>
                 <Link href={`/${locale}/news`} legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer text-gray-800 hover:text-blue-500`}
+                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
+                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
                   >
                     {translations.associationNews}
                   </NavigationMenuLink>
@@ -231,7 +232,8 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavigationMenuItem>
                 <Link href={`/${locale}/store`} legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer text-gray-800 hover:text-blue-500`}
+                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
+                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
                   >
                     {translations.store}
                   </NavigationMenuLink>
@@ -240,7 +242,8 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavigationMenuItem>
                 <Link href={`/${locale}/contact`} legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer text-gray-800 hover:text-blue-500`}
+                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
+                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
                   >
                     {translations.contactUs}
                   </NavigationMenuLink>

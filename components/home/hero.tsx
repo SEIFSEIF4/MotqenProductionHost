@@ -11,9 +11,13 @@ import Image from "next/image";
 import BookCarouselImg from "@/images/hero-4.jpg";
 import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
-import { Button } from "../ui/button";
+import ClientButton from "@/components/ClientGoProgramsButton";
+import { useLocale, useTranslations } from "next-intl";
 
 const Hero = () => {
+  const t = useTranslations("HomePage.HeroSection");
+  const locale = useLocale();
+
   return (
     <section id="hero" className="w-full">
       <Carousel
@@ -39,16 +43,16 @@ const Hero = () => {
               />
               <HomeIcons.Carousel className="absolute top-0 z-10 max-w-[50%] md:max-w-full ltr:right-0 rtl:right-0" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(11,70,79,0.4)] via-transparent to-[rgba(11,70,79,0.4)]" />
-              <div className="content absolute top-0 z-20 flex h-full max-w-full flex-col items-start justify-center gap-y-3 p-20 text-white lg:max-w-[50%] ltr:right-0 rtl:right-0">
+              <div
+                className={`content absolute top-0 z-20 flex h-full max-w-full flex-col justify-center gap-y-3 p-20 text-white lg:max-w-[50%] ${locale === "ar" ? "right-0 items-start text-right" : "left-0 items-end text-left"}`}
+              >
                 <h1 className="text-5xl font-semibold md:text-6xl">
-                  تأسيس مُــتـقــن
+                  {t("title")}
                 </h1>
                 <p className="text-2xl font-medium md:text-3xl">
-                  بذور الأمس .. ثمار اليوم
+                  {t("description")}
                 </p>
-                <Button variant="outline" className="mt-8 text-black">
-                  تصفح برامجنا
-                </Button>
+                <ClientButton title={t("button")} />
               </div>
               <Image
                 fill
