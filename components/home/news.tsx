@@ -75,7 +75,7 @@ export default async function News() {
   const newsItems = await getData(locale);
 
   return (
-    <SectionWrapper id="news">
+    <SectionWrapper id="news" className="bg-white">
       {/* Section Header */}
       <div className="flex w-full items-center justify-between">
         <SubTitle text={t("title")} />

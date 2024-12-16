@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <PageWrapper className="-translate-y-2">
+      <PageWrapper className="-translate-y-2 bg-white">
         <div
           className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
           aria-hidden

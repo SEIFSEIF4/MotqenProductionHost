@@ -63,7 +63,7 @@ export default async function RootLayout({
         <body
           className={cn(
             isArabic ? ibmArabic.className : inter.className,
-            "flex min-h-screen flex-col",
+            "flex min-h-screen flex-col bg-background",
           )}
         >
           <NextIntlClientProvider messages={messages}>

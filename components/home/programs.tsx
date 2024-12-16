@@ -22,7 +22,7 @@ function Programs() {
   const locale = useLocale();
 
   return (
-    <SectionWrapper id="programs" className="bg-[#F3F4F6]">
+    <SectionWrapper id="programs" className="bg-[rgba(243,244,246,1)]">
       <SubTitle text={t("title")} />
       <div className="mt-8 flex flex-col gap-4 md:flex-row">
         {programs.map((item, index) => (

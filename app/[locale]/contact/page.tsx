@@ -4,7 +4,7 @@ import Image from "next/image";
 
 // Global Components
 import { SubTitle } from "@/components/ui/heading";
-import { BodyClassWrapper, SectionWrapper } from "@/components/Wrapper";
+import { SectionWrapper } from "@/components/Wrapper";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 
 // Page based Components
@@ -16,28 +16,26 @@ export default function ContactPage() {
   const t = useTranslations("contactUsPage");
 
   return (
-    <BodyClassWrapper className="bg-[#F3F4F6]">
-      <SectionWrapper isSinglePage id="contactUs" className="bg-[#F3F4F6] px-6">
-        <DynamicBreadcrumb />
-        <SubTitle text={t("title")} />
-        <p className="mt-4">{t("description")}</p>
-        <div className="mt-8 flex w-full flex-col items-start justify-between gap-5 overflow-hidden rounded-lg bg-white lg:flex-row">
-          <ContactForm />
-          <div className="relative h-full">
-            <div
-              className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
-              aria-hidden="true"
-            />
-            <CardDetails />
-            <Image
-              quality={50}
-              src={Contact}
-              alt={t("imageAlt")}
-              className="aspect-square min-h-[514px] w-auto rounded-lg object-cover lg:max-w-[416px]"
-            />
-          </div>
+    <SectionWrapper isSinglePage id="contactUs" className="bg-[#F3F4F6] px-6">
+      <DynamicBreadcrumb />
+      <SubTitle text={t("title")} />
+      <p className="mt-4">{t("description")}</p>
+      <div className="mt-8 flex w-full flex-col items-start justify-between gap-5 overflow-hidden rounded-lg bg-white lg:flex-row">
+        <ContactForm />
+        <div className="relative h-full">
+          <div
+            className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
+            aria-hidden="true"
+          />
+          <CardDetails />
+          <Image
+            quality={50}
+            src={Contact}
+            alt={t("imageAlt")}
+            className="aspect-square min-h-[514px] w-auto rounded-lg object-cover lg:max-w-[416px]"
+          />
         </div>
-      </SectionWrapper>
-    </BodyClassWrapper>
+      </div>
+    </SectionWrapper>
   );
 }

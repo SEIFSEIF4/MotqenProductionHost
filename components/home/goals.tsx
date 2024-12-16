@@ -9,7 +9,7 @@ function Goals() {
   const goals = ["goal1", "goal2", "goal3", "goal4"] as const;
 
   return (
-    <SectionWrapper id="goals">
+    <SectionWrapper id="goals" className="bg-white">
       <SubTitle text={t("title")} />
       <div className="grid grid-cols-1 gap-x-5 gap-y-3 py-5 md:grid-cols-2 md:px-16 md:py-16">
         {goals.map((item, idx) => (

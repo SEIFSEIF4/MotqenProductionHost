@@ -99,7 +99,7 @@ export default function Navbar({ translations }: NavbarProps) {
       },
       {
         title: t("aboutUs.megaMenuTitle3"),
-        href: `/about-motqen`,
+        href: `/governance`,
         description: t("aboutUs.description3"),
         IconSrc: News,
         iconAlt: "News",
