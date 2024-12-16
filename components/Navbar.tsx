@@ -131,7 +131,7 @@ export default function Navbar({ translations }: NavbarProps) {
   };
 
   return (
-    <header className="relative w-full bg-white shadow-sm">
+    <header className="fixed left-1/2 top-0 z-[100] w-full max-w-base -translate-x-1/2 bg-white shadow-sm">
       {/* Top Navbar */}
       <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
         {/* Left: Logo */}
@@ -167,7 +167,7 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavigationMenuItem>
                 <NavbarLink
                   title={translations.store}
-                  href={`/store`}
+                  href={`#`}
                   isMobileMenu={false}
                 />
               </NavigationMenuItem>
@@ -246,7 +246,7 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavigationMenuItem className="w-full">
                 <NavbarLink
                   title={translations.store}
-                  href={`/store`}
+                  href={`#`}
                   isMobileMenu={true}
                 />
               </NavigationMenuItem>
@@ -261,7 +261,7 @@ export default function Navbar({ translations }: NavbarProps) {
               <Separator />
               <NavigationMenuItem className="w-full">
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-base text-gray-800`}
+                  className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer bg-white py-8 text-base text-gray-800`}
                   onClick={switchLocale}
                   style={{
                     justifyContent: locale === "ar" ? "flex-end" : "flex-start",
