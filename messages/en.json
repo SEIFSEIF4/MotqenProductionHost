@@ -13,6 +13,11 @@
   },
   "Footer": {
     "logoAlt": "Logo",
+    "logoText": {
+      "title": "Motqen Association",
+      "description": "For Quran Teaching",
+      "licenseNum": "License Number : 1000586100"
+    },
     "location": "Jeddah, Saudi Arabia",
     "terms": "Terms and Conditions",
     "privacy": "Privacy Policy",
