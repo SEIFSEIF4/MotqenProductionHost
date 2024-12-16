@@ -26,7 +26,7 @@ const SearchBox = ({
           setIsOpen(!isOpen);
           setShowMobileMenu(false);
         }}
-        className="items-center gap-2 rounded p-1 hover:text-blue-500 lg:flex"
+        className="relative items-center gap-2 rounded p-1 py-4 after:absolute after:bottom-0 after:left-1/2 after:h-[6px] after:w-[0%] after:-translate-x-1/2 after:rounded-full after:bg-[#6FA0A7] after:transition-all lg:flex lg:hover:after:w-[97%]"
       >
         <Image
           src={Search}
@@ -38,7 +38,10 @@ const SearchBox = ({
 
       {/* Search Box */}
       {isOpen && (
-        <div className="absolute left-1/2 top-full z-50 mx-auto mt-2 w-full min-w-full max-w-base -translate-x-1/2 transform rounded-lg border border-gray-200 bg-white p-1 shadow-lg md:w-[70%] lg:w-[50%]">
+        <div className="absolute left-1/2 top-full z-50 mx-auto w-full min-w-full max-w-base -translate-x-1/2 transform border border-gray-200 bg-white p-1 shadow-lg md:w-[70%] lg:mt-2 lg:w-[50%] lg:rounded-lg">
+          <span
+            className={`absolute ${locale === "ar" ? "left-[175px]" : "right-[175px]"} top-[-20px] m-0 hidden border-x-[19px] border-y-[11px] border-solid border-transparent border-b-white p-0 lg:inline`}
+          />
           <div className="relative flex flex-col items-end lg:px-24">
             {/* Close Button */}
             <button

@@ -1,38 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
-import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { useState } from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
+import { Locale, usePathname, useRouter } from "@/i18n/routing";
+import { useParams } from "next/navigation";
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Accordion } from "@/components/ui/accordion";
+import LocaleSwitcher from "./LocaleSwitcher";
+import SearchBox from "./SearchBox";
+import { Separator } from "./ui/separator";
+import NavbarLink from "./NavbarLink";
+import NavbarAccordionItem from "./NavbarAccordionItem";
+import NavbarMenuItem from "./NavbarMenuItem";
+
 import Search from "@/images/search.png";
 import Logo from "@/images/logo.png";
 import Building from "@/images/building.png";
 import userGroup from "@/images/user-group.png";
 import News from "@/images/news.png";
-import { useTranslations } from "next-intl";
-import LocaleSwitcher from "./LocaleSwitcher";
 import Quran from "@/images/quran.png";
-import { useLocale } from "next-intl";
-import SearchBox from "./SearchBox";
-import { Separator } from "./ui/separator";
-import { Locale, usePathname, useRouter } from "@/i18n/routing";
-import { useParams } from "next/navigation";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 type NavbarProps = {
   translations: {
@@ -48,25 +44,17 @@ type NavbarProps = {
 
 export default function Navbar({ translations }: NavbarProps) {
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
+
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showSearchBox, setShowSearchBox] = useState(false);
 
   const t = useTranslations("HomePage.Navbar");
 
-  const router = useRouter();
-  const pathname = usePathname();
-  const params = useParams();
-  const lang: { en: string; ar: string } = {
-    en: "العربية",
-    ar: "English",
-  };
-
-  let nextLocale = null;
-
-  if (locale === "en") nextLocale = "ar";
-  else if (locale === "ar") nextLocale = "en";
-
-  const handleChangeLang = () => {
+  const switchLocale = () => {
+    const nextLocale = locale === "ar" ? "en" : "ar";
     router.replace(
       // @ts-expect-error -- TypeScript will validate that only known `params`
       // are used in combination with a given `pathname`. Since the two will
@@ -76,100 +64,76 @@ export default function Navbar({ translations }: NavbarProps) {
     );
   };
 
-  const icons = [
-    { src: Building, alt: "Building", title: t("aboutUs.megaMenuTitle1") },
-    { src: userGroup, alt: "user group", title: t("aboutUs.megaMenuTitle2") },
-    { src: News, alt: "News", title: t("aboutUs.megaMenuTitle3") },
-    { src: Quran, alt: "Quran", title: t("programsAndPaths.hifzPath") },
-    { src: Quran, alt: "Quran", title: t("programsAndPaths.ittqanPath") },
-    { src: Quran, alt: "Quran", title: t("programsAndPaths.iqraPath") },
-  ];
+  type NavbarMegaMenu = {
+    aboutUs: {
+      title: string;
+      href: string;
+      description: string;
+      IconSrc: any;
+      iconAlt: string;
+    }[];
+    programsAndPaths: {
+      title: string;
+      href: string;
+      description: string;
+      IconSrc: any;
+      iconAlt: string;
+    }[];
+  };
 
-  const navbarMegaMenu: {
-    aboutUs: { title: string; href: string; description: string }[];
-    programsAndPaths: { title: string; href: string; description: string }[];
-  } = {
+  const navbarMegaMenu: NavbarMegaMenu = {
     aboutUs: [
       {
         title: t("aboutUs.megaMenuTitle1"),
-        href: `/${locale}/about-motqen`,
+        href: `/about-motqen`,
         description: t("aboutUs.description1"),
+        IconSrc: Building,
+        iconAlt: "Building",
       },
       {
         title: t("aboutUs.megaMenuTitle2"),
-        href: `/${locale}/members`,
+        href: `/members`,
         description: t("aboutUs.description2"),
+        IconSrc: userGroup,
+        iconAlt: "User Group",
       },
       {
         title: t("aboutUs.megaMenuTitle3"),
-        href: `/${locale}/about-motqen`,
+        href: `/about-motqen`,
         description: t("aboutUs.description3"),
+        IconSrc: News,
+        iconAlt: "News",
       },
     ],
     programsAndPaths: [
       {
         title: t("programsAndPaths.hifzPath"),
-        href: `/${locale}/hifz-path`,
+        href: `/hifz-path`,
         description: t("programsAndPaths.hifzDescription"),
+        IconSrc: Quran,
+        iconAlt: "Quran",
       },
       {
         title: t("programsAndPaths.ittqanPath"),
-        href: `/${locale}/ittqan-path`,
+        href: `/ittqan-path`,
         description: t("programsAndPaths.ittqanDescription"),
+        IconSrc: Quran,
+        iconAlt: "Quran",
       },
       {
         title: t("programsAndPaths.iqraPath"),
-        href: `/${locale}/iqra-path`,
+        href: `/iqra-path`,
         description: t("programsAndPaths.iqraDescription"),
+        IconSrc: Quran,
+        iconAlt: "Quran",
       },
     ],
   };
 
-  const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
-  >(({ className, title, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              `flex select-none ${locale === "ar" && "flex-row-reverse"} items-center gap-x-2 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground`,
-              className,
-            )}
-            {...props}
-          >
-            <div>
-              {icons.map(
-                (obj, idx) =>
-                  obj.title === title && (
-                    <Image
-                      key={obj.title + idx}
-                      src={obj.src}
-                      alt={obj.alt}
-                      className="mx-1 aspect-square w-5 rounded-md object-cover"
-                    />
-                  ),
-              )}
-            </div>
-            <div className={locale === "ar" ? "text-right" : "text-left"}>
-              <h4 className="text-sm font-medium leading-none">{title}</h4>
-              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                {children}
-              </p>
-            </div>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  });
-  ListItem.displayName = "ListItem";
-
   return (
     <header className="relative w-full bg-white shadow-sm">
       {/* Top Navbar */}
-      <div className="mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
+      <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
         {/* Left: Logo */}
         <div className="order-2 flex items-start justify-center lg:order-none">
           <Link href="/">
@@ -183,71 +147,36 @@ export default function Navbar({ translations }: NavbarProps) {
             <NavigationMenuList
               className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800`}
             >
+              <NavbarMenuItem
+                translations={translations.aboutUs}
+                navbarMegaMenu={navbarMegaMenu.aboutUs}
+                isFirst={true}
+              />
+              <NavbarMenuItem
+                translations={translations.programsAndPaths}
+                navbarMegaMenu={navbarMegaMenu.programsAndPaths}
+                isFirst={false}
+              />
               <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-base hover:text-blue-500`}
-                >
-                  {translations.aboutUs}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-3 lg:w-[700px]">
-                    {navbarMegaMenu.aboutUs.map(
-                      ({ title, href, description }) => (
-                        <ListItem key={title} title={title} href={href}>
-                          {description}
-                        </ListItem>
-                      ),
-                    )}
-                  </ul>
-                </NavigationMenuContent>
+                <NavbarLink
+                  title={translations.associationNews}
+                  href={`/news`}
+                  isMobileMenu={false}
+                />
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger
-                  className={`flex ${locale === "ar" && "flex-row-reverse"} text-base hover:text-blue-500`}
-                >
-                  {translations.programsAndPaths}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-3 lg:w-[700px]">
-                    {navbarMegaMenu.programsAndPaths.map(
-                      ({ title, href, description }) => (
-                        <ListItem key={title} title={title} href={href}>
-                          {description}
-                        </ListItem>
-                      ),
-                    )}
-                  </ul>
-                </NavigationMenuContent>
+                <NavbarLink
+                  title={translations.store}
+                  href={`/store`}
+                  isMobileMenu={false}
+                />
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href={`/${locale}/news`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
-                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
-                  >
-                    {translations.associationNews}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href={`/${locale}/store`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
-                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
-                  >
-                    {translations.store}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href={`/${locale}/contact`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer hover:text-blue-500`}
-                    style={{ fontSize: "1rem", lineHeight: "1.5rem" }}
-                  >
-                    {translations.contactUs}
-                  </NavigationMenuLink>
-                </Link>
+                <NavbarLink
+                  title={translations.contactUs}
+                  href={`/contact`}
+                  isMobileMenu={false}
+                />
               </NavigationMenuItem>
             </NavigationMenuList>
           </DirectionProvider>
@@ -266,14 +195,15 @@ export default function Navbar({ translations }: NavbarProps) {
 
           {/* Language Switch */}
           <LocaleSwitcher
-            langLabel={lang[locale as "en" | "ar"]}
-            handleClick={handleChangeLang}
+            langLabel={translations.english}
+            handleClick={switchLocale}
           />
         </div>
 
         {/* Mobile Menu Button */}
         <button
           className="rounded p-2 text-xl lg:hidden"
+          aria-label="Toggle Menu"
           onClick={() => {
             setShowMobileMenu(!showMobileMenu);
             setShowSearchBox(false);
@@ -292,110 +222,54 @@ export default function Navbar({ translations }: NavbarProps) {
             >
               <Accordion type="single" collapsible className="w-full">
                 <Separator />
-                <AccordionItem
-                  value="item-1"
-                  className="px-4 font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                >
-                  <AccordionTrigger
-                    className={`w-full py-5 ${locale === "ar" && "flex-row-reverse"} text-base text-gray-800`}
-                  >
-                    {translations.aboutUs}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="grid w-full gap-3 p-4 text-start md:grid-cols-3">
-                      {navbarMegaMenu.aboutUs.map(
-                        ({ title, href, description }) => (
-                          <ListItem key={title} title={title} href={href}>
-                            {description}
-                          </ListItem>
-                        ),
-                      )}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
+                <NavbarAccordionItem
+                  title="aboutUs"
+                  translations={translations.aboutUs}
+                  navbarMegaMenu={navbarMegaMenu.aboutUs}
+                />
                 <Separator />
-                <AccordionItem
-                  value="item-2"
-                  className="px-4 font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                >
-                  <AccordionTrigger
-                    className={`w-full py-5 ${locale === "ar" && "flex-row-reverse"} text-base text-gray-800`}
-                  >
-                    {translations.programsAndPaths}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="grid w-full gap-3 p-4 text-start md:grid-cols-3">
-                      {navbarMegaMenu.programsAndPaths.map(
-                        ({ title, href, description }) => (
-                          <ListItem key={title} title={title} href={href}>
-                            {description}
-                          </ListItem>
-                        ),
-                      )}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
+                <NavbarAccordionItem
+                  title="programsAndPaths"
+                  translations={translations.programsAndPaths}
+                  navbarMegaMenu={navbarMegaMenu.programsAndPaths}
+                />
               </Accordion>
               <Separator />
               <NavigationMenuItem className="w-full">
-                <Link href={`/${locale}/news`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-gray-800`}
-                    style={{
-                      justifyContent:
-                        locale === "ar" ? "flex-end" : "flex-start",
-                      fontSize: "1rem",
-                      lineHeight: "1.5rem",
-                    }}
-                  >
-                    {translations.associationNews}
-                  </NavigationMenuLink>
-                </Link>
+                <NavbarLink
+                  title={translations.associationNews}
+                  href={`/news`}
+                  isMobileMenu={true}
+                />
               </NavigationMenuItem>
               <Separator />
               <NavigationMenuItem className="w-full">
-                <Link href={`/${locale}/store`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-base text-gray-800`}
-                    style={{
-                      justifyContent:
-                        locale === "ar" ? "flex-end" : "flex-start",
-                      fontSize: "1rem",
-                      lineHeight: "1.5rem",
-                    }}
-                  >
-                    {translations.store}
-                  </NavigationMenuLink>
-                </Link>
+                <NavbarLink
+                  title={translations.store}
+                  href={`/store`}
+                  isMobileMenu={true}
+                />
               </NavigationMenuItem>
               <Separator />
               <NavigationMenuItem className="w-full">
-                <Link href={`/${locale}/contact`} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-base text-gray-800`}
-                    style={{
-                      justifyContent:
-                        locale === "ar" ? "flex-end" : "flex-start",
-                      fontSize: "1rem",
-                      lineHeight: "1.5rem",
-                    }}
-                  >
-                    {translations.contactUs}
-                  </NavigationMenuLink>
-                </Link>
+                <NavbarLink
+                  title={translations.contactUs}
+                  href={`/contact`}
+                  isMobileMenu={true}
+                />
               </NavigationMenuItem>
               <Separator />
               <NavigationMenuItem className="w-full">
                 <NavigationMenuLink
                   className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer py-8 text-base text-gray-800`}
-                  onClick={handleChangeLang}
+                  onClick={switchLocale}
                   style={{
                     justifyContent: locale === "ar" ? "flex-end" : "flex-start",
                     fontSize: "1rem",
                     lineHeight: "1.5rem",
                   }}
                 >
-                  <button type="button">{lang[locale as "en" | "ar"]}</button>
+                  <button type="button">{translations.english}</button>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </ul>

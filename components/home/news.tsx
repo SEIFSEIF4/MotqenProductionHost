@@ -21,7 +21,7 @@ import { DirectionProvider } from "@radix-ui/react-direction";
 //data
 import { NewsDummyData } from "@/data/news";
 import NewsDummyImg from "@/images/card-2.jpg";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getLocale } from "next-intl/server";
 
 type NewsItem = {

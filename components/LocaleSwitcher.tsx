@@ -45,7 +45,7 @@ export default function LocaleSwitcher({
       />
       <button
         type="button"
-        className="hidden hover:text-blue-500 lg:inline-block"
+        className="hidden lg:inline-block"
         onClick={handleClick}
       >
         {langLabel}

@@ -6,7 +6,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/images/longLogo.png";
 import { FooterIcons } from "@/components/icons";
 import { Separator } from "./ui/separator";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 const Footer = () => {
   const t = useTranslations("Footer");

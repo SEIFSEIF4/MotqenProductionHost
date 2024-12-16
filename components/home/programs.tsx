@@ -13,7 +13,7 @@ import { MoveRight } from "lucide-react";
 
 import { ProgramsTextType } from "@/data/programs";
 import { PROGRAMS_FIXED_HEIGHT } from "@/constant/common";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 const images = [ProgramImg1, ProgramImg2, ProgramImg3];
 
 function Programs() {
