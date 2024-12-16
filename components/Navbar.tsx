@@ -150,10 +150,12 @@ export default function Navbar({ translations }: NavbarProps) {
               <NavbarMenuItem
                 translations={translations.aboutUs}
                 navbarMegaMenu={navbarMegaMenu.aboutUs}
+                isFirst={true}
               />
               <NavbarMenuItem
                 translations={translations.programsAndPaths}
                 navbarMegaMenu={navbarMegaMenu.programsAndPaths}
+                isFirst={false}
               />
               <NavigationMenuItem>
                 <NavbarLink
