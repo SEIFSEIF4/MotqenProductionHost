@@ -9,7 +9,7 @@ export default function LocaleSwitcher({
   handleClick,
   langLabel,
 }: {
-  handleClick: any;
+  handleClick: () => void;
   langLabel: string;
 }) {
   // const router = useRouter();

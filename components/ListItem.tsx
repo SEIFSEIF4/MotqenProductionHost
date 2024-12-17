@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 import { useLocale } from "next-intl";
@@ -9,7 +9,7 @@ type ListItemProps = {
   title: string;
   href: string;
   description: string;
-  IconSrc: any;
+  IconSrc: StaticImageData;
   iconAlt: string;
 };
 

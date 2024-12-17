@@ -1,4 +1,5 @@
 import { useLocale } from "next-intl";
+import { type StaticImageData } from "next/image";
 
 import {
   NavigationMenuContent,
@@ -17,7 +18,7 @@ const NavbarMenuItem = ({
     title: string;
     href: string;
     description: string;
-    IconSrc: any;
+    IconSrc: StaticImageData;
     iconAlt: string;
   }[];
   isFirst: boolean;

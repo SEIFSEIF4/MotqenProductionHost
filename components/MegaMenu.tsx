@@ -1,3 +1,5 @@
+import { type StaticImageData } from "next/image";
+
 import ListItem from "./ListItem";
 
 type MegaMenuProps = {
@@ -5,7 +7,7 @@ type MegaMenuProps = {
     title: string;
     href: string;
     description: string;
-    IconSrc: any;
+    IconSrc: StaticImageData;
     iconAlt: string;
   }[];
   isMobileMenu: boolean;

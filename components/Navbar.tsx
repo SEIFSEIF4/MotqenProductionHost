@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Link } from "next-view-transitions";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Locale, usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
@@ -69,14 +69,14 @@ export default function Navbar({ translations }: NavbarProps) {
       title: string;
       href: string;
       description: string;
-      IconSrc: any;
+      IconSrc: StaticImageData;
       iconAlt: string;
     }[];
     programsAndPaths: {
       title: string;
       href: string;
       description: string;
-      IconSrc: any;
+      IconSrc: StaticImageData;
       iconAlt: string;
     }[];
   };

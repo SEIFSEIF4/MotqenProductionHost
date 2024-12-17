@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
 
 const SearchBox = ({
@@ -9,14 +9,14 @@ const SearchBox = ({
   setIsOpen,
   setShowMobileMenu,
 }: {
-  Search: any;
+  Search: StaticImageData;
   locale: string;
   title: string;
   isOpen: boolean;
-  setIsOpen: any;
-  setShowMobileMenu: any;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   return (
     <>
