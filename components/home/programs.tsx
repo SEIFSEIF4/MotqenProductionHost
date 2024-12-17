@@ -9,7 +9,7 @@ import ProgramImg1 from "@/images/program-1.png";
 import ProgramImg2 from "@/images/program-2.png";
 import ProgramImg3 from "@/images/program-3.png";
 import { Button } from "../ui/button";
-import { MoveRight } from "lucide-react";
+import { MoveLeft, MoveRight } from "lucide-react";
 
 import { ProgramsTextType } from "@/data/programs";
 import { PROGRAMS_FIXED_HEIGHT } from "@/constant/common";
@@ -75,38 +75,42 @@ function Programs() {
                   </div>
                 </div>
                 {item.id === 1 ? (
-                  <Link href={`/${locale}/hifz-path`}>
+                  <Link href={`/${locale}/hifz-path`} className="self-end">
                     <Button
                       variant="secondary"
                       className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
                     >
-                      <MoveRight /> {t("button")}
+                      {locale === "ar" ? <MoveRight /> : <MoveLeft />}{" "}
+                      {t("button")}
                     </Button>
                   </Link>
                 ) : item.id === 2 ? (
-                  <Link href={`/${locale}/ittqan-path`}>
+                  <Link href={`/${locale}/ittqan-path`} className="self-end">
                     <Button
                       variant="secondary"
                       className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
                     >
-                      <MoveRight /> {t("button")}
+                      {locale === "ar" ? <MoveRight /> : <MoveLeft />}{" "}
+                      {t("button")}
                     </Button>
                   </Link>
                 ) : item.id === 3 ? (
-                  <Link href={`/${locale}/iqra-path`}>
+                  <Link href={`/${locale}/iqra-path`} className="self-end">
                     <Button
                       variant="secondary"
                       className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
                     >
-                      <MoveRight /> {t("button")}
+                      {locale === "ar" ? <MoveRight /> : <MoveLeft />}{" "}
+                      {t("button")}
                     </Button>
                   </Link>
                 ) : (
                   <Button
                     variant="secondary"
-                    className="mr-auto w-fit bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
+                    className="mr-auto w-fit self-end bg-white opacity-0 hover:bg-white/75 group-hover:opacity-100"
                   >
-                    <MoveRight /> {t("button")}
+                    {locale === "ar" ? <MoveRight /> : <MoveLeft />}{" "}
+                    {t("button")}
                   </Button>
                 )}
               </div>
