@@ -63,7 +63,7 @@ const SearchBox = ({
                 <input
                   type="text"
                   placeholder={`${title}...`}
-                  onChange={(e) => setSearchValue((prev) => e.target.value)}
+                  onChange={(e) => setSearchValue(() => e.target.value)}
                   value={searchValue}
                   className="w-full flex-grow rounded-md border border-gray-300 px-12 py-2 focus:outline-none focus:ring-2 focus:ring-[#6FA0A7]"
                 />
