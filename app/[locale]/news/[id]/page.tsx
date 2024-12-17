@@ -26,6 +26,7 @@ import { getLocale } from "next-intl/server";
 import { cn, copyToClipboard } from "@/lib/utils";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { FooterIcons } from "@/components/icons";
+import SubNews from "../_components/SubNews";
 
 const color = "#384250";
 
@@ -61,7 +62,7 @@ export default async function SingleNewsPage() {
 
               <CardTitle className="text-start text-lg leading-tight md:text-2xl md:font-bold">
                 جمعية متقن تطلق مبادرة لتحفيظ القرآن الكريم باستخدام التقنية
-                الحديثة والذكاء الاصطناعى
+                الحديثة والذكاء الاصطناعي
               </CardTitle>
             </div>
           </div>
@@ -86,7 +87,7 @@ export default async function SingleNewsPage() {
                     rel="noopener noreferrer"
                     className="cursor-pointer hover:opacity-75"
                   >
-                    <FooterIcons.Instgram altColor="#384250" />
+                    <FooterIcons.Instagram altColor="#384250" />
                   </a>
                   <a
                     href="https://www.twitter.com"
@@ -139,78 +140,26 @@ export default async function SingleNewsPage() {
         {/* News left */}
         <div className="flex w-full flex-col gap-y-4 lg:w-1/3">
           <SubTitle text={t("SingleNews")} />
-          <Card className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md">
-            <div className="relative h-1/2 w-full">
-              <Image
-                src={NewsDummyImg} // Dummy image for now
-                alt={"newsItem.title"}
-                fill
-                quality={100}
-                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 30vw"
-                className="rounded-xl object-cover"
-              />
-            </div>
-
-            <div className="flex flex-1 flex-col justify-between px-4">
-              <CardHeader className="gap-y-1 space-y-2 p-4">
-                <CardTitle className="line-clamp-2 text-lg font-medium">
-                  عنوان بطاقة الأخبار في سطرين
-                </CardTitle>
-                <CardDescription className="line-clamp-4 text-sm text-gray-600">
-                  هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك
-                  تضمين وصف موجز للعنوان في أربعة أسطر.
-                </CardDescription>
-              </CardHeader>
-
-              <CardFooter className="p-4">
-                <Link
-                  href={"/"}
-                  // href={`/${locale}/news/${newsItem.id}`}
-                  className="w-full"
-                >
-                  <Button className="w-fit hover:opacity-75">
-                    {t("button2")}
-                  </Button>
-                </Link>
-              </CardFooter>
-            </div>
-          </Card>
-          <Card className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md">
-            <div className="relative h-1/2 w-full">
-              <Image
-                src={NewsDummyImg} // Dummy image for now
-                alt={"newsItem.title"}
-                fill
-                quality={100}
-                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 30vw"
-                className="rounded-xl object-cover"
-              />
-            </div>
-
-            <div className="flex flex-1 flex-col justify-between px-4">
-              <CardHeader className="gap-y-1 space-y-2 p-4">
-                <CardTitle className="line-clamp-2 text-lg font-medium">
-                  عنوان بطاقة الأخبار في سطرين
-                </CardTitle>
-                <CardDescription className="line-clamp-4 text-sm text-gray-600">
-                  هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك
-                  تضمين وصف موجز للعنوان في أربعة أسطر.
-                </CardDescription>
-              </CardHeader>
-
-              <CardFooter className="p-4">
-                <Link
-                  href={"/"}
-                  // href={`/${locale}/news/${newsItem.id}`}
-                  className="w-full"
-                >
-                  <Button className="w-fit hover:opacity-75">
-                    {t("button2")}
-                  </Button>
-                </Link>
-              </CardFooter>
-            </div>
-          </Card>
+          <SubNews
+            ImgSrc={NewsDummyImg}
+            imgAlt={`newsItem.alt`}
+            title={`عنوان بطاقة الأخبار في سطرين` /* `newsItem.title` */}
+            description={
+              `هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر.` /* `newsItem.description` */
+            }
+            href={`/` /* `/${locale}/news/${newsItem.id}` */}
+            buttonTitle={t("button2")}
+          />
+          <SubNews
+            ImgSrc={NewsDummyImg}
+            imgAlt={`newsItem.alt`}
+            title={`عنوان بطاقة الأخبار في سطرين` /* `newsItem.title` */}
+            description={
+              `هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر.` /* `newsItem.description` */
+            }
+            href={`/` /* `/${locale}/news/${newsItem.id}` */}
+            buttonTitle={t("button2")}
+          />
         </div>
       </div>
       <Link

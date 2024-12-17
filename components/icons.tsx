@@ -82,7 +82,7 @@ export const FooterIcons = {
       </defs>
     </svg>
   ),
-  Instgram: ({
+  Instagram: ({
     size = 24,
     color = "#FFF",
     className,

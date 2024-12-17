@@ -53,7 +53,7 @@ const Footer = () => {
             aria-label={t("ariaLabels.instagram")}
             className="cursor-pointer hover:opacity-75"
           >
-            <FooterIcons.Instgram />
+            <FooterIcons.Instagram />
           </a>
           <a
             href="https://www.twitter.com"
