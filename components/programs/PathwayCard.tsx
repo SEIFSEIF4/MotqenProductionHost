@@ -5,6 +5,7 @@ import RamadhanMonth from "@/images/ramadhan-month.png";
 import Quran from "@/images/quran.png";
 import GraduationScroll from "@/images/graduation-scroll.png";
 import LeadingIcon from "@/images/leading-icon.png";
+import Tasbih from "@/images/tasbih.png";
 
 const PathwayCard = ({ order }: { order: string }) => {
   const t = useTranslations(`Programs.${order}`);
@@ -12,7 +13,7 @@ const PathwayCard = ({ order }: { order: string }) => {
 
   return (
     <div className="mx-auto py-4">
-      <div className="relative bg-[#155C67] p-6 pb-12 text-white">
+      <div className="relative mb-[27rem] bg-[#155C67] p-6 pb-12 text-white md:mb-0">
         <div className="my-6 flex items-center space-x-3 rtl:space-x-reverse">
           <span
             className="h-9 w-2 rounded-lg bg-slate-300"
@@ -22,12 +23,12 @@ const PathwayCard = ({ order }: { order: string }) => {
         </div>
 
         {subtitle.map((label: string, idx: number) => (
-          <span
+          <p
             key={label + idx}
-            className="m-2 rounded-lg border px-3 py-2 text-sm"
+            className="m-2 inline-block rounded-lg border px-3 py-2 text-sm font-medium"
           >
             {label}
-          </span>
+          </p>
         ))}
 
         <div className="absolute left-1/2 top-[90%] w-5/6 -translate-x-1/2 rounded-xl bg-white text-gray-900 shadow-md lg:rounded-lg">
@@ -75,7 +76,11 @@ const PathwayCard = ({ order }: { order: string }) => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="relative -top-1 inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
-                  <Image src={GraduationScroll} alt="GraduationScroll" />
+                  {order === "first" ? (
+                    <Image src={GraduationScroll} alt="GraduationScroll" />
+                  ) : (
+                    <Image src={Tasbih} alt="Tasbih" />
+                  )}
                 </span>
                 <div>
                   <span className="font-bold text-black">
