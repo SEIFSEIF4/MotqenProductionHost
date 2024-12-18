@@ -60,7 +60,7 @@ const Hero = () => {
                 src={BookCarouselImg}
                 alt={"alt"}
                 sizes="(max-width: 1440px) 100vw, 1440px"
-                quality={80} // Maybe lower quality for performance
+                quality={60} // Maybe lower quality for performance
                 style={{
                   objectFit: "cover",
                 }}

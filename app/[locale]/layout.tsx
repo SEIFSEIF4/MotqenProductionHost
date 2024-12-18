@@ -10,9 +10,10 @@ import { getMessages } from "next-intl/server";
 import { Toaster } from "@/components/ui/sonner";
 import { cn, constructMetadata } from "@/lib/utils";
 import NavbarProvider from "@/components/NavbarProvider";
-import "./globals.css";
 import Footer from "@/components/footer";
 import Providers from "@/components/providers";
+import { SanityLive } from "@/sanity/lib/live";
+import "./globals.css";
 
 const ibmArabic = IBM({
   subsets: ["arabic"],
@@ -74,6 +75,7 @@ export default async function RootLayout({
             <Footer />
           </NextIntlClientProvider>
           <Toaster />
+          <SanityLive />
         </body>
       </html>
     </ViewTransitions>
