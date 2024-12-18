@@ -1,4 +1,4 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState } from "react";
 
 const SearchBox = ({
@@ -9,7 +9,7 @@ const SearchBox = ({
   setIsOpen,
   setShowMobileMenu,
 }: {
-  Search: StaticImageData;
+  Search: any;
   locale: string;
   title: string;
   isOpen: boolean;
@@ -28,11 +28,7 @@ const SearchBox = ({
         }}
         className="relative items-center gap-2 rounded p-1 py-4 after:absolute after:bottom-0 after:left-1/2 after:h-[6px] after:w-[0%] after:-translate-x-1/2 after:rounded-full after:bg-[#6FA0A7] after:transition-all lg:flex lg:hover:after:w-[97%]"
       >
-        <Image
-          src={Search}
-          alt="Search"
-          className="inline-block aspect-square w-5 rounded-md object-cover"
-        />
+        <Search />
         <span className="hidden lg:block">{title}</span>
       </button>
 

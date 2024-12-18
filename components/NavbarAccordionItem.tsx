@@ -19,8 +19,7 @@ const NavbarAccordionItem = ({
     title: string;
     href: string;
     description: string;
-    IconSrc: StaticImageData;
-    iconAlt: string;
+    Icon: any;
   }[];
 }) => {
   const locale = useLocale();

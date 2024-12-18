@@ -1,5 +1,3 @@
-import { type StaticImageData } from "next/image";
-
 import ListItem from "./ListItem";
 
 type MegaMenuProps = {
@@ -7,8 +5,7 @@ type MegaMenuProps = {
     title: string;
     href: string;
     description: string;
-    IconSrc: StaticImageData;
-    iconAlt: string;
+    Icon: any;
   }[];
   isMobileMenu: boolean;
 };
@@ -18,14 +15,13 @@ const MegaMenu = ({ items, isMobileMenu }: MegaMenuProps) => {
     <ul
       className={`grid w-full p-4 py-8 md:grid-cols-3 ${isMobileMenu && "gap-3 text-start"}`}
     >
-      {items.map(({ title, href, description, IconSrc, iconAlt }) => (
+      {items.map(({ title, href, description, Icon }) => (
         <ListItem
           key={title}
           title={title}
           href={href}
           description={description}
-          IconSrc={IconSrc}
-          iconAlt={iconAlt}
+          Icon={Icon}
         />
       ))}
     </ul>

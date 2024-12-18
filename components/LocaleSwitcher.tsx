@@ -1,4 +1,4 @@
-import Translate from "@/images/translate.png";
+import Translate from "./icons/Translate";
 import Image from "next/image";
 
 export default function LocaleSwitcher({
@@ -10,11 +10,7 @@ export default function LocaleSwitcher({
 }) {
   return (
     <div className="hidden items-center gap-2 lg:flex">
-      <Image
-        src={Translate}
-        alt="Translate"
-        className="inline-block aspect-square w-5 rounded-md object-cover"
-      />
+      <Translate />
       <button
         type="button"
         className="hidden lg:inline-block"

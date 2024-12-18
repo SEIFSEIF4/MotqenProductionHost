@@ -1,5 +1,4 @@
 import React from "react";
-import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 import { useLocale } from "next-intl";
@@ -9,8 +8,7 @@ type ListItemProps = {
   title: string;
   href: string;
   description: string;
-  IconSrc: StaticImageData;
-  iconAlt: string;
+  Icon: any;
 };
 
 const ListItem = ({
@@ -18,8 +16,7 @@ const ListItem = ({
   title,
   href,
   description,
-  IconSrc,
-  iconAlt,
+  Icon,
 }: ListItemProps) => {
   const locale = useLocale();
 
@@ -34,12 +31,8 @@ const ListItem = ({
             className,
           )}
         >
-          <div>
-            <Image
-              src={IconSrc}
-              alt={iconAlt}
-              className="mx-1 aspect-square w-5 rounded-md object-cover"
-            />
+          <div className="mx-1">
+            <Icon />
           </div>
           <div className={locale === "ar" ? "text-right" : "text-left"}>
             <h4 className="text-sm font-medium leading-none">{title}</h4>

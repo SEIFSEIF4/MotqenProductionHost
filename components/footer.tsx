@@ -1,9 +1,8 @@
 import React from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import Logo from "@/images/footer-logo.png";
+import Logo from "./icons/FooterLogo";
 import { FooterIcons } from "@/components/icons";
 import { Separator } from "./ui/separator";
 import { Link } from "next-view-transitions";
@@ -21,11 +20,7 @@ const Footer = () => {
       <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0">
         <div className="flex items-end gap-2">
           <Link href="/">
-            <Image
-              src={Logo}
-              alt={t("logoAlt")}
-              className="w-12 object-contain"
-            />
+            <Logo />
           </Link>
           <div
             className="text-sm font-semibold"

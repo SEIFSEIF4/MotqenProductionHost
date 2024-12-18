@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Link } from "next-view-transitions";
-import Image, { type StaticImageData } from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Locale, usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
@@ -23,12 +22,12 @@ import NavbarLink from "./NavbarLink";
 import NavbarAccordionItem from "./NavbarAccordionItem";
 import NavbarMenuItem from "./NavbarMenuItem";
 
-import Search from "@/images/search.png";
-import Logo from "@/images/logo.png";
-import Building from "@/images/building.png";
-import userGroup from "@/images/user-group.png";
-import News from "@/images/news.png";
-import Quran from "@/images/quran.png";
+import Search from "./icons/Search";
+import Logo from "./icons/HeaderLogo";
+import Building from "./icons/Building";
+import userGroup from "./icons/UserGroup";
+import News from "./icons/News";
+import Quran from "./icons/Quran";
 
 type NavbarProps = {
   translations: {
@@ -69,15 +68,13 @@ export default function Navbar({ translations }: NavbarProps) {
       title: string;
       href: string;
       description: string;
-      IconSrc: StaticImageData;
-      iconAlt: string;
+      Icon: any;
     }[];
     programsAndPaths: {
       title: string;
       href: string;
       description: string;
-      IconSrc: StaticImageData;
-      iconAlt: string;
+      Icon: any;
     }[];
   };
 
@@ -87,22 +84,19 @@ export default function Navbar({ translations }: NavbarProps) {
         title: t("aboutUs.megaMenuTitle1"),
         href: `/about-motqen`,
         description: t("aboutUs.description1"),
-        IconSrc: Building,
-        iconAlt: "Building",
+        Icon: Building,
       },
       {
         title: t("aboutUs.megaMenuTitle2"),
         href: `/members`,
         description: t("aboutUs.description2"),
-        IconSrc: userGroup,
-        iconAlt: "User Group",
+        Icon: userGroup,
       },
       {
         title: t("aboutUs.megaMenuTitle3"),
         href: `/governance`,
         description: t("aboutUs.description3"),
-        IconSrc: News,
-        iconAlt: "News",
+        Icon: News,
       },
     ],
     programsAndPaths: [
@@ -110,22 +104,19 @@ export default function Navbar({ translations }: NavbarProps) {
         title: t("programsAndPaths.hifzPath"),
         href: `/hifz-path`,
         description: t("programsAndPaths.hifzDescription"),
-        IconSrc: Quran,
-        iconAlt: "Quran",
+        Icon: Quran,
       },
       {
         title: t("programsAndPaths.ittqanPath"),
         href: `/ittqan-path`,
         description: t("programsAndPaths.ittqanDescription"),
-        IconSrc: Quran,
-        iconAlt: "Quran",
+        Icon: Quran,
       },
       {
         title: t("programsAndPaths.iqraPath"),
         href: `/iqra-path`,
         description: t("programsAndPaths.iqraDescription"),
-        IconSrc: Quran,
-        iconAlt: "Quran",
+        Icon: Quran,
       },
     ],
   };
@@ -137,7 +128,7 @@ export default function Navbar({ translations }: NavbarProps) {
         {/* Left: Logo */}
         <div className="order-2 flex items-start justify-center lg:order-none">
           <Link href="/">
-            <Image src={Logo} alt="Logo" className="w-12 object-contain" />
+            <Logo />
           </Link>
         </div>
 
