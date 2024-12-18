@@ -879,6 +879,13 @@
         },
         "optional": true
       },
+      "buttonText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "buttonUrl": {
         "type": "objectAttribute",
         "value": {

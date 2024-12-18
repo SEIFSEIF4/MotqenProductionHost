@@ -32,6 +32,20 @@ export const carouselType = defineType({
         Rule.max(250).warning("Max 250 characters allowed."),
     }),
     defineField({
+      name: "buttonText",
+      title: "Button Text",
+      type: "string",
+      description: "Optional text for the button.",
+      validation: (Rule) =>
+        Rule.custom((buttonText, context) => {
+          const buttonUrl = context.document?.buttonUrl;
+          if (buttonText && !buttonUrl) {
+            return "Button URL is required when Button Text is provided.";
+          }
+          return true;
+        }),
+    }),
+    defineField({
       name: "buttonUrl",
       title: "Button URL",
       type: "url",
@@ -39,7 +53,15 @@ export const carouselType = defineType({
       validation: (Rule) =>
         Rule.uri({
           scheme: ["http", "https"],
-        }).warning("The URL should start with http:// or https://"),
+        })
+          .custom((buttonUrl, context) => {
+            const buttonText = context.document?.buttonText;
+            if (buttonUrl && !buttonText) {
+              return "Button Text is required when Button URL is provided.";
+            }
+            return true;
+          })
+          .warning("The URL should start with http:// or https://"),
     }),
   ],
   preview: {

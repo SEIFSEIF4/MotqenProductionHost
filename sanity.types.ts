@@ -137,6 +137,7 @@ export type Slug = {
 };
 
 export type Carousel = {
+  [x: string]: any;
   _id: string;
   _type: "carousel";
   _createdAt: string;
@@ -155,6 +156,7 @@ export type Carousel = {
   };
   title?: string;
   description?: string;
+  buttonText?: string;
   buttonUrl?: string;
 };
 
@@ -277,75 +279,3 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/news/getAllNews.ts
-// Variable: ALL_News_QUERY
-// Query: *[_type == "news"]|order(name asc)
-export type ALL_News_QUERYResult = Array<{
-  _id: string;
-  _type: "news";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  title?: string;
-  slug?: Slug;
-  shortDescription?: string;
-  content?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-        _key: string;
-      }
-  >;
-  datePublished?: string;
-  socialLinks?: {
-    instagram?: string;
-    whatsapp?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
-}>;
-
-// Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
-  interface SanityQueries {
-    '\n    *[_type == "news"]|order(name asc)\n    ': ALL_News_QUERYResult;
-  }
-}

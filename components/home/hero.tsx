@@ -11,12 +11,13 @@ import Image from "next/image";
 import BookCarouselImg from "@/images/hero-4.jpg";
 import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
-import ClientButton from "@/components/ClientGoProgramsButton";
-import { useLocale, useTranslations } from "next-intl";
+import { getLocale } from "next-intl/server";
+import { getCarousel } from "@/sanity/lib/news/getCarousel";
+import { buttonVariants } from "../ui/button";
 
-const Hero = () => {
-  const t = useTranslations("HomePage.HeroSection");
-  const locale = useLocale();
+export default async function Hero() {
+  const locale = await getLocale();
+  const CarouselSlides = await getCarousel();
 
   return (
     <section id="hero" className="w-full">
@@ -35,7 +36,7 @@ const Hero = () => {
           style={{ height: HERO_CAROUSEL_FIXED_HEIGHT }}
           className="relative h-full"
         >
-          {[1, 2, 3, 4].map((_, index) => (
+          {CarouselSlides.map((slide, index) => (
             <SliderMainItem key={index} className="relative h-full">
               <div
                 className="absolute inset-0 z-10 bg-gradient-to-l from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl"
@@ -47,30 +48,40 @@ const Hero = () => {
                 className={`content absolute top-0 z-20 flex h-full max-w-full flex-col justify-center gap-y-3 p-20 text-white lg:max-w-[50%] ${locale === "ar" ? "right-0 items-start text-right" : "left-0 items-end text-left"}`}
               >
                 <h1 className="text-5xl font-semibold md:text-6xl">
-                  {t("title")}
+                  {slide.title}
                 </h1>
                 <p className="text-2xl font-medium md:text-3xl">
-                  {t("description")}
+                  {slide.description}
                 </p>
-                <ClientButton title={t("button")} />
+                {!!slide.buttonUrl && (
+                  <a
+                    href={slide.buttonUrl}
+                    className={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "text-black",
+                    )}
+                  >
+                    {slide.buttonUrl}
+                  </a>
+                )}
               </div>
               <Image
                 fill
                 priority
-                src={BookCarouselImg}
-                alt={"alt"}
-                sizes="(max-width: 1440px) 100vw, 1440px"
-                quality={60} // Maybe lower quality for performance
+                src={slide.imageUrl || BookCarouselImg}
+                alt={slide.title || "Hero Image"}
+                sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"
+                quality={100} // Increased quality slightly for better hero visuals
                 style={{
                   objectFit: "cover",
                 }}
-                className="h-full w-full bg-[rgba(11,70,79,0.4)]"
+                className="h-full w-full"
               />
             </SliderMainItem>
           ))}
         </CarouselMainContainer>
         <CarouselThumbsContainer containerClassName="absolute bottom-10 left-1/2  transform -translate-x-1/2 -translate-y-1/2">
-          {[1, 2, 3, 4].map((_, index) => (
+          {CarouselSlides.map((_, index) => (
             <CarouselIndicator
               className="mx-1 data-[active='false']:bg-[rgba(229,231,235,0.2)] data-[active='true']:bg-white"
               key={index}
@@ -81,6 +92,4 @@ const Hero = () => {
       </Carousel>
     </section>
   );
-};
-
-export default Hero;
+}
