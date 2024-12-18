@@ -1,3 +1,7 @@
+import Image from "next/image";
+import { getLocale } from "next-intl/server";
+import { cn } from "@/lib/utils";
+
 import {
   Carousel,
   CarouselIndicator,
@@ -5,13 +9,10 @@ import {
   CarouselThumbsContainer,
   SliderMainItem,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 
 import BookCarouselImg from "@/images/hero-4.jpg";
-import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
-import { getLocale } from "next-intl/server";
 import { getCarousel } from "@/sanity/lib/news/getCarousel";
 import { buttonVariants } from "../ui/button";
 
