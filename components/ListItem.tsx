@@ -35,8 +35,8 @@ const ListItem = ({
             <Icon />
           </div>
           <div className={locale === "ar" ? "text-right" : "text-left"}>
-            <h4 className="text-sm font-medium leading-none">{title}</h4>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            <h4 className="text-base font-medium leading-none">{title}</h4>
+            <p className="line-clamp-2 text-base leading-snug text-muted-foreground">
               {description}
             </p>
           </div>

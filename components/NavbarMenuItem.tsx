@@ -26,7 +26,7 @@ const NavbarMenuItem = ({
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger
-        className={`flex ${locale === "ar" && "flex-row-reverse"} relative bg-white py-8 text-base after:absolute after:bottom-0 after:left-1/2 after:h-[6px] after:w-[0%] after:-translate-x-1/2 after:rounded-full after:bg-[#6FA0A7] after:transition-all hover:after:w-[80%]`}
+        className={`flex ${locale === "ar" && "flex-row-reverse"} relative bg-white px-2 py-8 text-lg after:absolute after:bottom-0 after:left-1/2 after:h-[6px] after:w-[0%] after:-translate-x-1/2 after:rounded-full after:bg-[#6FA0A7] after:transition-all hover:after:w-[80%] xl:px-4`}
       >
         {translations}
       </NavigationMenuTrigger>
