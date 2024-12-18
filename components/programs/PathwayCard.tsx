@@ -53,7 +53,7 @@ const PathwayCard = ({ order }: { order: string }) => {
               ))}
             </div>
 
-            <PathwayButtons t={t} />
+            <PathwayButtons t={t} order={order} />
           </div>
         </div>
       </div>
