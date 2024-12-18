@@ -9,25 +9,25 @@ import Count from "@/components/count";
 import { STATICS_FIXED_HEIGHT } from "@/constant/common";
 
 import StaticsBg from "@/images/statics.png";
-import Statics1 from "@/images/statics-1.png";
-import Statics2 from "@/images/static-2.png";
-import Statics3 from "@/images/static-3.png";
+import Statics1 from "../icons/Statics1";
+import Statics2 from "../icons/Statics2";
+import Statics3 from "../icons/Statics3";
 
 const staticsData = [
   {
-    imgSrc: Statics1,
+    Icon: Statics1,
     count: 1600,
     titleKey: "statics1.title",
     descriptionKey: "statics1.description",
   },
   {
-    imgSrc: Statics2,
+    Icon: Statics2,
     count: 60,
     titleKey: "statics2.title",
     descriptionKey: "statics2.description",
   },
   {
-    imgSrc: Statics3,
+    Icon: Statics3,
     count: 50,
     titleKey: "statics3.title",
     descriptionKey: "statics3.description",
@@ -75,11 +75,7 @@ function Statics() {
               key={index}
               className="single flex flex-col items-center justify-center gap-x-6 gap-y-4 rounded-lg bg-[rgba(255,255,255,0.1)] p-6 shadow-lg backdrop-blur-xl"
             >
-              <Image
-                src={item.imgSrc}
-                alt={`Statics background ${index + 1}`}
-                className="h-14 w-auto"
-              />
+              <item.Icon />
               <Count
                 number={item.count}
                 className="text-4xl font-bold text-[#6FA0A7]"

@@ -3,7 +3,7 @@ import React from "react";
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";
 import { useTranslations } from "next-intl";
-import AboutMotqen from "@/components/about/AboutMotqen";
+import AboutMotqen from "./_components/AboutMotqen";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 
 export default function HomePage() {

@@ -17,8 +17,7 @@ const NavbarMenuItem = ({
     title: string;
     href: string;
     description: string;
-    IconSrc: any;
-    iconAlt: string;
+    Icon: any;
   }[];
   isFirst: boolean;
 }) => {

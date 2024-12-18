@@ -29,9 +29,8 @@ function About() {
             </p>
           </div>
           <Image
-            priority
             placeholder="blur"
-            quality={100}
+            quality={60}
             src={Vision}
             alt="About Vision"
             fill
@@ -58,9 +57,8 @@ function About() {
             </ul>
           </div>
           <Image
-            priority
             placeholder="blur"
-            quality={100}
+            quality={75}
             src={Values}
             alt="About Values"
             fill
@@ -82,9 +80,8 @@ function About() {
             </p>
           </div>
           <Image
-            priority
             placeholder="blur"
-            quality={50}
+            quality={10}
             src={Mission}
             alt="About Mission"
             fill

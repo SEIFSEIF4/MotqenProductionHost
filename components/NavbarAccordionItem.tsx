@@ -1,4 +1,5 @@
 import { useLocale } from "next-intl";
+import { type StaticImageData } from "next/image";
 
 import MegaMenu from "./MegaMenu";
 import {
@@ -18,8 +19,7 @@ const NavbarAccordionItem = ({
     title: string;
     href: string;
     description: string;
-    IconSrc: any;
-    iconAlt: string;
+    Icon: any;
   }[];
 }) => {
   const locale = useLocale();
