@@ -27,7 +27,7 @@ import Logo from "./icons/HeaderLogo";
 import Building from "./icons/Building";
 import userGroup from "./icons/UserGroup";
 import News from "./icons/News";
-import Quran from "./icons/Quran";
+import Quran from "./icons/QuranNotFill";
 
 type NavbarProps = {
   translations: {
@@ -124,7 +124,7 @@ export default function Navbar({ translations }: NavbarProps) {
   return (
     <header className="fixed left-0 top-0 z-[100] w-full bg-white shadow-sm">
       {/* Top Navbar */}
-      <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 md:px-16 lg:gap-6 xl:gap-8">
+      <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 text-lg font-medium md:px-16 lg:gap-2 xl:gap-8">
         {/* Left: Logo */}
         <div className="order-2 flex items-start justify-center lg:order-none">
           <Link href="/">
@@ -173,7 +173,7 @@ export default function Navbar({ translations }: NavbarProps) {
           </DirectionProvider>
         </NavigationMenu>
 
-        <div className="order-3 flex items-center justify-end gap-8 lg:flex-auto">
+        <div className="order-3 flex items-center justify-end gap-1 lg:flex-auto xl:gap-8">
           {/* Search Box */}
           <SearchBox
             Search={Search}

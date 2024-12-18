@@ -1,24 +1,23 @@
 import React from "react";
 import { useTranslations } from "next-intl";
-import { type StaticImageData } from "next/image";
 
 import PathwayHeader from "./PathwayHeader";
 import PathwayTypes from "./PathwayTypes";
 import InfoCard from "./InfoCard";
 import PathwayButtons from "./PathwayButtons";
 
-import RamadhanMonth from "@/images/ramadhan-month.png";
-import Quran from "@/images/quran.png";
-import GraduationScroll from "@/images/graduation-scroll.png";
-import Tasbih from "@/images/tasbih.png";
+import RamadhanMonth from "../icons/RamadhanMonth";
+import QuranFill from "../icons/QuranFill";
+import GraduationScroll from "../icons/GraduationScroll";
+import Tasbih from "../icons/Tasbih";
 
 const PathwayCard = ({ order }: { order: string }) => {
   const t = useTranslations(`Programs.${order}`);
   const subtitle: string[] = t.raw("subtitle");
 
-  const iconMap: Record<string, StaticImageData> = {
+  const iconMap: Record<string, any> = {
     duration: RamadhanMonth,
-    howMuch: Quran,
+    howMuch: QuranFill,
     days: order === "first" ? GraduationScroll : Tasbih,
   };
 
@@ -47,8 +46,7 @@ const PathwayCard = ({ order }: { order: string }) => {
               {Object.entries(iconMap).map(([key, Icon], idx) => (
                 <InfoCard
                   key={key + idx}
-                  IconSrc={Icon}
-                  iconAlt={`${Icon}`}
+                  Icon={Icon}
                   description={t(`${key}.description`)}
                   title={t(`${key}.title`)}
                 />
