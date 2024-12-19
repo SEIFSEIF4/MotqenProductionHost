@@ -137,6 +137,7 @@ export type Slug = {
 };
 
 export type Carousel = {
+  imageUrl: any;
   _id: string;
   _type: "carousel";
   _createdAt: string;
@@ -278,3 +279,4 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+

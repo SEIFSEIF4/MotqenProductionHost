@@ -52,7 +52,7 @@ export default async function News({
           >
             <div className="relative h-1/2 w-full">
               <Image
-                //@ts-ignore
+                //@ts-expect-error 'url not found'
                 src={newsItem.image?.asset?.url ?? newsImage}
                 alt={newsItem.title || "News article"}
                 fill
