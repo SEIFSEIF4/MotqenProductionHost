@@ -1,10 +1,10 @@
 import React from "react";
 
-const Search = () => {
+const Search = ({ isMobileMenu }: { isMobileMenu: boolean }) => {
   return (
     <svg
-      width="24"
-      height="25"
+      width={isMobileMenu ? "20" : "24"}
+      height={isMobileMenu ? "21" : "25"}
       viewBox="0 0 24 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

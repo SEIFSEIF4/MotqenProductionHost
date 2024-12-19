@@ -6,9 +6,11 @@ import LeadingIcon from "../icons/LeadingIcon";
 const PathwayButtons = ({
   t,
   order,
+  locale,
 }: {
   t: (key: string) => string;
   order: string;
+  locale: string;
 }) => {
   const menLink =
     order === "third"
@@ -29,7 +31,7 @@ const PathwayButtons = ({
       <Link
         href={womenLink}
         target="_blank"
-        className="flex items-center gap-1 rounded-md bg-[#165C67] px-4 py-2 text-white"
+        className={`flex ${order === "third" && locale === "ar" ? "flex-row-reverse" : "flex-row"} items-center gap-1 rounded-md bg-[#165C67] px-4 py-2 text-white`}
       >
         <LeadingIcon />
         {t("buttons.women")}
@@ -37,7 +39,7 @@ const PathwayButtons = ({
       <Link
         href={menLink}
         target="_blank"
-        className="flex items-center gap-1 rounded-md bg-[#165C67] px-4 py-2 text-white"
+        className={`flex ${order === "third" && locale === "ar" ? "flex-row-reverse" : "flex-row"} items-center gap-1 rounded-md bg-[#165C67] px-4 py-2 text-white`}
       >
         <LeadingIcon />
         {t("buttons.men")}

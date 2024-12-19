@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import Logo from "./icons/FooterLogo";
@@ -8,6 +8,7 @@ import { Separator } from "./ui/separator";
 import { Link } from "next-view-transitions";
 
 const Footer = () => {
+  const locale = useLocale();
   const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
 
@@ -19,7 +20,7 @@ const Footer = () => {
       {/* Top Section */}
       <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0">
         <div className="flex items-end gap-2">
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <Logo />
           </Link>
           <div
