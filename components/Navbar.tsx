@@ -127,7 +127,7 @@ export default function Navbar({ translations }: NavbarProps) {
       <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 text-lg font-medium md:px-16 lg:gap-2 xl:gap-8">
         {/* Left: Logo */}
         <div className="order-2 flex items-start justify-center lg:order-none">
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <Logo />
           </Link>
         </div>
