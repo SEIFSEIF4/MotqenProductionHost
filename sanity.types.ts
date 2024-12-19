@@ -180,6 +180,7 @@ export type Carousel = {
   description?: string;
   buttonText?: string;
   buttonUrl?: string;
+  imageUrl?: string;
 };
 
 export type Testimonial = {
