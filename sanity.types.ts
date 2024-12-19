@@ -137,7 +137,6 @@ export type Slug = {
 };
 
 export type Carousel = {
-  [x: string]: any;
   _id: string;
   _type: "carousel";
   _createdAt: string;

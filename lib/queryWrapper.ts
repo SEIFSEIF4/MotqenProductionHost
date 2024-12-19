@@ -48,11 +48,11 @@ export async function querySanity<T = any>(
 
   // Log tokens (optional, for debugging)
   if (!!process.env.SANITY_READ_TOKEN) {
+    console.log("Tokens:", {
+      serverToken: !!process.env.SANITY_READ_TOKEN,
+      browserToken: !!process.env.SANITY_READ_TOKEN,
+    });
   }
-  console.log("Tokens:", {
-    serverToken: !!process.env.SANITY_READ_TOKEN,
-    browserToken: !!process.env.SANITY_READ_TOKEN,
-  });
 
   // Define the query with optional parameters
   const sanityQuery = defineQuery(query);

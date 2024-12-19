@@ -9,27 +9,18 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { SectionWrapper } from "@/components/Wrapper";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { SubTitle } from "@/components/ui/heading";
 import { SAID_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
-import { SaidDummyData } from "@/data/said";
+import { Testimonial } from "@/sanity.types";
 
-export const NUMBER_OF_SLIDES = 3;
-
-type SaidItem = {
-  title: string;
-  author: string;
-  subTitle: string;
-};
-
-const Said = () => {
-  const t = useTranslations("HomePage.SaidSections");
-
-  const locale: string = useLocale();
-
-  const saidItems: SaidItem[] =
-    SaidDummyData[locale as "en" | "ar"] ?? SaidDummyData.ar;
+export default async function Said({
+  saidItems,
+}: {
+  saidItems: Testimonial[];
+}) {
+  const t = await getTranslations("HomePage.SaidSections");
 
   return (
     <SectionWrapper id="said">
@@ -59,11 +50,11 @@ const Said = () => {
             >
               <div className="relative mx-auto flex h-full w-[85%] flex-col items-start justify-center rounded-xl text-start md:w-1/2">
                 <h2 className="relative text-xl md:text-3xl">
-                  {item.title}
+                  {item.text}
                   <HomeIcons.Quotes className="absolute -right-6 top-0 -z-10" />
                 </h2>
-                <p className="mt-4 text-lg font-bold">{item.author}</p>
-                <span className="text-[#999EA7]">{item.subTitle}</span>
+                <p className="mt-4 text-lg font-bold">{item.name}</p>
+                <span className="text-[#999EA7]">{item.position}</span>
               </div>
             </SliderMainItem>
           ))}
@@ -81,6 +72,4 @@ const Said = () => {
       </Carousel>
     </SectionWrapper>
   );
-};
-
-export default Said;
+}

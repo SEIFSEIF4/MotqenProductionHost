@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { getLocale } from "next-intl/server";
 import { cn } from "@/lib/utils";
 
 import {
@@ -13,13 +12,16 @@ import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 
 import BookCarouselImg from "@/images/hero-4.jpg";
 import { HomeIcons } from "@/components/icons";
-import { getCarousel } from "@/sanity/lib/news/getCarousel";
-import { buttonVariants } from "../ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { Carousel as CarouselSlides } from "@/sanity.types";
 
-export default async function Hero() {
-  const locale = await getLocale();
-  const CarouselSlides = await getCarousel();
-
+export default async function Hero({
+  CarouselSlides,
+  locale,
+}: {
+  CarouselSlides: CarouselSlides[];
+  locale: string;
+}) {
   return (
     <section id="hero" className="w-full">
       <Carousel

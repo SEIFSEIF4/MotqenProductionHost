@@ -9,11 +9,24 @@ import News from "@/components/home/news";
 import Said from "@/components/home/said";
 
 import { PageWrapper } from "@/components/Wrapper";
+import { getCarousel } from "@/sanity/lib/news/getCarousel";
+import { getLocale } from "next-intl/server";
+import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
+import { getNews } from "@/sanity/lib/news/getNews";
 
-export default function HomePage() {
+export const dynamic = "force-static";
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const [locale, CarouselSlides, saidItems, news] = await Promise.all([
+    getLocale(),
+    getCarousel(),
+    getTestimonial(),
+    getNews(),
+  ]);
   return (
     <>
-      <Hero />
+      <Hero CarouselSlides={CarouselSlides} locale={locale} />
       <PageWrapper className="-translate-y-2 bg-white">
         <div
           className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
@@ -23,8 +36,8 @@ export default function HomePage() {
         <Goals />
         <Statics />
         <Programs />
-        <News />
-        <Said />
+        <News newsItems={news} locale={locale} />
+        <Said saidItems={saidItems} />
       </PageWrapper>
     </>
   );

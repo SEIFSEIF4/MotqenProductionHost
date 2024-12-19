@@ -1,12 +1,13 @@
 import { querySanity } from "@/lib/queryWrapper";
 
-export const getAllNews = (limit: number = 3) =>
+export const getNews = (limit: number = 3) =>
   querySanity({
     query: `*[_type == "news"] | order(_createdAt desc)[0...${limit}] {
       _id,
+      image,
       title,
       slug,
-      // Add any other fields you want
+      shortDescription,
     }`,
     cache: {
       revalidate: 180, // 3-minute cache
@@ -15,7 +16,7 @@ export const getAllNews = (limit: number = 3) =>
     transformResults: (data) =>
       data.map((item) => ({
         ...item,
-        // Add any transformations if needed
+        imageUrl: item.image?.asset?.url || "",
         slug: item.slug?.current || item._id,
       })),
   });
