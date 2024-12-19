@@ -68,6 +68,29 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type GovernanceDocument = {
+  _id: string;
+  _type: "governanceDocument";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: {
+    ar?: string;
+    en?: string;
+  };
+  category?:
+    | "policies-disclosure"
+    | "financial-statements"
+    | "program-reports"
+    | "regulations"
+    | "annual-documents"
+    | "general-meetings";
+  document?: {
+    ar?: string;
+    en?: string;
+  };
+};
+
 export type News = {
   _id: string;
   _type: "news";
@@ -137,7 +160,6 @@ export type Slug = {
 };
 
 export type Carousel = {
-  imageUrl: any;
   _id: string;
   _type: "carousel";
   _createdAt: string;
@@ -268,6 +290,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | GovernanceDocument
   | News
   | Slug
   | Carousel
@@ -279,4 +302,33 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/news/governanceDocument.ts
+// Variable: ALL_GovernanceDocument_QUERY
+// Query: *[_type == "governanceDocument" && category == $categoryFilter] {      _id,      category,      title {        ar,        en      },      document {        ar,        en      }    } | order(_createdAt desc)
+export type ALL_GovernanceDocument_QUERYResult = Array<{
+  _id: string;
+  category:
+    | "annual-documents"
+    | "financial-statements"
+    | "general-meetings"
+    | "policies-disclosure"
+    | "program-reports"
+    | "regulations"
+    | null;
+  title: {
+    ar: string | null;
+    en: string | null;
+  } | null;
+  document: {
+    ar: string | null;
+    en: string | null;
+  } | null;
+}>;
 
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '\n    *[_type == "governanceDocument" && category == $categoryFilter] {\n      _id,\n      category,\n      title {\n        ar,\n        en\n      },\n      document {\n        ar,\n        en\n      }\n    } | order(_createdAt desc)\n  ': ALL_GovernanceDocument_QUERYResult;
+  }
+}

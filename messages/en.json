@@ -398,6 +398,7 @@
     "title": "Governance and Transparency",
     "description": "This section includes documents and files that reflect the commitment of Mutqan Association to governance and transparency.",
     "button": "Read the file",
+    "noDocuments": "No Documents For Now",
     "Filters": {
       "policies-disclosure": "Policies and Disclosure",
       "financial-statements": "Financial Statements",
@@ -405,9 +406,6 @@
       "regulations": "Regulations and Rules",
       "annual-documents": "Annual Budget Estimates",
       "general-meetings": "Minutes of the General Assembly Meetings"
-    },
-    "example": {
-      "title": "Whistleblowing Policy and Protection of Whistleblowers"
     }
   }
 }
