@@ -1,15 +1,22 @@
+import { useLocale } from "next-intl";
 import React from "react";
 
 const InfoCard = ({
   Icon,
   title,
   description,
+  order,
+  locale,
 }: {
   Icon: any;
   title: string;
   description: string;
+  order: string;
+  locale: string;
 }) => (
-  <div className="flex items-center gap-2">
+  <div
+    className={`flex ${locale === "ar" && order === "third" ? "flex-row-reverse text-end" : "flex-row text-start"} items-center gap-2`}
+  >
     <span className="relative -top-1 inline-flex h-8 w-8 items-start justify-center rounded-full bg-gray-100">
       <Icon />
     </span>

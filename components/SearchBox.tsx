@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { MobileMenuContext } from "./Navbar";
 
 const SearchBox = ({
   Search,
@@ -7,16 +7,20 @@ const SearchBox = ({
   title,
   isOpen,
   setIsOpen,
-  setShowMobileMenu,
 }: {
   Search: any;
   locale: string;
   title: string;
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [searchValue, setSearchValue] = useState<string>("");
+  const setShowMobileMenu: Dispatch<SetStateAction<boolean>> | null =
+    useContext(MobileMenuContext);
+
+  if (!setShowMobileMenu) {
+    throw new Error("MobileMenuContext must be used within a provider");
+  }
 
   return (
     <>
@@ -28,7 +32,7 @@ const SearchBox = ({
         }}
         className="relative items-center gap-2 rounded p-1 py-4 after:absolute after:bottom-0 after:left-1/2 after:h-[6px] after:w-[0%] after:-translate-x-1/2 after:rounded-full after:bg-[#6FA0A7] after:transition-all lg:flex lg:hover:after:w-[97%]"
       >
-        <Search />
+        <Search isMobileMenu={false} />
         <span className="hidden lg:block">{title}</span>
       </button>
 
@@ -51,11 +55,11 @@ const SearchBox = ({
               <div
                 className={`relative ${locale === "ar" ? "left-1" : "right-1"} flex w-full items-center -space-x-4 pb-4 lg:-space-x-8 lg:py-6 rtl:space-x-reverse`}
               >
-                <Image
-                  src={Search}
-                  alt="Search"
+                <div
                   className={`relative ${locale === "ar" ? "right-4 lg:right-0" : "left-4 lg:left-0"} z-50 inline-block aspect-square w-5 rounded-md object-cover`}
-                />
+                >
+                  <Search isMobileMenu={true} />
+                </div>
                 <input
                   type="text"
                   placeholder={`${title}...`}
@@ -65,7 +69,7 @@ const SearchBox = ({
                 />
                 <button
                   type="reset"
-                  className={`relative ${locale === "ar" ? "left-4 lg:left-0" : "right-4 lg:right-0"} text-2xl text-gray-600 hover:text-gray-900`}
+                  className={`relative ${locale === "ar" ? "left-4 lg:left-0" : "right-4 lg:right-0"} text-3xl text-gray-600 hover:text-gray-900`}
                   onClick={() => setSearchValue("")}
                 >
                   &times;

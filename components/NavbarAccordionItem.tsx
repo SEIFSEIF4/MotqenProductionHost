@@ -1,5 +1,4 @@
 import { useLocale } from "next-intl";
-import { type StaticImageData } from "next/image";
 
 import MegaMenu from "./MegaMenu";
 import {
