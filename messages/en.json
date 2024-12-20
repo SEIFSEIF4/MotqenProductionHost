@@ -153,20 +153,6 @@
                   "value": "daily"
                 }
               ]
-            },
-            {
-              "title": "Three Faces Path",
-              "list": [
-                { "label": "Duration", "value": "One year" },
-                {
-                  "label": "Amount",
-                  "value": "Two faces daily"
-                },
-                {
-                  "label": "Days",
-                  "value": "daily"
-                }
-              ]
             }
           ]
         },
