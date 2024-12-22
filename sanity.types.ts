@@ -91,6 +91,39 @@ export type GovernanceDocument = {
   };
 };
 
+export type Member = {
+  _id: string;
+  _type: "member";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: {
+    ar?: string;
+    en?: string;
+  };
+  title?: {
+    ar?: string;
+    en?: string;
+  };
+  avatar?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  email?: string;
+  socialLinks?: Array<{
+    platform?: "twitter" | "linkedin";
+    url?: string;
+    _key: string;
+  }>;
+};
+
 export type News = {
   _id: string;
   _type: "news";
@@ -291,6 +324,7 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | GovernanceDocument
+  | Member
   | News
   | Slug
   | Carousel

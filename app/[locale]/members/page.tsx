@@ -1,69 +1,134 @@
-import React from "react";
+import { getMembers } from "@/sanity/lib/news/getMembers";
 import { getTranslations } from "next-intl/server";
-
-import { Mail, Linkedin, Twitch, Twitter, TwitterIcon } from "lucide-react";
-
+import { Metadata } from "next";
+import { Mail, Linkedin, Twitter } from "lucide-react";
 import { HomeIcons } from "@/components/icons";
 import { SubTitle } from "@/components/ui/heading";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionWrapper } from "@/components/Wrapper";
+import { Member as SanityMember } from "@/sanity.types";
+import { constructMetadata } from "@/lib/utils";
 
-export const revalidate = 21600; // 6-hours Revalidation
+// Assuming you have a type for `PageProps` that includes `params`
+interface PageProps {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ category?: string }>;
+}
 
-export default async function GovernancePage() {
+interface SocialLink {
+  platform?: "twitter" | "linkedin";
+  url?: string;
+  _key: string;
+}
+
+interface MembersPageProps extends PageProps {} // Extend the PageProps to include params
+
+// Generate static paths for each locale
+export async function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
+// Generate static metadata for each locale
+export const metadata = constructMetadata();
+
+export default async function MembersPage({ params, searchParams }: PageProps) {
+  const { locale } = await params;
+  const members = await getMembers();
   const t = await getTranslations("MembersPage");
   const tf = await getTranslations("Footer");
+
+  // Function to get localized text with fallback
+  const getLocalizedText = (obj: { ar?: string; en?: string }) => {
+    if (locale === "en" && obj.en) {
+      return obj.en;
+    }
+    return obj.ar; // Fallback to Arabic if English is not available
+  };
+
+  // Function to get social link by platform
+  const getSocialLink = (member: SanityMember, platform: string) => {
+    return member.socialLinks?.find(
+      (link: SocialLink) => link.platform === platform,
+    )?.url;
+  };
+
   return (
     <SectionWrapper isSinglePage id="goals" className="bg-[#F3F4F6] px-4">
       <DynamicBreadcrumb />
       <SubTitle text={t("title")} />
       <p className="mt-4">{t("description")}</p>
+
       <div className="grid grid-cols-1 gap-x-5 gap-y-3 py-5 sm:grid-cols-2 md:grid-cols-3 md:py-16 lg:md:grid-cols-4 xl:grid-cols-5">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, index) => (
+        {members.map((member) => (
           <div
-            key={index}
-            className="single flex flex-col items-center justify-center rounded-2xl bg-white p-6"
+            key={member._id}
+            className="flex flex-col items-center justify-center overflow-hidden rounded-2xl bg-white p-6"
           >
             <div className="relative">
               <HomeIcons.LargeLeaf className="absolute -right-4 -top-4" />
               <Avatar className="h-40 w-40">
                 <AvatarImage
-                  src="/images/avatar.jpg"
-                  alt="avatar"
+                  src={member.imageUrl || "/images/avatar.jpg"}
+                  alt={member.name ? (getLocalizedText(member.name) ?? "") : ""}
                   className="object-cover"
                 />
-                <AvatarFallback>RP</AvatarFallback>
+                <AvatarFallback>
+                  {member.name
+                    ? getLocalizedText(member.name)?.slice(0, 2).toUpperCase()
+                    : ""}
+                </AvatarFallback>
               </Avatar>
             </div>
+
             <div className="mt-6 text-center">
-              <h2 className="text-lg font-bold text-[#1F2A37]">
-                أحمد بن صالح العبدالله
+              <h2 className="line-clamp-1 text-lg font-bold text-[#1F2A37]">
+                {member.name ? getLocalizedText(member.name) : ""}
               </h2>
-              <p className="mt-2">رئيس مجلس الإدارة</p>
+              <p className="mt-2 line-clamp-2">
+                {member.title ? getLocalizedText(member.title) : ""}
+              </p>
             </div>
+
             <div className="mt-6 flex items-center justify-center gap-x-4">
+              {member.email && (
+                <a
+                  href={`mailto:${member.email}`}
+                  className="rounded-sm border p-3 hover:underline"
+                  aria-label={tf("ariaLabels.email")}
+                >
+                  <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
+                </a>
+              )}
+
+              {/* Twitter Icon */}
               <a
-                href="mailto:email@example.com"
-                className="rounded-sm border p-3 hover:underline"
-              >
-                <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
-              </a>
-              <a
-                href="https://www.twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={getSocialLink(member, "twitter") || "#"}
+                target={getSocialLink(member, "twitter") ? "_blank" : undefined}
+                rel={
+                  getSocialLink(member, "twitter")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className={`cursor-pointer rounded-sm border p-3 hover:opacity-75 ${!getSocialLink(member, "twitter") ? "pointer-events-none opacity-50" : ""}`}
                 aria-label={tf("ariaLabels.twitter")}
-                className="cursor-pointer rounded-sm border p-3 hover:opacity-75"
               >
-                <TwitterIcon className="h-[18px] w-[18px]" />
+                <Twitter className="h-[18px] w-[18px]" aria-hidden="true" />
               </a>
+
+              {/* LinkedIn Icon */}
               <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={getSocialLink(member, "linkedin") || "#"}
+                target={
+                  getSocialLink(member, "linkedin") ? "_blank" : undefined
+                }
+                rel={
+                  getSocialLink(member, "linkedin")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className={`cursor-pointer rounded-sm border p-3 hover:opacity-75 ${!getSocialLink(member, "linkedin") ? "pointer-events-none opacity-50" : ""}`}
                 aria-label={tf("ariaLabels.linkedIn")}
-                className="flex cursor-pointer items-center justify-center rounded-sm border p-3 hover:opacity-75"
               >
                 <Linkedin className="h-[18px] w-[18px]" aria-hidden="true" />
               </a>

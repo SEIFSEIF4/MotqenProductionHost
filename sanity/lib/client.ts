@@ -1,13 +1,23 @@
 import { createClient } from "next-sanity";
-
 import { apiVersion, dataset, projectId } from "../env";
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === "production", // use CDN in production
-  token: process.env.SANITY_READ_TOKEN, // optional
+  useCdn: process.env.NODE_ENV === "production",
+  token: process.env.SANITY_READ_TOKEN,
+  // Add perspective to handle draft content in preview mode
+  perspective:
+    (process.env.NEXT_PUBLIC_SANITY_PERSPECTIVE as
+      | "raw"
+      | "previewDrafts"
+      | "published") || "published", // 'raw' | 'previewDrafts' | 'published'
+  // Add stega to help with preview mode
+  stega: {
+    enabled: process.env.NODE_ENV === "development",
+    studioUrl: "/studio",
+  },
 });
 
 export async function testSanityConnection(query: string) {

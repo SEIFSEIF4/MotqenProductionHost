@@ -119,7 +119,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace" />
-      <p className="mb-6 mt-4 text-start">
+      <p className="mb-6 mt-4 text-start md:mx-auto md:text-center">
         {t("rights", { year: currentYear })}
       </p>
 

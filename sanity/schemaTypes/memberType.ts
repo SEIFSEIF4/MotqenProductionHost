@@ -19,12 +19,8 @@ export const memberType = defineType({
         defineField({
           name: "en",
           title: "Name (English)",
-          type: "slug",
-          description: "Try auto-generate from Arabic.",
-          options: {
-            source: "name", // Generates the slug from the title
-            maxLength: 96,
-          },
+          type: "string", // Changed to string from slug
+          description: "Name in English.",
         }),
       ],
     }),
@@ -43,7 +39,7 @@ export const memberType = defineType({
           name: "en",
           title: "Title (English)",
           type: "string",
-          description: "Leave empty to auto-generate from Arabic.",
+          description: "Title in English.",
         }),
       ],
     }),
@@ -63,9 +59,10 @@ export const memberType = defineType({
       type: "string",
       description: "Email address of the member.",
       validation: (Rule) =>
-        Rule.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { name: "email" }).error(
-          "يجب أن يكون بريدًا إلكترونيًا صالحًا.",
-        ),
+        Rule.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { name: "email" })
+          .error("يجب أن يكون بريدًا إلكترونيًا صالحًا.")
+          .required()
+          .error("يرجى ادخال الايميل"),
     }),
     defineField({
       name: "socialLinks",
