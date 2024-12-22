@@ -37,6 +37,7 @@ export default async function GovernancePage({
   const { locale } = await params;
   const { category } = await searchParams;
   const activeCategory = category || "policies-disclosure";
+
   const t = await getTranslations("GovernancePage");
   const documents = await getCategoryDocument(activeCategory);
 

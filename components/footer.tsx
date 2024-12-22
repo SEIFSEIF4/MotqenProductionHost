@@ -19,7 +19,7 @@ const Footer = () => {
       {/* Top Section */}
       <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0">
         <div className="flex items-end gap-2">
-          <Link href="/">
+          <Link href="/" aria-label="logo">
             <Logo />
           </Link>
           <div

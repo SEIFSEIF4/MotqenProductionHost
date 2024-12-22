@@ -71,6 +71,7 @@ export default async function Hero({
               <Image
                 fill
                 priority
+                //@ts-expect-error always string type
                 src={slide.imageUrl || BookCarouselImg}
                 alt={slide.title || "Hero Image"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"

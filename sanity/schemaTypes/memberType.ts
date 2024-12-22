@@ -8,16 +8,44 @@ export const memberType = defineType({
     defineField({
       name: "name",
       title: "Name",
-      type: "string",
-      description: "The full name of the member.",
-      validation: (Rule) => Rule.required().error("Name is required."),
+      type: "object",
+      fields: [
+        defineField({
+          name: "ar",
+          title: "Name (Arabic)",
+          type: "string",
+          validation: (Rule) => Rule.required().error("الاسم مطلوب."),
+        }),
+        defineField({
+          name: "en",
+          title: "Name (English)",
+          type: "slug",
+          description: "Try auto-generate from Arabic.",
+          options: {
+            source: "name", // Generates the slug from the title
+            maxLength: 96,
+          },
+        }),
+      ],
     }),
     defineField({
       name: "title",
       title: "Title",
-      type: "string",
-      description: "The title or role of the member, e.g., 'Chairman'.",
-      validation: (Rule) => Rule.required().error("Title is required."),
+      type: "object",
+      fields: [
+        defineField({
+          name: "ar",
+          title: "Title (Arabic)",
+          type: "string",
+          validation: (Rule) => Rule.required().error("اللقب مطلوب."),
+        }),
+        defineField({
+          name: "en",
+          title: "Title (English)",
+          type: "string",
+          description: "Leave empty to auto-generate from Arabic.",
+        }),
+      ],
     }),
     defineField({
       name: "avatar",
@@ -25,9 +53,9 @@ export const memberType = defineType({
       type: "image",
       description: "Upload an image for the member.",
       options: {
-        hotspot: true, // Enable image cropping
+        hotspot: true,
       },
-      validation: (Rule) => Rule.required().error("Avatar is required."),
+      validation: (Rule) => Rule.required().error("الصورة مطلوبة."),
     }),
     defineField({
       name: "email",
@@ -36,7 +64,7 @@ export const memberType = defineType({
       description: "Email address of the member.",
       validation: (Rule) =>
         Rule.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { name: "email" }).error(
-          "Must be a valid email address.",
+          "يجب أن يكون بريدًا إلكترونيًا صالحًا.",
         ),
     }),
     defineField({
@@ -57,11 +85,8 @@ export const memberType = defineType({
                 list: [
                   { title: "Twitter", value: "twitter" },
                   { title: "LinkedIn", value: "linkedin" },
-                  { title: "Twitch", value: "twitch" },
-                  { title: "Email", value: "email" },
                 ],
               },
-              validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: "url",
@@ -70,8 +95,8 @@ export const memberType = defineType({
               description: "The link to the social media profile or contact.",
               validation: (Rule) =>
                 Rule.uri({
-                  scheme: ["http", "https", "mailto"],
-                }).error("Must be a valid URL or email."),
+                  scheme: ["http", "https"],
+                }).error("يجب أن يكون رابطًا صالحًا."),
             }),
           ],
         },
@@ -80,8 +105,8 @@ export const memberType = defineType({
   ],
   preview: {
     select: {
-      title: "name",
-      subtitle: "title",
+      title: "name.ar",
+      subtitle: "title.ar",
       media: "avatar",
     },
     prepare({ title, subtitle, media }) {

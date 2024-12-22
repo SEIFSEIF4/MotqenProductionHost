@@ -1,10 +1,16 @@
 import React from "react";
-
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";
 import { useTranslations } from "next-intl";
 import AboutMotqen from "./_components/AboutMotqen";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
+import { constructMetadata } from "@/lib/utils";
+
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ar" }];
+}
+
+export const metadata = constructMetadata();
 
 export default function HomePage() {
   const t = useTranslations("AboutMotqen");
