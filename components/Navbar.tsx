@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useState,
-  createContext,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { useState, createContext, Dispatch, SetStateAction } from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Link } from "next-view-transitions";
 import { useTranslations, useLocale } from "next-intl";
