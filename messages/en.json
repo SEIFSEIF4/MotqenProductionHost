@@ -153,20 +153,6 @@
                   "value": "daily"
                 }
               ]
-            },
-            {
-              "title": "Three Faces Path",
-              "list": [
-                { "label": "Duration", "value": "One year" },
-                {
-                  "label": "Amount",
-                  "value": "Two faces daily"
-                },
-                {
-                  "label": "Days",
-                  "value": "daily"
-                }
-              ]
             }
           ]
         },
@@ -306,22 +292,38 @@
     "third": {
       "title": "Hifz Path",
       "subtitle": ["Two Paths", "For Men and Women"],
+      "description": "This path is for memorizing and mastering the Quran, following a structured framework where participants complete memorization of the entire Quran with precision and mastery",
       "pathType": {
-        "one": "One Page Path",
-        "two": "Two Pages Path"
-      },
-      "description": "This path is for memorizing and mastering the Quran, following a structured framework where participants complete memorization of the entire Quran with precision and mastery.",
-      "duration": {
-        "title": "Path Duration",
-        "description": "One year"
-      },
-      "howMuch": {
-        "title": "Daily Memorization Amount",
-        "description": "Two pages daily"
-      },
-      "days": {
-        "title": "Memorization Days",
-        "description": "All days of the week"
+        "pathOne": {
+          "title": "One Page Path",
+          "duration": {
+            "title": "Path Duration",
+            "description": "Two years"
+          },
+          "howMuch": {
+            "title": "Daily Memorization Amount",
+            "description": "One page daily"
+          },
+          "days": {
+            "title": "Memorization Days",
+            "description": "All days of the week"
+          }
+        },
+        "pathTwo": {
+          "title": "Two Pages Path",
+          "duration": {
+            "title": "Path Duration",
+            "description": "One year"
+          },
+          "howMuch": {
+            "title": "Daily Memorization Amount",
+            "description": "Two pages daily"
+          },
+          "days": {
+            "title": "Memorization Days",
+            "description": "All days of the week"
+          }
+        }
       },
       "buttons": {
         "men": "More Details for Men",

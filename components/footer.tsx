@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import Logo from "./icons/FooterLogo";
@@ -8,11 +8,12 @@ import { Separator } from "./ui/separator";
 import { Link } from "next-view-transitions";
 
 const Footer = () => {
+  const locale = useLocale();
   const t = useTranslations("Footer");
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="group relative overflow-hidden bg-primary py-6 text-sm text-white">
+    <footer className="group relative overflow-hidden bg-primary px-6 py-6 text-sm text-white">
       {/* Decorative Background */}
       <FooterIcons.Pattern className="absolute bottom-0 left-0 -z-10 group-hover:opacity-100" />
 
@@ -72,8 +73,8 @@ const Footer = () => {
       </div>
 
       {/* Middle Section */}
-      <div className="container z-10 mx-auto mt-4 flex max-w-base flex-col items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0">
-        <div className="flex flex-wrap gap-3 text-center md:text-right">
+      <div className="container z-10 mx-auto mt-6 flex max-w-base flex-col items-start justify-between space-y-6 md:flex-row md:space-y-0">
+        <div className="flex flex-col-reverse flex-wrap gap-3 text-center md:flex-row md:text-right">
           {/* Location */}
           <div className="flex w-full items-center gap-x-1 md:w-auto">
             <MapPin className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -106,7 +107,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Privacy and Terms */}
-        <div className="flex items-center gap-x-3">
+        <div className="flex flex-col-reverse items-start gap-x-3 md:flex-row">
           <a href="#" className="hover:underline">
             {t("terms")}
           </a>
@@ -117,10 +118,24 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace opacity-25" />
-      <p className="mb-6 mt-4 text-center">
+      <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace" />
+      <p className="mb-6 mt-4 text-start">
         {t("rights", { year: currentYear })}
       </p>
+
+      <div className="flex items-end gap-2 md:hidden">
+        <Link href={`/${locale}`}>
+          <Logo />
+        </Link>
+        <div
+          className="text-sm font-semibold"
+          style={{ lineHeight: "1rem", letterSpacing: "0.2px" }}
+        >
+          <p>{t("logoText.title")}</p>
+          <p>{t("logoText.description")}</p>
+          <p className="text-xs font-normal">{t("logoText.licenseNum")}</p>
+        </div>
+      </div>
     </footer>
   );
 };

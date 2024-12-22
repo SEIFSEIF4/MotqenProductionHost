@@ -51,7 +51,7 @@ function Programs() {
             />
             <div
               className={cn(
-                "absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-[rgba(22,22,22,0.9)] to-[rgba(0,12,13,0)] p-4 text-white",
+                "absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-[rgba(22,22,22,0.9)] to-[rgba(0,12,13,0)] text-white",
                 "opacity-100 transition-all delay-200 duration-500 group-hover:from-[rgba(0,12,13,0)] group-hover:to-[rgba(22,22,22,0.9)]",
               )}
             >
@@ -67,11 +67,11 @@ function Programs() {
               >
                 <div>
                   {/* Programs Details */}
-                  <h3 className="z-10 p-3 text-2xl font-bold opacity-0 group-hover:opacity-100">
+                  <h3 className="z-10 p-3 text-3xl font-bold opacity-0 group-hover:opacity-100">
                     {item.title}
                   </h3>
                   <div className="mt-4 text-center opacity-0 group-hover:opacity-100">
-                    <p className="text-start text-xl">{item.details}</p>
+                    <p className="text-start text-2xl">{item.details}</p>
                   </div>
                 </div>
                 {item.id === 1 ? (
@@ -128,17 +128,19 @@ function Programs() {
                     style={{
                       width: `${100 / item.programs.length}%`, // Dynamically set width
                     }}
-                    className="flex flex-col items-start gap-2 border-gray-300 pb-2 last:border-none"
+                    className={`flex flex-col items-start justify-between gap-2 border-gray-300 p-2 last:border-none ${idx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-1" : "before:-left-1"} before:h-4/5 before:w-[1px] before:bg-white`}`}
                   >
-                    <h4 className="text-xl font-bold">{program.title}</h4>
-                    <ul className="flex w-full flex-col items-start gap-1 py-2">
+                    <h4 className="text-xl font-semibold">{program.title}</h4>
+                    <ul className="flex w-full flex-row items-start justify-start gap-8">
                       {program.list.map((detail, detailIdx) => (
                         <li
                           key={detailIdx}
-                          className="flex flex-row justify-start gap-4"
+                          className="flex flex-col justify-start"
                         >
-                          <span className="font-medium">{detail.label}:</span>
-                          <span className="text-base text-white">
+                          <span className="font-normal">{detail.label}</span>
+                          <span
+                            className={`text-base font-bold text-white ${detailIdx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-[18px]" : "before:-left-[18px]"} before:top-1/2 before:h-[5px] before:w-[5px] before:rounded-full before:bg-white`}`}
+                          >
                             {detail.value}
                           </span>
                         </li>

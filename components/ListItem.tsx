@@ -1,7 +1,8 @@
-import React from "react";
+import { useContext, SetStateAction, Dispatch } from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 import { useLocale } from "next-intl";
+import { MobileMenuContext } from "./Navbar";
 
 type ListItemProps = {
   className?: string;
@@ -19,10 +20,20 @@ const ListItem = ({
   Icon,
 }: ListItemProps) => {
   const locale = useLocale();
+  const setShowMobileMenu: Dispatch<SetStateAction<boolean>> | null =
+    useContext(MobileMenuContext);
+
+  if (!setShowMobileMenu) {
+    throw new Error("MobileMenuContext must be used within a provider");
+  }
 
   return (
     <li>
-      <Link href={`/${locale}${href}`} className="w-full">
+      <Link
+        href={`/${locale}${href}`}
+        className="w-full"
+        onClick={() => setShowMobileMenu(false)}
+      >
         <div
           className={cn(
             `flex select-none ${

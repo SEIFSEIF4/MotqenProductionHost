@@ -378,7 +378,7 @@ const CarouselPrevious = forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute z-10 hidden h-6 w-6 rounded-full md:block",
+        "absolute z-10 hidden h-6 w-6 rounded-full md:flex md:items-center md:justify-center",
         orientation === "vertical"
           ? "-top-2 left-1/2 -translate-x-1/2 rotate-90"
           : "-left-2 top-1/2 -translate-y-1/2",

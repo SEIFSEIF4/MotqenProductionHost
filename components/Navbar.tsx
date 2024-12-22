@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useState,
+  createContext,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Link } from "next-view-transitions";
 import { useTranslations, useLocale } from "next-intl";
@@ -40,6 +46,10 @@ type NavbarProps = {
     english: string;
   };
 };
+
+type MobileMenuContextType = Dispatch<SetStateAction<boolean>> | null;
+
+export const MobileMenuContext = createContext<MobileMenuContextType>(null);
 
 export default function Navbar({ translations }: NavbarProps) {
   const locale = useLocale();
@@ -122,151 +132,165 @@ export default function Navbar({ translations }: NavbarProps) {
   };
 
   return (
-    <header className="fixed left-0 top-0 z-[100] w-full bg-white shadow-sm">
-      {/* Top Navbar */}
-      <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 text-lg font-medium md:px-16 lg:gap-2 xl:gap-8">
-        {/* Left: Logo */}
-        <div className="order-2 flex items-start justify-center lg:order-none">
-          <Link href={`/${locale}`} aria-label="logo">
-            <Logo />
-          </Link>
-        </div>
+    <MobileMenuContext.Provider value={setShowMobileMenu}>
+      <header className="fixed left-0 top-0 z-[100] w-full bg-white shadow-sm">
+        {/* Top Navbar */}
+        <div className="relative mx-auto flex max-w-base items-center justify-between gap-0 px-8 py-4 text-lg font-medium md:px-16 lg:gap-2 xl:gap-8">
+          {/* Left: Logo */}
+          <div className="order-2 flex items-start justify-center lg:order-none">
+            <Link href={`/${locale}`}>
+              <Logo />
+            </Link>
+          </div>
 
-        {/* Middle: Navigation Links */}
-        <NavigationMenu className="hidden lg:flex lg:flex-1">
-          <DirectionProvider dir="rtl">
-            <NavigationMenuList
-              className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800`}
-            >
-              <NavbarMenuItem
-                translations={translations.aboutUs}
-                navbarMegaMenu={navbarMegaMenu.aboutUs}
-                isFirst={true}
-              />
-              <NavbarMenuItem
-                translations={translations.programsAndPaths}
-                navbarMegaMenu={navbarMegaMenu.programsAndPaths}
-                isFirst={false}
-              />
-              <NavigationMenuItem>
-                <NavbarLink
-                  title={translations.associationNews}
-                  href={`/news`}
-                  isMobileMenu={false}
-                />
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavbarLink
-                  title={translations.store}
-                  href={`#`}
-                  isMobileMenu={false}
-                />
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavbarLink
-                  title={translations.contactUs}
-                  href={`/contact`}
-                  isMobileMenu={false}
-                />
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </DirectionProvider>
-        </NavigationMenu>
-
-        <div className="order-3 flex items-center justify-end gap-1 lg:flex-auto xl:gap-8">
-          {/* Search Box */}
-          <SearchBox
-            Search={Search}
-            locale={locale}
-            title={translations.search}
-            isOpen={showSearchBox}
-            setIsOpen={setShowSearchBox}
-            setShowMobileMenu={setShowMobileMenu}
-          />
-
-          {/* Language Switch */}
-          <LocaleSwitcher
-            langLabel={translations.english}
-            handleClick={switchLocale}
-          />
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="rounded p-2 text-xl lg:hidden"
-          aria-label="Toggle Menu"
-          onClick={() => {
-            setShowMobileMenu(!showMobileMenu);
-            setShowSearchBox(false);
-          }}
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {showMobileMenu && (
-        <NavigationMenu className="absolute left-1/2 min-w-full -translate-x-1/2 bg-white p-4 lg:hidden">
-          <DirectionProvider dir="rtl">
-            <ul
-              className={`has group flex w-full flex-1 list-none flex-col items-end`}
-            >
-              <Accordion type="single" collapsible className="w-full">
-                <Separator />
-                <NavbarAccordionItem
-                  title="aboutUs"
+          {/* Middle: Navigation Links */}
+          <NavigationMenu className="hidden lg:flex lg:flex-1">
+            <DirectionProvider dir="rtl">
+              <NavigationMenuList
+                className={`flex ${locale === "ar" && "flex-row-reverse"} text-gray-800`}
+              >
+                <NavbarMenuItem
                   translations={translations.aboutUs}
                   navbarMegaMenu={navbarMegaMenu.aboutUs}
+                  isFirst={true}
                 />
-                <Separator />
-                <NavbarAccordionItem
-                  title="programsAndPaths"
+                <NavbarMenuItem
                   translations={translations.programsAndPaths}
                   navbarMegaMenu={navbarMegaMenu.programsAndPaths}
+                  isFirst={false}
                 />
-              </Accordion>
-              <Separator />
-              <NavigationMenuItem className="w-full">
-                <NavbarLink
-                  title={translations.associationNews}
-                  href={`/news`}
-                  isMobileMenu={true}
-                />
-              </NavigationMenuItem>
-              <Separator />
-              <NavigationMenuItem className="w-full">
-                <NavbarLink
-                  title={translations.store}
-                  href={`#`}
-                  isMobileMenu={true}
-                />
-              </NavigationMenuItem>
-              <Separator />
-              <NavigationMenuItem className="w-full">
-                <NavbarLink
-                  title={translations.contactUs}
-                  href={`/contact`}
-                  isMobileMenu={true}
-                />
-              </NavigationMenuItem>
-              <Separator />
-              <NavigationMenuItem className="w-full">
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer bg-white py-8 text-base text-gray-800`}
-                  onClick={switchLocale}
-                  style={{
-                    justifyContent: locale === "ar" ? "flex-end" : "flex-start",
-                    fontSize: "1rem",
-                    lineHeight: "1.5rem",
-                  }}
+                <NavigationMenuItem>
+                  <NavbarLink
+                    title={translations.associationNews}
+                    href={`/news`}
+                    isMobileMenu={false}
+                  />
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavbarLink
+                    title={translations.store}
+                    href={`#`}
+                    isMobileMenu={false}
+                  />
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavbarLink
+                    title={translations.contactUs}
+                    href={`/contact`}
+                    isMobileMenu={false}
+                  />
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </DirectionProvider>
+          </NavigationMenu>
+
+          <div className="order-3 flex items-center justify-end gap-1 lg:flex-auto xl:gap-8">
+            {/* Search Box */}
+            <SearchBox
+              Search={Search}
+              locale={locale}
+              title={translations.search}
+              isOpen={showSearchBox}
+              setIsOpen={setShowSearchBox}
+            />
+
+            {/* Language Switch */}
+            <LocaleSwitcher
+              langLabel={translations.english}
+              handleClick={switchLocale}
+            />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="rounded p-2 text-xl lg:hidden"
+            aria-label="Toggle Menu"
+            onClick={() => {
+              setShowMobileMenu(!showMobileMenu);
+              setShowSearchBox(false);
+            }}
+          >
+            ☰
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {showMobileMenu && (
+          <NavigationMenu className="absolute left-1/2 min-w-full -translate-x-1/2 bg-white p-4 lg:hidden">
+            <DirectionProvider dir="rtl">
+              <ul
+                className={`has group flex w-full flex-1 list-none flex-col items-end`}
+              >
+                <Accordion type="single" collapsible className="w-full">
+                  <Separator />
+                  <NavbarAccordionItem
+                    title="aboutUs"
+                    translations={translations.aboutUs}
+                    navbarMegaMenu={navbarMegaMenu.aboutUs}
+                  />
+                  <Separator />
+                  <NavbarAccordionItem
+                    title="programsAndPaths"
+                    translations={translations.programsAndPaths}
+                    navbarMegaMenu={navbarMegaMenu.programsAndPaths}
+                  />
+                </Accordion>
+                <Separator />
+                <NavigationMenuItem
+                  className="w-full"
+                  onClick={() => setShowMobileMenu(false)}
                 >
-                  <button type="button">{translations.english}</button>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </ul>
-          </DirectionProvider>
-        </NavigationMenu>
-      )}
-    </header>
+                  <NavbarLink
+                    title={translations.associationNews}
+                    href={`/news`}
+                    isMobileMenu={true}
+                  />
+                </NavigationMenuItem>
+                <Separator />
+                <NavigationMenuItem
+                  className="w-full"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  <NavbarLink
+                    title={translations.store}
+                    href={`#`}
+                    isMobileMenu={true}
+                  />
+                </NavigationMenuItem>
+                <Separator />
+                <NavigationMenuItem
+                  className="w-full"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  <NavbarLink
+                    title={translations.contactUs}
+                    href={`/contact`}
+                    isMobileMenu={true}
+                  />
+                </NavigationMenuItem>
+                <Separator />
+                <NavigationMenuItem
+                  className="w-full"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} min-w-full cursor-pointer bg-white py-8 text-base text-gray-800`}
+                    onClick={switchLocale}
+                    style={{
+                      justifyContent:
+                        locale === "ar" ? "flex-end" : "flex-start",
+                      fontSize: "1rem",
+                      lineHeight: "1.5rem",
+                    }}
+                  >
+                    <button type="button">{translations.english}</button>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </ul>
+            </DirectionProvider>
+          </NavigationMenu>
+        )}
+      </header>
+    </MobileMenuContext.Provider>
   );
 }
