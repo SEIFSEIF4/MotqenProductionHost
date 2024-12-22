@@ -36,11 +36,11 @@
       "aboutUs": {
         "mainTitle": "About Motqen",
         "megaMenuTitle1": "Association Establishment",
-        "description1": "A track consisting of two parts",
+        "description1": "Learn about Motqen Association",
         "megaMenuTitle2": "Board Members",
-        "description2": "A track consisting of one part",
+        "description2": "Meet the members of Motqen Association",
         "megaMenuTitle3": "Governance",
-        "description3": "A track consisting of one part"
+        "description3": "Governance and transparency"
       },
       "programsAndPaths": {
         "mainTitle": "Programs & Paths",
@@ -162,26 +162,12 @@
           "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
           "programs": [
             {
-              "title": "Two Faces Path",
+              "title": "Four Faces Path",
               "list": [
-                { "label": "Duration", "value": "One year" },
+                { "label": "Duration", "value": "7-8 Months" },
                 {
                   "label": "Amount",
-                  "value": "Two faces daily"
-                },
-                {
-                  "label": "Days",
-                  "value": "daily"
-                }
-              ]
-            },
-            {
-              "title": "One Face Path",
-              "list": [
-                { "label": "Duration", "value": "Two years" },
-                {
-                  "label": "Amount",
-                  "value": "One face daily"
+                  "value": "Four faces daily"
                 },
                 {
                   "label": "Days",
@@ -197,30 +183,16 @@
           "details": "This is a path for memorizing and preserving the Quran, following a structured and systematic framework. The participant memorizes the entire Quran with precision and accuracy.",
           "programs": [
             {
-              "title": "Two Faces Path",
+              "title": "4-5 Juz’ Daily Path",
               "list": [
                 { "label": "Duration", "value": "One year" },
                 {
                   "label": "Amount",
-                  "value": "Two faces daily"
+                  "value": "Four to five Juz’ daily"
                 },
                 {
-                  "label": "Days",
-                  "value": "daily"
-                }
-              ]
-            },
-            {
-              "title": "One Face Path",
-              "list": [
-                { "label": "Duration", "value": "Two years" },
-                {
-                  "label": "Amount",
-                  "value": "One face daily"
-                },
-                {
-                  "label": "Days",
-                  "value": "daily"
+                  "label": "Registration Requirement",
+                  "value": "Graduation from the Ittqan Path"
                 }
               ]
             }

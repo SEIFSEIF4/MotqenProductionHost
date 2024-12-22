@@ -71,7 +71,11 @@ function Programs() {
                     {item.title}
                   </h3>
                   <div className="mt-4 text-center opacity-0 group-hover:opacity-100">
-                    <p className="text-start text-2xl">{item.details}</p>
+                    <p
+                      className={`text-start ${locale === "ar" ? "text-2xl" : "text-xl"}`}
+                    >
+                      {item.details}
+                    </p>
                   </div>
                 </div>
                 {item.id === 1 ? (
@@ -116,8 +120,8 @@ function Programs() {
               </div>
               <div
                 className={cn(
-                  "z-10 flex w-full flex-row gap-4 overflow-hidden p-3",
-                  "dduration-1000 h-0 opacity-0 transition-all",
+                  "z-10 flex w-full flex-col gap-4 overflow-hidden p-3 xl:flex-row",
+                  "h-0 opacity-0 transition-all duration-1000",
                   "group-hover:h-[30%] group-hover:animate-fadeIn group-hover:opacity-100",
                   "animate-fadeOut",
                 )}
@@ -128,18 +132,22 @@ function Programs() {
                     style={{
                       width: `${100 / item.programs.length}%`, // Dynamically set width
                     }}
-                    className={`flex flex-col items-start justify-between gap-2 border-gray-300 p-2 last:border-none ${idx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-1" : "before:-left-1"} before:h-4/5 before:w-[1px] before:bg-white`}`}
+                    className={`flex flex-col items-start justify-evenly gap-2 border-gray-300 p-2 last:border-none ${idx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-1" : "before:-left-1"} before:h-4/5 before:w-[1px] before:bg-white`}`}
                   >
-                    <h4 className="text-xl font-semibold">{program.title}</h4>
-                    <ul className="flex w-full flex-row items-start justify-start gap-8">
+                    <h4
+                      className={`${locale === "ar" ? "text-xl" : "text-lg"} font-semibold`}
+                    >
+                      {program.title}
+                    </h4>
+                    <ul className="flex w-full flex-col items-start justify-start gap-8 xl:flex-row">
                       {program.list.map((detail, detailIdx) => (
                         <li
                           key={detailIdx}
-                          className="flex flex-col justify-start"
+                          className="relative flex w-full flex-col justify-start rounded after:absolute after:-bottom-2 after:h-[1px] after:w-full after:bg-[#FFFFFF33] xl:after:hidden"
                         >
                           <span className="font-normal">{detail.label}</span>
                           <span
-                            className={`text-base font-bold text-white ${detailIdx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-[18px]" : "before:-left-[18px]"} before:top-1/2 before:h-[5px] before:w-[5px] before:rounded-full before:bg-white`}`}
+                            className={`${locale === "ar" ? "font-bold" : "font-semibold"} text-sm text-white ${detailIdx !== 0 && `relative before:absolute ${locale === "ar" ? "before:-right-[18px]" : "before:-left-[18px]"} before:top-1/2 before:h-[5px] before:w-[5px] before:-translate-y-1/2 before:rounded-full before:bg-white`}`}
                           >
                             {detail.value}
                           </span>
