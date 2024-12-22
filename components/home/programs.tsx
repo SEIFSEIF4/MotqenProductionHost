@@ -32,9 +32,10 @@ function Programs() {
               height: PROGRAMS_FIXED_HEIGHT,
             }}
             className={cn(
-              `group relative overflow-hidden rounded-lg transition-all delay-200 duration-500 md:flex-1 md:hover:!h-[${PROGRAMS_FIXED_HEIGHT}px] md:hover:flex-[4]`,
+              `group relative overflow-hidden rounded-lg transition-all delay-200 duration-500 md:flex-1 md:hover:flex-[4]`,
               "md:flex-1", // Default size
               index === 0 ? "hover:!h-[840px]" : "hover:!h-[570px]",
+              PROGRAMS_FIXED_HEIGHT === 486 && `md:hover:!h-[486px]`,
             )}
           >
             <Image
