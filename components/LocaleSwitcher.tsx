@@ -9,13 +9,13 @@ export default function LocaleSwitcher({
   langLabel: string;
 }) {
   return (
-    <div className="hidden items-center gap-2 lg:flex">
+    <div
+      className="hidden cursor-pointer items-center gap-2 lg:flex"
+      onClick={handleClick}
+      role="button"
+    >
       <Translate />
-      <button
-        type="button"
-        className="hidden lg:inline-block"
-        onClick={handleClick}
-      >
+      <button type="button" className="hidden lg:inline-block">
         {langLabel}
       </button>
     </div>
