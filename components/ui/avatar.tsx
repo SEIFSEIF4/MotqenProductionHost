@@ -20,24 +20,27 @@ const Avatar = React.forwardRef<
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
-// AvatarImage component with Next.js Image
+// AvatarImage component with Next.js Image and loading state
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  // Directly render Next.js Image here instead of AvatarPrimitive.Image
-  <div className={cn("aspect-square h-full w-full", className)} ref={ref}>
-    <Image
-      src={props.src || "/images/avatar.jpg"}
-      alt={props.alt || "Avatar"}
-      width={undefined}
-      height={undefined}
-      fill
-      className="object-cover"
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-    />
-  </div>
-));
+>(({ className, ...props }, ref) => {
+  return (
+    <div className={cn("aspect-square h-full w-full", className)} ref={ref}>
+      <Image
+        src={props.src || "/images/avatar.jpg"}
+        alt={props.alt || "Avatar"}
+        priority
+        fill
+        sizes="160px"
+        quality={75}
+        className={cn(
+          "relative h-auto w-auto object-cover transition-opacity duration-300",
+        )}
+      />
+    </div>
+  );
+});
 AvatarImage.displayName = "AvatarImage";
 
 // AvatarFallback component

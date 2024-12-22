@@ -71,12 +71,12 @@ export default async function MembersPage({ params, searchParams }: PageProps) {
                 <AvatarImage
                   src={member.imageUrl || "/images/avatar.jpg"}
                   alt={member.name ? (getLocalizedText(member.name) ?? "") : ""}
-                  className="object-cover"
+                  className="relative object-cover"
                 />
                 <AvatarFallback>
                   {member.name
                     ? getLocalizedText(member.name)?.slice(0, 2).toUpperCase()
-                    : ""}
+                    : "NP"}
                 </AvatarFallback>
               </Avatar>
             </div>

@@ -14,7 +14,7 @@ import { getLocale } from "next-intl/server";
 import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
 import { getNews } from "@/sanity/lib/news/getNews";
 
-export const dynamic = "force-static";
+export const dynamic = "auto";
 export const revalidate = 60;
 
 export default async function HomePage() {
