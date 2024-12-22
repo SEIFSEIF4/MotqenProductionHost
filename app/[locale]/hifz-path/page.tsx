@@ -4,6 +4,13 @@ import { useLocale } from "next-intl";
 import PathwayCard from "@/components/programs/PathwayCard";
 import { PageWrapper } from "@/components/Wrapper";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
+import { constructMetadata } from "@/lib/utils";
+
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ar" }];
+}
+
+export const metadata = constructMetadata();
 
 export default function HomePage() {
   const locale = useLocale();
