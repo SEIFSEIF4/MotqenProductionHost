@@ -18,9 +18,9 @@ const Footer = () => {
       <FooterIcons.Pattern className="absolute bottom-0 left-0 -z-10 group-hover:opacity-100" />
 
       {/* Top Section */}
-      <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 px-4 md:flex-row md:space-y-0">
-        <div className="flex items-end gap-2">
-          <Link href="/" aria-label="logo">
+      <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 md:flex-row md:space-y-0">
+        <div className="hidden items-end gap-2 md:flex">
+          <Link href={`/${locale}`} aria-label="logo">
             <Logo />
           </Link>
           <div
@@ -119,12 +119,12 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace" />
-      <p className="mb-6 mt-4 text-start md:mx-auto md:text-center">
+      <p className="mb-6 mt-4 text-start">
         {t("rights", { year: currentYear })}
       </p>
 
       <div className="flex items-end gap-2 md:hidden">
-        <Link href={`/${locale}`}>
+        <Link href={`/${locale}`} aria-label="logo">
           <Logo />
         </Link>
         <div
