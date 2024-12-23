@@ -336,6 +336,124 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/news/getAllNews.ts
+// Variable: NewsQUERY
+// Query: *[_type == "news"] | order(_createdAt desc) {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      slug,      shortDescription,      content,      image {        asset -> {          url        }      },      datePublished,      socialLinks    }
+export type NewsQUERYResult = Array<{
+  _id: string;
+  _type: "news";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string | null;
+  slug: Slug | null;
+  shortDescription: string | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
+  image: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  datePublished: string | null;
+  socialLinks: {
+    instagram?: string;
+    whatsapp?: string;
+    linkedin?: string;
+    twitter?: string;
+  } | null;
+}>;
+
+// Source: ./sanity/lib/news/getSingleNews.ts
+// Variable: SingleNewsQuery
+// Query: *[_type == "news" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      slug,      shortDescription,      content,      image {        asset -> {          url        }      },      datePublished,      socialLinks {        instagram,        whatsapp,        twitter,        linkedin      }    }
+export type SingleNewsQueryResult = {
+  _id: string;
+  _type: "news";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string | null;
+  slug: Slug | null;
+  shortDescription: string | null;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
+  image: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  datePublished: string | null;
+  socialLinks: {
+    instagram: string | null;
+    whatsapp: string | null;
+    twitter: string | null;
+    linkedin: string | null;
+  } | null;
+} | null;
+
 // Source: ./sanity/lib/news/governanceDocument.ts
 // Variable: ALL_GovernanceDocument_QUERY
 // Query: *[_type == "governanceDocument" && category == $categoryFilter] {      _id,      category,      title {        ar,        en      },      document {        ar,        en      }    } | order(_createdAt desc)
@@ -363,6 +481,8 @@ export type ALL_GovernanceDocument_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '\n    *[_type == "news"] | order(_createdAt desc) {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      slug,\n      shortDescription,\n      content,\n      image {\n        asset -> {\n          url\n        }\n      },\n      datePublished,\n      socialLinks\n    }\n  ': NewsQUERYResult;
+    '\n    *[_type == "news" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      slug,\n      shortDescription,\n      content,\n      image {\n        asset -> {\n          url\n        }\n      },\n      datePublished,\n      socialLinks {\n        instagram,\n        whatsapp,\n        twitter,\n        linkedin\n      }\n    }\n  ': SingleNewsQueryResult;
     '\n    *[_type == "governanceDocument" && category == $categoryFilter] {\n      _id,\n      category,\n      title {\n        ar,\n        en\n      },\n      document {\n        ar,\n        en\n      }\n    } | order(_createdAt desc)\n  ': ALL_GovernanceDocument_QUERYResult;
   }
 }

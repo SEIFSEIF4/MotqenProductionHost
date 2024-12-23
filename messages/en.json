@@ -366,7 +366,9 @@
   "NewsPage": {
     "title": "Association News",
     "description": "Stay updated with the latest news, events, and initiatives organized by the Mutqan Association.",
-    "button2": "Read More"
+    "button2": "Read More",
+    "noNews": "No News For Now",
+    "SingleNews": "Latest News"
   },
   "GovernancePage": {
     "title": "Governance and Transparency",

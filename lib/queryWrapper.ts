@@ -61,6 +61,7 @@ export async function querySanity<T = any>(
     // Fetch data with optional cache configuration
     const result = await sanityFetch({
       query: sanityQuery,
+      params,
       tag: cache.tags?.[0], // Use first tag if available
     });
 

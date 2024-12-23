@@ -5,7 +5,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === "production",
+  useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
   token: process.env.SANITY_READ_TOKEN,
   // Add perspective to handle draft content in preview mode
   perspective:
@@ -13,7 +13,6 @@ export const client = createClient({
       | "raw"
       | "previewDrafts"
       | "published") || "published", // 'raw' | 'previewDrafts' | 'published'
-  // Add stega to help with preview mode
   stega: {
     enabled: process.env.NODE_ENV === "development",
     studioUrl: "/studio",

@@ -1,36 +1,34 @@
-// pages/[locale]/news.tsx
 import React from "react";
 import { getTranslations } from "next-intl/server";
-import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 import { SectionWrapper } from "@/components/Wrapper";
-import { SubTitle } from "@/components/ui/heading";
 import {
   Card,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import NewsDummyImg from "@/images/card-2.jpg";
 import { Link } from "next-view-transitions";
-import {
-  Calendar,
-  CalendarRange,
-  MoveRight,
-  Link as LinkIcon,
-} from "lucide-react";
+import { CalendarRange, MoveRight, Link as LinkIcon } from "lucide-react";
 import { getLocale } from "next-intl/server";
-import { cn, copyToClipboard } from "@/lib/utils";
-import { LinkedInLogoIcon } from "@radix-ui/react-icons";
+import { cn, convertToHijriDate } from "@/lib/utils";
 import { FooterIcons } from "@/components/icons";
+import { getSingleNews } from "@/sanity/lib/news/getSingleNews";
+import { SingleNewsQueryResult, Slug } from "@/sanity.types";
+import { CopyUrlButton } from "@/components/copyToClipboard";
 import SubNews from "../_components/SubNews";
+import BlockContentComponent from "../_components/renderBlockContent";
 
-const color = "#384250";
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-export default async function SingleNewsPage() {
+export default async function SingleNewsPage({ params }: PageProps) {
+  const { id } = await params;
+  const singleNews = (await getSingleNews(id)) as SingleNewsQueryResult;
   const t = await getTranslations("NewsPage");
   const tf = await getTranslations("Footer");
   const locale = await getLocale();
@@ -45,9 +43,10 @@ export default async function SingleNewsPage() {
           {/* Image Section */}
           <div className="relative h-96 w-full shrink-0">
             <Image
-              src={NewsDummyImg}
-              alt={"newsItem.title"}
               fill
+              priority
+              alt={"newsItem.title"}
+              src={singleNews?.image?.asset?.url ?? NewsDummyImg}
               quality={100}
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 30vw"
               className="rounded-xl object-cover"
@@ -60,9 +59,8 @@ export default async function SingleNewsPage() {
                 aria-hidden="true"
               />
 
-              <CardTitle className="text-start text-lg leading-tight md:text-2xl md:font-bold">
-                جمعية متقن تطلق مبادرة لتحفيظ القرآن الكريم باستخدام التقنية
-                الحديثة والذكاء الاصطناعي
+              <CardTitle className="line-clamp-4 text-start text-lg leading-tight md:text-2xl md:font-bold">
+                {singleNews?.title ?? "عنوان الخبر"}
               </CardTitle>
             </div>
           </div>
@@ -73,94 +71,70 @@ export default async function SingleNewsPage() {
               <div className="mb-6 flex w-full items-center justify-between">
                 <div className="flex items-center gap-x-2 text-[#384250]">
                   <CalendarRange />
-                  <span> 01 ربيع الآخر 1445 هـ</span>
+                  <span>
+                    {singleNews?._createdAt
+                      ? convertToHijriDate(singleNews._createdAt)
+                      : ""}
+                  </span>
                 </div>
                 <div className="flex gap-x-2">
-                  <LinkIcon
-                    className="text-[#384250]"
-                    aria-label={tf("ariaLabels.instagram")}
-                    // onClick={() => copyToClipboard("URl")}
-                  />
-                  <a
-                    href="https://www.instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cursor-pointer hover:opacity-75"
-                  >
-                    <FooterIcons.Instagram altColor="#384250" />
-                  </a>
-                  <a
-                    href="https://www.twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={tf("ariaLabels.twitter")}
-                    className="cursor-pointer hover:opacity-75"
-                  >
-                    <FooterIcons.Twitter altColor="#384250" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={tf("ariaLabels.linkedIn")}
-                    className="cursor-pointer hover:opacity-75"
-                  >
-                    <FooterIcons.LinkedIn altColor="#384250" />
-                  </a>
-                  <a
-                    href="https://www.whatsapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={tf("ariaLabels.whatsApp")}
-                    className="cursor-pointer hover:opacity-75"
-                  >
-                    <FooterIcons.WhatsApp altColor="#384250" />
-                  </a>
+                  <CopyUrlButton />
+                  {singleNews?.socialLinks?.instagram && (
+                    <a
+                      href={singleNews?.socialLinks?.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer hover:opacity-75"
+                    >
+                      <FooterIcons.Instagram altColor="#384250" />
+                    </a>
+                  )}
+
+                  {singleNews?.socialLinks?.twitter && (
+                    <a
+                      href={singleNews?.socialLinks?.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={tf("ariaLabels.twitter")}
+                      className="cursor-pointer hover:opacity-75"
+                    >
+                      <FooterIcons.Twitter altColor="#384250" />
+                    </a>
+                  )}
+                  {singleNews?.socialLinks?.linkedin && (
+                    <a
+                      href={singleNews?.socialLinks?.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={tf("ariaLabels.linkedIn")}
+                      className="cursor-pointer hover:opacity-75"
+                    >
+                      <FooterIcons.LinkedIn altColor="#384250" />
+                    </a>
+                  )}
+                  {singleNews?.socialLinks?.whatsapp && (
+                    <a
+                      href={singleNews?.socialLinks?.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={tf("ariaLabels.whatsApp")}
+                      className="cursor-pointer hover:opacity-75"
+                    >
+                      <FooterIcons.WhatsApp altColor="#384250" />
+                    </a>
+                  )}
                 </div>
               </div>
               <CardDescription className="text-right text-base font-medium leading-relaxed text-gray-600 md:text-xl">
-                أعلنت جمعية متقن لتعليم القرآن الكريم عن إطلاق مبادرة نوعية تهدف
-                إلى تسهيل تعليم وتحفيظ القرآن الكريم باستخدام التقنيات الحديثة.
-                <div className="h-4" />
-                وتشمل المبادرة منصة تعليمية إلكترونية تتيح للطلاب والطالبات
-                الوصول إلى دروس تفاعلية وبرامج متخصصة في علوم القرآن.
-                <div className="h-4" />
-                وتأتي هذه الخطوة في إطار حرص الجمعية على مواكبة التطورات التقنية
-                وتوفير بيئة تعليمية محفزة تعزز من فهم كتاب الله وحفظه. وتهدف
-                الجمعية من خلال هذه المبادرة إلى توسيع نطاق خدماتها والوصول إلى
-                أكبر عدد من المستفيدين داخل المملكة وخارجها.
-                <div className="h-4" />
-                وأكد رئيس مجلس إدارة جمعية متقن، أن المبادرة تأتي ضمن رؤية
-                الجمعية لتحقيق تعليم نوعي شامل يربط الأجيال بكتاب الله بطريقة
-                ميسرة ومبتكرة.
+                {singleNews?.content && (
+                  <BlockContentComponent content={singleNews.content} />
+                )}
               </CardDescription>
             </CardHeader>
           </div>
         </Card>
         {/* News left */}
-        <div className="flex w-full flex-col gap-y-4 lg:w-1/3">
-          <SubTitle text={t("SingleNews")} />
-          <SubNews
-            ImgSrc={NewsDummyImg}
-            imgAlt={`newsItem.alt`}
-            title={`عنوان بطاقة الأخبار في سطرين` /* `newsItem.title` */}
-            description={
-              `هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر.` /* `newsItem.description` */
-            }
-            href={`/` /* `/${locale}/news/${newsItem.id}` */}
-            buttonTitle={t("button2")}
-          />
-          <SubNews
-            ImgSrc={NewsDummyImg}
-            imgAlt={`newsItem.alt`}
-            title={`عنوان بطاقة الأخبار في سطرين` /* `newsItem.title` */}
-            description={
-              `هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر. هنا يمكنك تضمين وصف موجز للعنوان في أربعة أسطر.` /* `newsItem.description` */
-            }
-            href={`/` /* `/${locale}/news/${newsItem.id}` */}
-            buttonTitle={t("button2")}
-          />
-        </div>
+        <SubNews slug={id} />
       </div>
       <Link
         href={`/${locale}/news`}

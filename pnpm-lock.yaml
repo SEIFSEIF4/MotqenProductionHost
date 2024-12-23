@@ -8,9 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@calidy/dayjs-calendarsystems':
+        specifier: ^1.11.3
+        version: 1.11.3
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.54.0(react@19.0.0-rc.1))
+      '@portabletext/react':
+        specifier: ^3.2.0
+        version: 3.2.0(react@19.0.0-rc.1)
       '@radix-ui/react-accordion':
         specifier: ^1.2.2
         version: 1.2.2(@types/react-dom@18.3.5(@types/react@18.3.17))(@types/react@18.3.17)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
@@ -86,6 +92,9 @@ importers:
       cmdk:
         specifier: 1.0.0
         version: 1.0.0(@types/react-dom@18.3.5(@types/react@18.3.17))(@types/react@18.3.17)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       embla-carousel:
         specifier: ^8.5.1
         version: 8.5.1
@@ -95,6 +104,9 @@ importers:
       embla-carousel-react:
         specifier: ^8.5.1
         version: 8.5.1(react@19.0.0-rc.1)
+      hijri-date:
+        specifier: ^0.2.2
+        version: 0.2.2
       libphonenumber-js:
         specifier: ^1.11.16
         version: 1.11.16
@@ -765,6 +777,9 @@ packages:
   '@babel/types@7.26.3':
     resolution: {integrity: sha512-vN5p+1kl59GVKMvTHt55NzzmYVxprfJD+ql7U9NFIfKCBkYE55LYtS+WtPlaYOyzydrKI8Nezd+aZextrd+FMA==}
     engines: {node: '>=6.9.0'}
+
+  '@calidy/dayjs-calendarsystems@1.11.3':
+    resolution: {integrity: sha512-zf/YhLib4wWaYy4yZIWhonl8BAba5zVYeL+spXdIlmt90JlU5cA3hlhN3t7gKbDf9hB016mWfGEyBttfO/fShw==}
 
   '@codemirror/autocomplete@6.18.4':
     resolution: {integrity: sha512-sFAphGQIqyQZfP2ZBsSHV7xQvo9Py0rV0dW7W3IMRdS+zDuNb2l3no78CvUaWKGfzFjI4FTrLdUSj86IGb2hRA==}
@@ -3052,6 +3067,9 @@ packages:
   date-now@1.0.1:
     resolution: {integrity: sha512-yiizelQCqYLUEVT4zqYihOW6Ird7Qyc6fD3Pv5xGxk4+Jz0rsB1dMN2KyNV6jgOHYh5K+sPGCSOknQN4Upa3pg==}
 
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+
   debounce@1.0.0:
     resolution: {integrity: sha512-4FCfBL8uZFIh3BShn4AlxH4O9F5v+CVriJfiwW8Me/MhO7NqBE5JO5WO48NasbsY9Lww/KYflB79MejA3eKhxw==}
 
@@ -3745,6 +3763,9 @@ packages:
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
+
+  hijri-date@0.2.2:
+    resolution: {integrity: sha512-LiuslQTPqePwh/KguBB2KH/hzISQd7nQtfVPwdCKgfFv0GDzwjIeTQX/LkBKLI8rPeuXasr3sQMuJL35g8HEAw==}
 
   history@5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
@@ -6671,6 +6692,8 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
+  '@calidy/dayjs-calendarsystems@1.11.3': {}
+
   '@codemirror/autocomplete@6.18.4':
     dependencies:
       '@codemirror/language': 6.10.7
@@ -9129,6 +9152,8 @@ snapshots:
 
   date-now@1.0.1: {}
 
+  dayjs@1.11.13: {}
+
   debounce@1.0.0:
     dependencies:
       date-now: 1.0.1
@@ -10004,6 +10029,8 @@ snapshots:
       space-separated-tokens: 1.1.5
 
   he@1.2.0: {}
+
+  hijri-date@0.2.2: {}
 
   history@5.3.0:
     dependencies:

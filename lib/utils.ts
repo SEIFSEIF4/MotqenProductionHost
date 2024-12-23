@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { toast } from "sonner";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import "dayjs/locale/ar";
+import calendarSystems from "@calidy/dayjs-calendarsystems";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -59,4 +63,17 @@ export function constructMetadata({
       },
     }),
   };
+}
+import HijriCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/HijriCalendarSystem";
+
+export function convertToHijriDate(date: string) {
+  dayjs.extend(utc);
+  dayjs.extend(calendarSystems);
+  dayjs.registerCalendarSystem("islamic", new HijriCalendarSystem());
+
+  return dayjs(date)
+    .toCalendarSystem("islamic")
+    .locale("ar")
+    .format("D MMMM YYYY هـ")
+    .replace(/[0-9]/g, (d) => "٠١٢٣٤٥٦٧٨٩"[d as any]);
 }

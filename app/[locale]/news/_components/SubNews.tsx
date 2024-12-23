@@ -1,64 +1,30 @@
 import React from "react";
-import Image, { type StaticImageData } from "next/image";
-import { Link } from "next-view-transitions";
+import { getLocale, getTranslations } from "next-intl/server";
 
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { SubTitle } from "@/components/ui/heading";
+import NewsDummyImg from "@/images/card-2.jpg";
+import SubNewsCard from "./SubNewsCard";
+import { getNews } from "@/sanity/lib/news/getNews";
 
-const SubNews = ({
-  ImgSrc,
-  imgAlt,
-  title,
-  description,
-  href,
-  buttonTitle,
-}: {
-  ImgSrc: StaticImageData;
-  imgAlt: string;
-  title: string;
-  description: string;
-  href: string;
-  buttonTitle: string;
-}) => (
-  <Card className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md">
-    <div className="relative h-1/2 w-full">
-      <Image
-        src={ImgSrc} // Dummy image for now
-        alt={imgAlt}
-        fill
-        quality={100}
-        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 30vw"
-        className="rounded-xl object-cover"
-      />
+export default async function SubNews({ slug }: { slug: string }) {
+  const locale = await getLocale();
+  const t = await getTranslations("NewsPage");
+  const News = await getNews(2, slug);
+
+  return (
+    <div className="flex w-full flex-col gap-y-4 lg:w-1/3">
+      <SubTitle text={t("SingleNews")} />
+      {News.map((newsItem) => (
+        <SubNewsCard
+          key={newsItem._id}
+          ImgSrc={newsItem.imageUrl ?? NewsDummyImg}
+          imgAlt={newsItem.title ?? ""}
+          title={newsItem.title ?? ""}
+          description={newsItem.shortDescription ?? ""}
+          href={`/${locale}/news/${newsItem.slug}`}
+          buttonTitle={t("button2")}
+        />
+      ))}
     </div>
-
-    <div className="flex flex-1 flex-col justify-between px-4">
-      <CardHeader className="gap-y-1 space-y-2 p-4">
-        <CardTitle className="line-clamp-2 text-lg font-medium">
-          {title}
-        </CardTitle>
-        <CardDescription className="line-clamp-4 text-sm text-gray-600">
-          {description}
-        </CardDescription>
-      </CardHeader>
-
-      <CardFooter className="p-4">
-        <Link
-          href={href}
-          // href={`/${locale}/news/${newsItem.id}`}
-          className="w-full"
-        >
-          <Button className="w-fit hover:opacity-75">{buttonTitle}</Button>
-        </Link>
-      </CardFooter>
-    </div>
-  </Card>
-);
-
-export default SubNews;
+  );
+}

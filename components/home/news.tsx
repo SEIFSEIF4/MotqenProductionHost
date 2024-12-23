@@ -74,7 +74,7 @@ export default async function News({
 
               <CardFooter>
                 <Link
-                  href={`/${locale}/news/${newsItem.slug?.current}`}
+                  href={`/${locale}/news/${newsItem.slug}`}
                   className="w-fit"
                 >
                   <Button className="w-full hover:opacity-75">

@@ -54,14 +54,6 @@ export const newsType = defineType({
       description: "The main content of the news article.",
       validation: (Rule) => Rule.required(),
     }),
-    // Date Published
-    defineField({
-      name: "datePublished",
-      title: "Date Published",
-      type: "datetime",
-      description: "The date the news was published.",
-      validation: (Rule) => Rule.required(),
-    }),
     // Optional Social Media Links
     defineField({
       name: "socialLinks",

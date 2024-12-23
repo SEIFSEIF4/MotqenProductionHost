@@ -1,14 +1,27 @@
 import { querySanity } from "@/lib/queryWrapper";
+import { News } from "@/sanity.types";
 
-export const getNews = (limit: number = 3) =>
-  querySanity({
-    query: `*[_type == "news"] | order(_createdAt desc)[0...${limit}] {
-      _id,
-      image,
-      title,
-      slug,
-      shortDescription,
-    }`,
+interface subNews extends News {
+  imageUrl: string;
+}
+
+export const getNews = (limit: number = 3, excludeSlug?: string) =>
+  querySanity<subNews>({
+    query: `
+      *[_type == "news"${excludeSlug ? ` && slug.current != $excludeSlug` : ""}] 
+      | order(_createdAt desc)[0...${limit}] {
+        _id,
+        image{
+          asset->{
+            url
+            }
+            },
+        title,
+        slug,
+        shortDescription,
+      }
+    `,
+    params: excludeSlug ? { excludeSlug } : {},
     cache: {
       revalidate: 180, // 3-minute cache
       tags: ["groupedNews"],
