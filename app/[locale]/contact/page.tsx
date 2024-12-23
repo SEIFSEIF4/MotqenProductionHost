@@ -12,6 +12,11 @@ import Contact from "@/images/contact.jpg";
 import ContactForm from "./_components/contact-form";
 import CardDetails from "./_components/card-details";
 
+// Generate static paths for each locale
+export async function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
 export default function ContactPage() {
   const t = useTranslations("contactUsPage");
 

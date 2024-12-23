@@ -76,11 +76,24 @@ export default function ContactForm() {
     setCharacterCount(watchedMessage?.length || 0);
   }, [watchedMessage]);
 
-  function onSubmit(values: z.infer<typeof contactFormSchema>) {
+  async function onSubmit(values: z.infer<typeof contactFormSchema>) {
     try {
-      console.log(values);
-      toast.success(t("toastSuccess"));
-      router.push("/");
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success(t("toastSuccess"));
+        // router.push("/");
+      } else {
+        throw new Error(data.error || "Failed to send message");
+      }
     } catch (error) {
       console.error("Form submission error", error);
       toast.error(t("toastError"));

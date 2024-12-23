@@ -58,6 +58,7 @@
     "react-hook-form": "^7.54.0",
     "react-phone-number-input": "^3.4.10",
     "react-scroll-to-top": "^3.0.0",
+    "resend": "^4.0.1",
     "rtl-detect": "^1.1.2",
     "sanity": "^3.67.1",
     "sonner": "^1.7.1",

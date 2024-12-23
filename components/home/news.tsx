@@ -29,8 +29,6 @@ export default async function News({
   //lang
   const t = await getTranslations("HomePage.NewsSection");
 
-  console.log(newsItems);
-
   return (
     <SectionWrapper id="news" className="bg-white">
       {/* Section Header */}
