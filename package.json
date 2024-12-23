@@ -41,6 +41,7 @@
     "embla-carousel-react": "^8.5.1",
     "libphonenumber-js": "^1.11.16",
     "lucide-react": "^0.468.0",
+    "motion": "^11.15.0",
     "next": "15.0.4",
     "next-intl": "^3.26.0",
     "next-nprogress-bar": "^2.4.2",
