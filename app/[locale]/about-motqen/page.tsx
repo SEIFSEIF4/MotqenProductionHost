@@ -1,4 +1,6 @@
 import React from "react";
+import { getTranslations } from "next-intl/server";
+
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "@/components/ui/heading";
 import { useTranslations } from "next-intl";
@@ -10,7 +12,20 @@ export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
 }
 
-export const metadata = constructMetadata();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+
+  const t = await getTranslations({ locale, namespace: "AboutMotqen" });
+
+  return constructMetadata({
+    title: t("title"),
+    description: t("about"),
+  });
+}
 
 export default function HomePage() {
   const t = useTranslations("AboutMotqen");

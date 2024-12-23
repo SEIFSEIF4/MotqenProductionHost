@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 import PathwayCard from "@/components/programs/PathwayCard";
 import { PageWrapper } from "@/components/Wrapper";
@@ -10,7 +11,20 @@ export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
 }
 
-export const metadata = constructMetadata();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+
+  const t = await getTranslations({ locale, namespace: "Programs.third" });
+
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+  });
+}
 
 export default function HomePage() {
   const locale = useLocale();
