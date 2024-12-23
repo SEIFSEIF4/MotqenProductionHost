@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface PageWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -46,7 +47,14 @@ function SectionWrapper({
       )}
       {...props}
     >
-      {children}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+        className="w-full"
+      >
+        {children}
+      </motion.div>
     </section>
   );
 }
