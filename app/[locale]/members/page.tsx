@@ -30,7 +30,20 @@ export async function generateStaticParams() {
 }
 
 // Generate static metadata for each locale
-export const metadata = constructMetadata();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+
+  const t = await getTranslations({ locale, namespace: "MembersPage" });
+
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+  });
+}
 
 export default async function MembersPage({ params, searchParams }: PageProps) {
   const { locale } = await params;
