@@ -58,6 +58,7 @@ const SearchBox = ({
               >
                 <div
                   className={`relative ${locale === "ar" ? "right-4 lg:right-0" : "left-4 lg:left-0"} z-50 inline-block aspect-square w-5 rounded-md object-cover`}
+                  aria-label="Search"
                 >
                   <Search isMobileMenu={true} />
                 </div>
