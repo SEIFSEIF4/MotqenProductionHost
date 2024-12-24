@@ -1,8 +1,11 @@
 import { querySanity } from "@/lib/queryWrapper";
-import { News } from "@/sanity.types";
+import { News, Slug } from "@/sanity.types";
 
-interface subNews extends News {
+export interface subNews extends Omit<News, "slug"> {
   imageUrl: string;
+  slug: Slug | string;
+  _id: string;
+  title: string;
 }
 
 export const getNews = (limit: number = 3, excludeSlug?: string) =>
@@ -30,6 +33,9 @@ export const getNews = (limit: number = 3, excludeSlug?: string) =>
       data.map((item) => ({
         ...item,
         imageUrl: item.image?.asset?.url || "",
-        slug: item.slug?.current || item._id,
+        slug:
+          typeof item.slug === "string"
+            ? item.slug
+            : item.slug?.current || item._id,
       })),
   });

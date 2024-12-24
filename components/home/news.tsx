@@ -16,14 +16,18 @@ import {
 
 //data
 import { Link } from "next-view-transitions";
-import { News as NewsType } from "@/sanity.types";
+import { News as NewsType, Slug } from "@/sanity.types";
 import newsImage from "@/images/card-2.jpg";
+
+export interface subNews extends Omit<NewsType, "slug"> {
+  slug: Slug | string;
+}
 
 export default async function News({
   newsItems,
   locale,
 }: {
-  newsItems: NewsType[];
+  newsItems: subNews[];
   locale: string;
 }) {
   //lang
