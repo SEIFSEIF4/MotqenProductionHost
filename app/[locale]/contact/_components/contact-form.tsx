@@ -90,7 +90,7 @@ export default function ContactForm() {
 
       if (data.success) {
         toast.success(t("toastSuccess"));
-        // router.push("/");
+        router.push("/");
       } else {
         throw new Error(data.error || "Failed to send message");
       }
