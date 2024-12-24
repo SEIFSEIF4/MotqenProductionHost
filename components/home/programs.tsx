@@ -34,7 +34,9 @@ function Programs() {
             className={cn(
               `group relative overflow-hidden rounded-lg transition-all delay-200 duration-500 md:flex-1 md:hover:flex-[4]`,
               "md:flex-1", // Default size
-              index === 0 ? "hover:!h-[840px]" : "hover:!h-[570px]",
+              index === 0
+                ? `${locale === "ar" ? "hover:!h-[840px]" : "hover:!h-[920px]"}`
+                : `${locale === "ar" ? "hover:!h-[570px]" : "hover:!h-[655px]"}`,
               PROGRAMS_FIXED_HEIGHT === 486 && `md:hover:!h-[486px]`,
             )}
           >
@@ -48,7 +50,9 @@ function Programs() {
               className={cn(
                 "absolute bottom-0 z-0 w-full bg-primary bg-gradient-to-r from-[rgba(9,72,81,1)] to-[rgba(22,92,103,1)] transition-all delay-200 duration-500 md:group-hover:h-[30%]",
                 "h-0",
-                index === 0 ? "group-hover:h-[65%]" : "group-hover:h-[50%]",
+                index === 0
+                  ? `${locale === "ar" ? "group-hover:h-[65%]" : "group-hover:h-[58%]"}`
+                  : `${locale === "ar" ? "group-hover:h-[50%]" : "group-hover:h-[41%]"}`,
               )}
               aria-hidden
             />
@@ -64,9 +68,11 @@ function Programs() {
               <div
                 className={cn(
                   "static right-0 top-0 flex flex-col justify-between gap-4 p-10 transition-all delay-200 duration-500 group-hover:absolute md:group-hover:h-[70%] lg:gap-0",
-                  "h-0 opacity-0 transition-all duration-1000",
+                  "opacity-0 transition-all duration-1000",
                   "group-hover:animate-fadeIn group-hover:opacity-100",
-                  index === 0 ? "group-hover:h-[35%]" : "group-hover:h-[50%]",
+                  index === 0
+                    ? `${locale === "ar" ? "group-hover:h-[35%]" : "group-hover:h-[42%]"}`
+                    : `${locale === "ar" ? "group-hover:h-[50%]" : "group-hover:h-[59%]"}`,
                 )}
               >
                 <div>
@@ -128,7 +134,9 @@ function Programs() {
                   "h-0 opacity-0 transition-all duration-1000",
                   "group-hover:animate-fadeIn group-hover:opacity-100 md:group-hover:h-[30%]",
                   "animate-fadeOut",
-                  index === 0 ? "group-hover:h-[65%]" : "group-hover:h-[50%]",
+                  index === 0
+                    ? `${locale === "ar" ? "group-hover:h-[65%]" : "group-hover:h-[58%]"}`
+                    : `${locale === "ar" ? "group-hover:h-[50%]" : "group-hover:h-[41%]"}`,
                 )}
               >
                 {item.programs.map((program, idx) => (
