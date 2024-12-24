@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import PathwayCard from "@/components/programs/PathwayCard";
@@ -26,8 +27,12 @@ export async function generateMetadata({
 }
 
 export default function HomePage() {
+  const locale = useLocale();
+
   return (
-    <PageWrapper>
+    <PageWrapper
+      className={`${locale === "ar" ? "h-[840px] md:h-[540px]" : "h-[900px] md:h-[600px]"}`}
+    >
       <section
         id="ittqan-path"
         className="w-full rounded-lg bg-[#F3F4F6] py-verticalSpace"

@@ -42,10 +42,12 @@ export default async function Hero({
           {CarouselSlides.map((slide, index) => (
             <SliderMainItem key={index} className="relative h-full">
               <div
-                className="absolute inset-0 z-10 bg-gradient-to-l from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl"
+                className={`absolute inset-0 z-10 ${locale === "ar" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl`}
                 aria-hidden="true"
               />
-              <HomeIcons.Carousel className="absolute top-0 z-10 max-w-[50%] md:max-w-full ltr:right-0 rtl:right-0" />
+              <HomeIcons.Carousel
+                className={`absolute top-0 z-10 max-w-[50%] md:max-w-full ${locale === "ar" ? "right-0" : "left-0 -scale-x-100"}`}
+              />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(11,70,79,0.4)] via-transparent to-[rgba(11,70,79,0.4)]" />
               <div
                 className={`content absolute top-0 z-20 flex h-full max-w-full flex-col justify-center gap-y-3 p-20 text-white lg:max-w-[50%] ${locale === "ar" ? "right-0 items-start text-right" : "left-0 items-end text-left"}`}
