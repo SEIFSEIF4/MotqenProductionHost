@@ -11,6 +11,8 @@ export default async function NewsPage() {
   const initialNews = await getNews(6);
   const locale = await getLocale();
 
+  console.log("MainPage", initialNews, "locale", locale); // Debugging
+
   return (
     <SectionWrapper id="news" className="bg-[#F3F4F6]">
       <DynamicBreadcrumb />

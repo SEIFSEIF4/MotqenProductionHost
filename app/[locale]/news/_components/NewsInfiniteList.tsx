@@ -1,10 +1,12 @@
 "use client";
+
 import React from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoaderCircle } from "lucide-react";
 import { NewsCard } from "./NewsCard";
-import { fetchNews, subNews } from "@/sanity/lib/news/getClientNews";
+import { subNews } from "@/sanity/lib/news/getClientNews";
+import { client } from "@/sanity/lib/client";
 
 interface NewsInfiniteListProps {
   initialData: subNews[];
@@ -12,30 +14,66 @@ interface NewsInfiniteListProps {
   buttonText: string;
 }
 
+const fetchNews = async (page: number, pageSize: number) => {
+  const skip = (page - 1) * pageSize;
+  const query = `
+    *[_type == "news"] | order(_createdAt desc) [${skip}...${skip + pageSize}] {
+      _id,
+      image {
+        asset -> {
+          url
+        }
+      },
+      title,
+      slug,
+      shortDescription,
+    }
+  `;
+  const News = await client.fetch(query);
+  if (!News || News.length === 0) {
+    console.error("Error fetching news:", News);
+  }
+  return News;
+};
+
+const NewsData = await fetchNews(1, 6);
+
 export default function NewsInfiniteList({
   initialData,
   locale,
   buttonText,
 }: NewsInfiniteListProps) {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["newsPage"],
-      queryFn: () => fetchNews(6),
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length + 1;
-        if (lastPage.length < 6) return undefined;
-        return lastPage.length ? nextPage : undefined;
-      },
-      initialData: {
-        pages: [initialData],
-        pageParams: [1],
-      },
-      initialPageParam: 1,
-    });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
+    queryKey: ["news", { locale }],
+    queryFn: ({ pageParam = 1 }) => fetchNews(pageParam, 6),
+    getNextPageParam: (_, allPages) => {
+      return allPages.length + 1; // Next page is the current count + 1
+    },
+    initialPageParam: 1,
+    initialData: {
+      pages: [initialData],
+      pageParams: [1],
+    },
+  });
 
-  const allNews = data?.pages.flat() ?? [];
+  console.log("Debugging: NewsData", NewsData);
+  console.log("Debugging: data", data);
+  const allNews = data?.pages?.flat() ?? [];
+  console.log("Debugging: allNews", allNews);
 
-  return (
+  return isFetching ? (
+    <p>Loading...</p>
+  ) : status === "error" ? (
+    <p>Error: {error.message}</p>
+  ) : (
     <InfiniteScroll
       dataLength={allNews.length}
       next={fetchNextPage}
