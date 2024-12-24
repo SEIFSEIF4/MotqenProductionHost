@@ -10,6 +10,7 @@ export const getCarousel = (limit: number = 5) =>
   title,
   description,
   buttonUrl,
+  buttonText,
   image {
     asset -> {
       url,

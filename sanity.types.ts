@@ -177,7 +177,6 @@ export type News = {
         _key: string;
       }
   >;
-  datePublished?: string;
   socialLinks?: {
     instagram?: string;
     whatsapp?: string;
@@ -386,7 +385,7 @@ export type NewsQUERYResult = Array<{
       url: string | null;
     } | null;
   } | null;
-  datePublished: string | null;
+  datePublished: null;
   socialLinks: {
     instagram?: string;
     whatsapp?: string;
@@ -445,7 +444,7 @@ export type SingleNewsQueryResult = {
       url: string | null;
     } | null;
   } | null;
-  datePublished: string | null;
+  datePublished: null;
   socialLinks: {
     instagram: string | null;
     whatsapp: string | null;

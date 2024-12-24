@@ -56,7 +56,7 @@ export default async function Hero({
                 <p className="text-2xl font-medium md:text-3xl">
                   {slide.description}
                 </p>
-                {!!slide.buttonUrl && (
+                {slide.buttonUrl && (
                   <a
                     href={slide.buttonUrl}
                     className={cn(
@@ -64,7 +64,7 @@ export default async function Hero({
                       "text-black",
                     )}
                   >
-                    {slide.buttonUrl}
+                    {slide.buttonText}
                   </a>
                 )}
               </div>
