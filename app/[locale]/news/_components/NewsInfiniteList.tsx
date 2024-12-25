@@ -36,8 +36,6 @@ const fetchNews = async (page: number, pageSize: number) => {
   return News;
 };
 
-const NewsData = await fetchNews(1, 6);
-
 export default function NewsInfiniteList({
   initialData,
   locale,
@@ -64,10 +62,7 @@ export default function NewsInfiniteList({
     },
   });
 
-  console.log("Debugging: NewsData", NewsData);
-  console.log("Debugging: data", data);
   const allNews = data?.pages?.flat() ?? [];
-  console.log("Debugging: allNews", allNews);
 
   return isFetching ? (
     <p>Loading...</p>

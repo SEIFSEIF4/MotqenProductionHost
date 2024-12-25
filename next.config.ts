@@ -4,11 +4,8 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // logging: {
-  //   fetches: {
-  //     fullUrl: true,
-  //   },
-  // },
+  output: "standalone", // For production deployment
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
