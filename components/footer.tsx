@@ -73,7 +73,7 @@ const Footer = () => {
       </div>
 
       {/* Middle Section */}
-      <div className="container z-10 mx-auto mt-6 flex max-w-base flex-col items-start justify-between space-y-6 md:flex-row md:space-y-0">
+      <div className="container z-10 mx-auto mt-4 flex max-w-base flex-col items-start justify-between space-y-4 md:mt-6 md:flex-row md:space-y-0">
         <div className="flex flex-col-reverse flex-wrap gap-3 text-center md:flex-row md:text-right">
           {/* Location */}
           <div className="flex w-full items-center gap-x-1 md:w-auto">
@@ -119,11 +119,8 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace" />
-      <p className="mb-6 mt-4 text-start">
-        {t("rights", { year: currentYear })}
-      </p>
 
-      <div className="flex items-end gap-2 md:hidden">
+      <div className="mb-4 mt-4 flex items-end justify-center gap-2 md:hidden">
         <Link href={`/${locale}`} aria-label="logo">
           <Logo />
         </Link>
@@ -136,6 +133,9 @@ const Footer = () => {
           <p className="text-xs font-normal">{t("logoText.licenseNum")}</p>
         </div>
       </div>
+      <p className="text-center md:mt-4">
+        {t("rights", { year: currentYear })}
+      </p>
     </footer>
   );
 };
