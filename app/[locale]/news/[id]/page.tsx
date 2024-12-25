@@ -1,5 +1,10 @@
 import React from "react";
 import { getTranslations } from "next-intl/server";
+import { Link } from "next-view-transitions";
+import Image from "next/image";
+import { CalendarRange, MoveRight, Link as LinkIcon } from "lucide-react";
+import { getLocale } from "next-intl/server";
+
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 import { SectionWrapper } from "@/components/Wrapper";
 import {
@@ -8,12 +13,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import NewsDummyImg from "@/images/card-2.jpg";
-import { Link } from "next-view-transitions";
-import { CalendarRange, MoveRight, Link as LinkIcon } from "lucide-react";
-import { getLocale } from "next-intl/server";
 import { cn, convertToHijriDate } from "@/lib/utils";
 import { FooterIcons } from "@/components/icons";
 import { getSingleNews } from "@/sanity/lib/news/getSingleNews";
@@ -21,6 +22,7 @@ import { SingleNewsQueryResult, Slug } from "@/sanity.types";
 import { CopyUrlButton } from "@/components/copyToClipboard";
 import SubNews from "../_components/SubNews";
 import BlockContentComponent from "../_components/renderBlockContent";
+import NewsNotFound from "../_components/NewsNotFound";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -32,6 +34,16 @@ export default async function SingleNewsPage({ params }: PageProps) {
   const t = await getTranslations("NewsPage");
   const tf = await getTranslations("Footer");
   const locale = await getLocale();
+
+  // Handle the case where the news doesn't exist
+  if (Array.isArray(singleNews)) {
+    return (
+      <NewsNotFound
+        condition={id !== "" && Array.isArray(singleNews)}
+        id={id}
+      />
+    );
+  }
 
   return (
     <SectionWrapper id="singleNews" className="bg-[#F3F4F6]">
