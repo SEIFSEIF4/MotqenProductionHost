@@ -138,16 +138,11 @@ export const FooterIcons = {
       />
     </svg>
   ),
-  Pattern: ({
-    size = 24,
-    color = "#FFF",
-    className,
-    ...props
-  }: IconSvgProps) => (
+  LargePattern: ({ className, ...props }: IconSvgProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      className={cn("h-[226px] w-[447px] opacity-75", className)}
+      className={cn("h-[226px] w-[447px]", className)}
       {...props}
     >
       <path
@@ -218,6 +213,135 @@ export const FooterIcons = {
       />
       <path
         d="M-83 134.252C-20.9 200.133 -12.62 198.153 47.86 134.252C-10.2799 68.9131 -22.7 68.1925 -83 134.252Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+    </svg>
+  ),
+  SmallPattern: ({ className, ...props }: IconSvgProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      className={cn("h-[155px] w-[264px]", className)}
+      {...props}
+    >
+      <path
+        d="M141.997 121.459C172.03 93.2421 171.127 89.4799 141.997 61.9995C112.211 88.4167 111.883 94.06 141.997 121.459Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M141.997 181C172.03 152.783 171.127 149.021 141.997 121.54C112.211 147.958 111.883 153.601 141.997 181Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M142.346 121.683C170.655 151.618 174.429 150.718 202 121.683C175.496 91.9953 169.834 91.6679 142.346 121.683Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M82 121.637C110.309 151.571 114.084 150.671 141.654 121.637C115.15 91.9486 109.489 91.6211 82 121.637Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M202.997 60.4586C233.03 32.2421 232.127 28.4799 202.997 0.999512C173.211 27.4167 172.883 33.06 202.997 60.4586Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M202.997 120C233.03 91.783 232.127 88.0208 202.997 60.5404C173.211 86.9575 172.883 92.6009 202.997 120Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M203.346 60.6834C231.655 90.6178 235.429 89.7182 263 60.6834C236.496 30.9953 230.834 30.6679 203.346 60.6834Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M143 60.6366C171.309 90.5711 175.084 89.6714 202.654 60.6367C176.15 30.9486 170.489 30.6211 143 60.6366Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M81.9969 61.4586C112.03 33.2421 111.127 29.4799 81.9969 1.99951C52.2114 28.4167 51.8829 34.06 81.9969 61.4586Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M81.9969 121C112.03 92.783 111.127 89.0208 81.9969 61.5404C52.2114 87.9575 51.8829 93.6009 81.9969 121Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M82.3458 61.6834C110.655 91.6178 114.429 90.7181 142 61.6834C115.496 31.9953 109.834 31.6679 82.3458 61.6834Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M22 61.6366C50.3091 91.5711 54.0836 90.6714 81.6542 61.6367C55.1504 31.9486 49.4886 31.6211 22 61.6366Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M81.9969 181.459C112.03 153.242 111.127 149.48 81.9969 122C52.2114 148.417 51.8829 154.06 81.9969 181.459Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M81.9969 241C112.03 212.783 111.127 209.021 81.9969 181.54C52.2114 207.958 51.8829 213.601 81.9969 241Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M82.3458 181.683C110.655 211.618 114.429 210.718 142 181.683C115.496 151.995 109.834 151.668 82.3458 181.683Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M22 181.637C50.3091 211.571 54.0836 210.671 81.6542 181.637C55.1504 151.949 49.4886 151.621 22 181.637Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M21.9969 121.459C52.0296 93.2421 51.127 89.4799 21.9969 61.9995C-7.78861 88.4167 -8.11711 94.06 21.9969 121.459Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M21.9969 181C52.0296 152.783 51.127 149.021 21.9969 121.54C-7.78861 147.958 -8.11711 153.601 21.9969 181Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M22.3458 121.683C50.6549 151.618 54.4294 150.718 82 121.683C55.4962 91.9953 49.8343 91.6679 22.3458 121.683Z"
+        stroke="#6FA0A7"
+        strokeOpacity="0.3"
+        strokeWidth="0.72"
+      />
+      <path
+        d="M-38 121.637C-9.6909 151.571 -5.91635 150.671 21.6542 121.637C-4.8496 91.9486 -10.5114 91.6211 -38 121.637Z"
         stroke="#6FA0A7"
         strokeOpacity="0.3"
         strokeWidth="0.72"
