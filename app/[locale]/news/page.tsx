@@ -7,8 +7,10 @@ import { getNews } from "@/sanity/lib/news/getNews";
 import NewsInfiniteList from "./_components/NewsInfiniteList";
 
 export default async function NewsPage() {
+  const PAGE_SIZE = 6;
+
   const t = await getTranslations("NewsPage");
-  const initialNews = await getNews(6);
+  const initialNews = await getNews(PAGE_SIZE);
   const locale = await getLocale();
 
   console.log("MainPage", initialNews, "locale", locale); // Debugging
@@ -22,6 +24,7 @@ export default async function NewsPage() {
         initialData={initialNews}
         locale={locale}
         buttonText={t("button2")}
+        PAGE_SIZE={PAGE_SIZE}
       />
     </SectionWrapper>
   );

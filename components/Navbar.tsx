@@ -182,7 +182,6 @@ export default function Navbar({ translations }: NavbarProps) {
             {/* Search Box */}
             <SearchBox
               Search={Search}
-              locale={locale}
               title={translations.search}
               isOpen={showSearchBox}
               setIsOpen={setShowSearchBox}

@@ -17,13 +17,26 @@ import { getNews } from "@/sanity/lib/news/getNews";
 export const dynamic = "auto";
 export const revalidate = 60;
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
   const [locale, CarouselSlides, saidItems, news] = await Promise.all([
     getLocale(),
     getCarousel(),
     getTestimonial(),
     getNews(),
   ]);
+  const awaitedSearchParams = await searchParams;
+  const query = awaitedSearchParams?.query || "";
+  const currentPage = Number(awaitedSearchParams?.page) || 1;
+
+  console.log("query:", query, "currentPage:", currentPage); // just for testing
+
   return (
     <>
       <Hero CarouselSlides={CarouselSlides} locale={locale} />

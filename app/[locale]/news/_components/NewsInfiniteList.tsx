@@ -12,6 +12,7 @@ interface NewsInfiniteListProps {
   initialData: subNews[];
   locale: string;
   buttonText: string;
+  PAGE_SIZE: number;
 }
 
 const fetchNews = async (page: number, pageSize: number) => {
@@ -31,7 +32,7 @@ const fetchNews = async (page: number, pageSize: number) => {
   `;
   const News = await client.fetch(query);
   if (!News || News.length === 0) {
-    console.error("Error fetching news:", News);
+    console.error("No more news available.\nError fetching news: ", News);
   }
   return News;
 };
@@ -40,6 +41,7 @@ export default function NewsInfiniteList({
   initialData,
   locale,
   buttonText,
+  PAGE_SIZE,
 }: NewsInfiniteListProps) {
   const {
     data,
@@ -51,8 +53,10 @@ export default function NewsInfiniteList({
     status,
   } = useInfiniteQuery({
     queryKey: ["news", { locale }],
-    queryFn: ({ pageParam = 1 }) => fetchNews(pageParam, 6),
-    getNextPageParam: (_, allPages) => {
+    queryFn: ({ pageParam = 1 }) => fetchNews(pageParam, PAGE_SIZE),
+    getNextPageParam: (lastPage, allPages) => {
+      if (lastPage.length < PAGE_SIZE) return undefined; // No more pages if the last page is smaller than `PAGE_SIZE`
+
       return allPages.length + 1; // Next page is the current count + 1
     },
     initialPageParam: 1,
