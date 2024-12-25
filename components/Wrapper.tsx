@@ -50,7 +50,7 @@ function SectionWrapper({
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.75 }}
+        viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 1, ease: "easeInOut" }}
         className="w-full"
       >
