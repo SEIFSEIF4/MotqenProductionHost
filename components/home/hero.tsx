@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/carousel";
 import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 
-import BookCarouselImg from "@/images/hero-4.jpg";
 import { HomeIcons } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { Carousel as CarouselSlides } from "@/sanity.types";
@@ -74,7 +73,7 @@ export default async function Hero({
                 fill
                 priority
                 //@ts-expect-error always string type
-                src={slide.imageUrl || BookCarouselImg}
+                src={slide.imageUrl || ""}
                 alt={slide.title || "Hero Image"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"
                 quality={100} // Increased quality slightly for better hero visuals

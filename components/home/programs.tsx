@@ -11,7 +11,7 @@ import ProgramImg3 from "@/images/program-3.png";
 import { Button } from "../ui/button";
 import { MoveLeft, MoveRight } from "lucide-react";
 
-import { ProgramsTextType } from "@/data/programs";
+import { ProgramsTextType } from "./programs";
 import { PROGRAMS_FIXED_HEIGHT } from "@/constant/common";
 import { Link } from "next-view-transitions";
 const images = [ProgramImg1, ProgramImg2, ProgramImg3];

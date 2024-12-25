@@ -16,9 +16,14 @@ function Goals() {
           <div key={idx} className="flex w-full items-center gap-x-5 py-8">
             <div
               className="leaf flex h-32 w-24 items-center justify-center rounded-lg bg-cover bg-center"
-              style={{ backgroundImage: "url(/images/leaf.png)" }}
+              style={{
+                backgroundImage: "url(/images/leaf.png)",
+                height: "100%",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+              }}
             >
-              <h2 className="text-xl font-bold text-primary">
+              <h2 className="m-10 text-xl font-bold text-primary">
                 {t(`Goals.${item}.title`)}
               </h2>
             </div>
