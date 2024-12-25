@@ -46,10 +46,11 @@ function Statics() {
       }}
     >
       <Image
-        alt="Statics background"
+        priority
+        quality={75}
         src={StaticsBg}
+        alt="Statics background"
         placeholder="blur"
-        quality={100}
         sizes="100vw"
         className="absolute left-0 top-0 -z-10 h-[-webkit-fill-available] w-full rounded-lg md:h-[548px]"
         style={{
