@@ -162,8 +162,9 @@ export default function Navbar({ translations }: NavbarProps) {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavbarLink
+                    isExternal
                     title={translations.store}
-                    href={`#`}
+                    href={`store.motqen.sa`}
                     isMobileMenu={false}
                   />
                 </NavigationMenuItem>
@@ -245,8 +246,9 @@ export default function Navbar({ translations }: NavbarProps) {
                   onClick={() => setShowMobileMenu(false)}
                 >
                   <NavbarLink
+                    isExternal
                     title={translations.store}
-                    href={`#`}
+                    href={`store.motqen.sa`}
                     isMobileMenu={true}
                   />
                 </NavigationMenuItem>
