@@ -1,47 +1,26 @@
 "use client";
 
 import React from "react";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LoaderCircle } from "lucide-react";
 import { NewsCard } from "./NewsCard";
-import { subNews } from "@/sanity/lib/news/getClientNews";
-import { client } from "@/sanity/lib/client";
+import { useInfiniteNews } from "@/hooks/useInfiniteNews";
+import type { NewsItem } from "@/hooks/useNews";
 
 interface NewsInfiniteListProps {
-  initialData: subNews[];
+  initialData: NewsItem[];
   locale: string;
   buttonText: string;
   PAGE_SIZE: number;
+  NoMoreNews?: string;
 }
-
-const fetchNews = async (page: number, pageSize: number) => {
-  const skip = (page - 1) * pageSize;
-  const query = `
-    *[_type == "news"] | order(_createdAt desc) [${skip}...${skip + pageSize}] {
-      _id,
-      image {
-        asset -> {
-          url
-        }
-      },
-      title,
-      slug,
-      shortDescription,
-    }
-  `;
-  const News = await client.fetch(query);
-  if (!News || News.length === 0) {
-    console.error("No more news available.\nError fetching news: ", News);
-  }
-  return News;
-};
 
 export default function NewsInfiniteList({
   initialData,
   locale,
   buttonText,
   PAGE_SIZE,
+  NoMoreNews,
 }: NewsInfiniteListProps) {
   const {
     data,
@@ -51,39 +30,43 @@ export default function NewsInfiniteList({
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery({
-    queryKey: ["news", { locale }],
-    queryFn: ({ pageParam = 1 }) => fetchNews(pageParam, PAGE_SIZE),
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.length < PAGE_SIZE) return undefined; // No more pages if the last page is smaller than `PAGE_SIZE`
-
-      return allPages.length + 1; // Next page is the current count + 1
-    },
-    initialPageParam: 1,
-    initialData: {
-      pages: [initialData],
-      pageParams: [1],
-    },
+  } = useInfiniteNews({
+    locale,
+    pageSize: PAGE_SIZE,
+    initialData,
   });
 
-  const allNews = data?.pages?.flat() ?? [];
+  const allNews = data?.pages.flatMap((page) => page) ?? [];
 
-  return isFetching ? (
-    <p>Loading...</p>
-  ) : status === "error" ? (
-    <p>Error: {error.message}</p>
-  ) : (
+  if (status === "error") {
+    return (
+      <div className="w-full py-4 text-center text-red-500">
+        Error: {error.message}
+      </div>
+    );
+  }
+
+  if (isFetching && !allNews.length) {
+    return (
+      <div className="w-full py-4 text-center">
+        <LoaderCircle className="text-primary-500 h-8= mx-auto w-8 animate-spin" />
+      </div>
+    );
+  }
+
+  return (
     <InfiniteScroll
       dataLength={allNews.length}
       next={fetchNextPage}
       hasMore={!!hasNextPage}
       loader={
         <div className="w-full py-4 text-center">
-          {isFetchingNextPage ? (
-            <LoaderCircle className="text-primary-500 h-8 w-8 animate-spin" />
-          ) : (
-            "Load more"
-          )}
+          <LoaderCircle className="text-primary-500 h-8 w-8 animate-spin" />
+        </div>
+      }
+      endMessage={
+        <div className="w-full py-4 text-center text-gray-500 md:text-start">
+          {NoMoreNews ?? "لا يوجد مزيد من الأخبار"}
         </div>
       }
       className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3"

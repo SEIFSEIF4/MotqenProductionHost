@@ -29,7 +29,7 @@ const SubNewsCard = ({
   <Card className="flex h-[500px] max-h-[500px] flex-col rounded-2xl bg-white p-3 shadow-md">
     <div className="relative h-1/2 w-full">
       <Image
-        src={ImgSrc} // Dummy image for now
+        src={ImgSrc}
         alt={imgAlt}
         fill
         quality={100}

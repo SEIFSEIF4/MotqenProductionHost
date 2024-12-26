@@ -1,15 +1,8 @@
 import { querySanity } from "@/lib/queryWrapper";
-import { News, Slug } from "@/sanity.types";
-
-export interface subNews extends Omit<News, "slug"> {
-  imageUrl: string;
-  slug: Slug | string;
-  _id: string;
-  title: string;
-}
+import type { NewsItem } from "@/hooks/useNews";
 
 export const getNews = (limit: number = 3, excludeSlug?: string) =>
-  querySanity<subNews>({
+  querySanity<NewsItem>({
     query: `
       *[_type == "news"${excludeSlug ? ` && slug.current != $excludeSlug` : ""}] 
       | order(_createdAt desc)[0...${limit}] {
