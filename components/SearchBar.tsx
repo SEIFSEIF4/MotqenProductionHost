@@ -13,6 +13,8 @@ interface SearchBarProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   Search: any;
   title: string;
+  loadingTitle: string;
+  noResultsMessage: string;
 }
 
 interface NewsItem {
@@ -26,7 +28,13 @@ interface NewsItem {
   shortDescription: string;
 }
 
-const SearchBar = ({ setIsOpen, Search, title }: SearchBarProps) => {
+const SearchBar = ({
+  setIsOpen,
+  Search,
+  title,
+  loadingTitle,
+  noResultsMessage,
+}: SearchBarProps) => {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -125,16 +133,16 @@ const SearchBar = ({ setIsOpen, Search, title }: SearchBarProps) => {
           </div>
           <button
             type="submit"
-            className="w-full rounded-md bg-[#165C67] px-4 py-2 text-white lg:w-fit"
+            className={`w-full rounded-md bg-[#165C67] px-4 py-2 text-white ${isLoading ? "lg:w-[150px]" : "lg:w-fit"}`}
             disabled={isLoading}
           >
-            {isLoading ? "Searching..." : title}
+            {isLoading ? loadingTitle : title}
           </button>
         </form>
 
         {/* Search Results */}
         {searchResults && searchResults.length > 0 && (
-          <div className="mt-4 w-full space-y-4 px-4">
+          <div className="mt-4 max-h-[500px] w-full space-y-4 overflow-y-auto px-4">
             {searchResults.map((item: NewsItem) => (
               <Link
                 href={`/news/${item.slug.current}`}
@@ -162,8 +170,8 @@ const SearchBar = ({ setIsOpen, Search, title }: SearchBarProps) => {
         )}
 
         {searchResults && searchResults.length === 0 && currentQuery && (
-          <div className="mt-4 w-full px-4 text-center text-gray-500">
-            No results found for &ldquo;{currentQuery}&rdquo;
+          <div className="mt-4 w-full p-4 text-center text-gray-500">
+            {noResultsMessage} &ldquo;{currentQuery}&rdquo;
           </div>
         )}
       </div>

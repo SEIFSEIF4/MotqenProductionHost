@@ -11,6 +11,8 @@ export default async function NavbarProvider() {
     store: t("store"),
     contactUs: t("contactUs"),
     search: t("search"),
+    searchLoading: t("searchLoading"),
+    noResultsMessage: t("noResultsMessage"),
     english: t("english"),
   };
 

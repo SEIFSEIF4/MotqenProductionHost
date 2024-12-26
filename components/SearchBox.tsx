@@ -5,11 +5,15 @@ import SearchBar from "./SearchBar";
 const SearchBox = ({
   Search,
   title,
+  loadingTitle,
+  noResultsMessage,
   isOpen,
   setIsOpen,
 }: {
   Search: any;
   title: string;
+  loadingTitle: string;
+  noResultsMessage: string;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
@@ -37,7 +41,13 @@ const SearchBox = ({
 
       {/* Search Box */}
       {isOpen && (
-        <SearchBar setIsOpen={setIsOpen} Search={Search} title={title} />
+        <SearchBar
+          setIsOpen={setIsOpen}
+          Search={Search}
+          title={title}
+          loadingTitle={loadingTitle}
+          noResultsMessage={noResultsMessage}
+        />
       )}
     </>
   );

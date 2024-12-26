@@ -72,7 +72,7 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <Providers>
               <NavbarProvider />
-              <main className="mx-auto mt-[105px] w-full max-w-base flex-1 overflow-auto">
+              <main className="mx-auto mt-[107px] w-full max-w-base flex-1 overflow-auto">
                 {children}
               </main>
             </Providers>
