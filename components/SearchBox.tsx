@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useEffect } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
 import { MobileMenuContext } from "./Navbar";
 import SearchBar from "./SearchBar";
 
@@ -19,10 +21,23 @@ const SearchBox = ({
 }) => {
   const setShowMobileMenu: Dispatch<SetStateAction<boolean>> | null =
     useContext(MobileMenuContext);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   if (!setShowMobileMenu) {
     throw new Error("MobileMenuContext must be used within a provider");
   }
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+
+    if (params.has("query")) {
+      params.delete("query");
+
+      replace(`${pathname}?${params.toString()}`);
+    }
+  }, []);
 
   return (
     <>
