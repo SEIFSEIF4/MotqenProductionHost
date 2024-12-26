@@ -16,18 +16,14 @@ import {
 
 //data
 import { Link } from "next-view-transitions";
-import { News as NewsType, Slug } from "@/sanity.types";
 import newsImage from "@/images/card-2.jpg";
-
-export interface subNews extends Omit<NewsType, "slug"> {
-  slug: Slug | string;
-}
+import type { NewsItem } from "@/hooks/useNews";
 
 export default async function News({
   newsItems,
   locale,
 }: {
-  newsItems: subNews[];
+  newsItems: NewsItem[];
   locale: string;
 }) {
   //lang
@@ -54,7 +50,6 @@ export default async function News({
           >
             <div className="relative h-1/2 w-full">
               <Image
-                //@ts-expect-error 'url not found'
                 src={newsItem.image?.asset?.url ?? newsImage}
                 alt={newsItem.title || "News article"}
                 fill

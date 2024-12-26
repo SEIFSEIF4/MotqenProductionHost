@@ -1,16 +1,18 @@
 "use client";
 
 import { LinkIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 export const CopyUrlButton = () => {
   const pathname = usePathname();
+  const t = useTranslations("Global");
 
   const copyToClipboard = async () => {
     const url = `${window.location.origin}${pathname}`;
     try {
       await navigator.clipboard.writeText(url);
-      toast.success("URL copied to clipboard");
+      toast.success(t("copyToClipboard"));
     } catch (err) {
       console.error("Failed to copy URL:", err);
     }

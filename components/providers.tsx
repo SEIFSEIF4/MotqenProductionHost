@@ -8,7 +8,17 @@ import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import ScrollToTop from "react-scroll-to-top";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+            staleTime: 1000 * 60 * 5, // 5 minutes
+          },
+        },
+      }),
+  );
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryStreamedHydration>

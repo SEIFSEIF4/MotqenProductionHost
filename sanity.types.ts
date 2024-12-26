@@ -394,6 +394,13 @@ export type NewsQUERYResult = Array<{
   } | null;
 }>;
 
+// Source: ./sanity/lib/news/getAllNewsSlugs.ts
+// Variable: ALL_Slugs_QUERY
+// Query: *[_type == "news"] {      "slug": slug.current    }
+export type ALL_Slugs_QUERYResult = Array<{
+  slug: string | null;
+}>;
+
 // Source: ./sanity/lib/news/getSingleNews.ts
 // Variable: SingleNewsQuery
 // Query: *[_type == "news" && slug.current == $slug][0] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      slug,      shortDescription,      content,      image {        asset -> {          url        }      },      datePublished,      socialLinks {        instagram,        whatsapp,        twitter,        linkedin      }    }
@@ -481,6 +488,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n    *[_type == "news"] | order(_createdAt desc) {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      slug,\n      shortDescription,\n      content,\n      image {\n        asset -> {\n          url\n        }\n      },\n      datePublished,\n      socialLinks\n    }\n  ': NewsQUERYResult;
+    '*[_type == "news"] {\n      "slug": slug.current\n    }\n  ': ALL_Slugs_QUERYResult;
     '\n    *[_type == "news" && slug.current == $slug][0] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      slug,\n      shortDescription,\n      content,\n      image {\n        asset -> {\n          url\n        }\n      },\n      datePublished,\n      socialLinks {\n        instagram,\n        whatsapp,\n        twitter,\n        linkedin\n      }\n    }\n  ': SingleNewsQueryResult;
     '\n    *[_type == "governanceDocument" && category == $categoryFilter] {\n      _id,\n      category,\n      title {\n        ar,\n        en\n      },\n      document {\n        ar,\n        en\n      }\n    } | order(_createdAt desc)\n  ': ALL_GovernanceDocument_QUERYResult;
   }

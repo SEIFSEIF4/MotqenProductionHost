@@ -6,17 +6,19 @@ export const client = createClient({
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-  token: process.env.SANITY_READ_TOKEN,
+  token: process.env.NEXT_PUBLIC_SANITY_READ_TOKEN,
   // Add perspective to handle draft content in preview mode
-  perspective:
-    (process.env.NEXT_PUBLIC_SANITY_PERSPECTIVE as
-      | "raw"
-      | "previewDrafts"
-      | "published") || "published", // 'raw' | 'previewDrafts' | 'published'
+  // perspective:
+  //   (process.env.NEXT_PUBLIC_SANITY_PERSPECTIVE as
+  //     | "raw"
+  //     | "previewDrafts"
+  //     | "published") || "published", // 'raw' | 'previewDrafts' | 'published'
+  perspective: "published",
   stega: {
     enabled: process.env.NODE_ENV === "development",
     studioUrl: "/studio",
   },
+  ignoreBrowserTokenWarning: true, // Disable the warning in the browser console
 });
 
 export async function testSanityConnection(query: string) {

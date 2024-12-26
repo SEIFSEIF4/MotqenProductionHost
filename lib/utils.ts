@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import "dayjs/locale/ar";
 import calendarSystems from "@calidy/dayjs-calendarsystems";
+import HijriCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/HijriCalendarSystem";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -55,7 +56,7 @@ export function constructMetadata({
       images: [image],
     },
     icons,
-    metadataBase: new URL("https://motqen.vercel.app"),
+    metadataBase: new URL("https://motqen.sa"),
     ...(noIndex && {
       robots: {
         index: false,
@@ -64,7 +65,6 @@ export function constructMetadata({
     }),
   };
 }
-import HijriCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/HijriCalendarSystem";
 
 export function convertToHijriDate(date: string) {
   dayjs.extend(utc);

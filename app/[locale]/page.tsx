@@ -32,10 +32,8 @@ export default async function HomePage({
     getNews(),
   ]);
   const awaitedSearchParams = await searchParams;
-  const query = awaitedSearchParams?.query || "";
-  const currentPage = Number(awaitedSearchParams?.page) || 1;
-
-  console.log("query:", query, "currentPage:", currentPage); // just for testing
+  // const query = awaitedSearchParams?.query || "";
+  // const currentPage = Number(awaitedSearchParams?.page) || 1;
 
   return (
     <>

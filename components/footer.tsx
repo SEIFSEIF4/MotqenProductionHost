@@ -15,8 +15,8 @@ const Footer = () => {
   return (
     <footer className="group relative overflow-hidden bg-primary px-6 py-6 text-sm text-white">
       {/* Decorative Background */}
-      <FooterIcons.LargePattern className="absolute bottom-0 z-10 hidden md:block ltr:right-0 ltr:-scale-x-100 rtl:left-0" />
-      <FooterIcons.SmallPattern className="absolute bottom-0 z-10 block md:hidden ltr:right-0 ltr:-scale-x-100 rtl:left-0" />
+      <FooterIcons.LargePattern className="absolute bottom-0 z-10 hidden opacity-50 transition-all duration-500 group-hover:opacity-100 md:block ltr:right-0 ltr:-scale-x-100 rtl:left-0" />
+      <FooterIcons.SmallPattern className="absolute bottom-0 z-10 block opacity-50 transition-all duration-500 group-hover:opacity-100 md:hidden ltr:right-0 ltr:-scale-x-100 rtl:left-0" />
 
       {/* Top Section */}
       <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 md:flex-row md:space-y-0">
