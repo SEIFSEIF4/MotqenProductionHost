@@ -13,7 +13,6 @@ import { getCarousel } from "@/sanity/lib/news/getCarousel";
 import { getLocale } from "next-intl/server";
 import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
 import { getNews } from "@/sanity/lib/news/getNews";
-
 export const dynamic = "auto";
 export const revalidate = 60;
 
