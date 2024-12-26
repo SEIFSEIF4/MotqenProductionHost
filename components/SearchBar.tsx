@@ -148,6 +148,7 @@ const SearchBar = ({
                 href={`/news/${item.slug.current}`}
                 key={item.slug.current}
                 className="mb-3 flex items-start gap-10 space-x-4 rounded-lg border p-4 hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
               >
                 {item.image?.asset?.url && (
                   <Image
