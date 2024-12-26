@@ -58,6 +58,8 @@
       "store": "متجر الجمعية",
       "contactUs": "تواصل معنا",
       "search": "بحث",
+      "searchLoading": "جاري البحث...",
+      "noResultsMessage": "لا توجد نتائج ل",
       "english": "English"
     },
     "HeroSection": {

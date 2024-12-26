@@ -37,6 +37,8 @@ type NavbarProps = {
     store: string;
     contactUs: string;
     search: string;
+    searchLoading: string;
+    noResultsMessage: string;
     english: string;
   };
 };
@@ -164,7 +166,7 @@ export default function Navbar({ translations }: NavbarProps) {
                   <NavbarLink
                     isExternal
                     title={translations.store}
-                    href={`store.motqen.sa`}
+                    href={`https://store.motqen.sa`}
                     isMobileMenu={false}
                   />
                 </NavigationMenuItem>
@@ -184,6 +186,8 @@ export default function Navbar({ translations }: NavbarProps) {
             <SearchBox
               Search={Search}
               title={translations.search}
+              loadingTitle={translations.searchLoading}
+              noResultsMessage={translations.noResultsMessage}
               isOpen={showSearchBox}
               setIsOpen={setShowSearchBox}
             />
@@ -248,7 +252,7 @@ export default function Navbar({ translations }: NavbarProps) {
                   <NavbarLink
                     isExternal
                     title={translations.store}
-                    href={`store.motqen.sa`}
+                    href={`https://store.motqen.sa`}
                     isMobileMenu={true}
                   />
                 </NavigationMenuItem>
