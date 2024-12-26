@@ -18,6 +18,8 @@ const NavbarLink = ({
     <>
       {isExternal ? (
         <a
+          target="_blank"
+          rel="noopener noreferrer"
           href={href}
           className={
             isMobileMenu
