@@ -58,6 +58,8 @@
       "store": "Store",
       "contactUs": "Contact Us",
       "search": "Search",
+      "searchLoading": "Searching...",
+      "noResultsMessage": "No results found for",
       "english": "العربية"
     },
     "HeroSection": {
