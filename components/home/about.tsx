@@ -14,7 +14,11 @@ function About() {
   const t = useTranslations("HomePage.AboutSection");
 
   return (
-    <SectionWrapper id="about" className="rounded-t-[48px] bg-white">
+    <SectionWrapper
+      customAmount={0}
+      id="about"
+      className="z-10 rounded-t-[48px] bg-white"
+    >
       <SubTitle text={t("title")} />
       <p className="my-8 font-medium">{t("about")}</p>
       <div className="grid grid-cols-1 gap-3 rounded-lg py-5 md:grid-cols-10 md:py-16">

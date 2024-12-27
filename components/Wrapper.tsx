@@ -27,6 +27,7 @@ interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
   id: string;
   isSinglePage?: boolean;
   className?: string;
+  customAmount?: number;
   children: React.ReactNode;
 }
 
@@ -35,6 +36,7 @@ function SectionWrapper({
   className,
   children,
   isSinglePage = false,
+  customAmount = 0.6,
   ...props
 }: SectionWrapperProps) {
   return (
@@ -50,7 +52,7 @@ function SectionWrapper({
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.6 }}
+        viewport={{ once: true, amount: customAmount }}
         transition={{ duration: 1, ease: "easeInOut" }}
         className="w-full"
       >
