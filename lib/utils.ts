@@ -30,22 +30,49 @@ export function constructMetadata({
   image = "/thumbnail.png",
   icons = "/favicon.ico",
   noIndex = false,
+  locale = "ar",
+  type = "website",
 }: {
   title?: string;
   description?: string;
   image?: string;
   icons?: string;
   noIndex?: boolean;
+  locale?: string;
+  type?:
+    | "website"
+    | "article"
+    | "book"
+    | "profile"
+    | "music.song"
+    | "music.album"
+    | "music.playlist"
+    | "music.radio_station"
+    | "video.movie"
+    | "video.episode"
+    | "video.tv_show"
+    | "video.other";
 } = {}): Metadata {
+  const ogImage = image.startsWith("http")
+    ? image
+    : `https://motqen.sa${image}`;
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
+      url: "https://motqen.sa",
+      siteName: "Motqen | متقن",
+      locale,
+      type,
       images: [
         {
-          url: image,
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
         },
       ],
     },
@@ -53,16 +80,34 @@ export function constructMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [ogImage],
+      creator: "@motqen",
+      site: "@motqen",
     },
     icons,
     metadataBase: new URL("https://motqen.sa"),
-    ...(noIndex && {
-      robots: {
-        index: false,
-        follow: false,
+    alternates: {
+      canonical: "https://motqen.sa",
+      languages: {
+        ar: "/ar",
+        en: "/en",
       },
-    }),
+    },
+    robots: {
+      index: !noIndex,
+      follow: !noIndex,
+      googleBot: {
+        index: !noIndex,
+        follow: !noIndex,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    // verification: {
+    //   google: "your-google-verification-code",
+    // },
+    authors: [{ name: "Motqen" }],
   };
 }
 

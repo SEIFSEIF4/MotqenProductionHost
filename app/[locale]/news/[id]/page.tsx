@@ -106,6 +106,9 @@ export async function generateMetadata({ params }: PageProps) {
   return constructMetadata({
     title: news.title ?? "عنوان الخبر",
     description: news.shortDescription ?? "وصف قصير للخبر",
+    image: news?.image?.asset?.url ?? NewsDummyImg,
+    locale: "ar",
+    type: "article",
   });
 }
 

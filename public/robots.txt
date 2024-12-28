@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /studio
+Disallow: /api
+
+# Host
+Host: https://motqen.sa
+
+# Sitemaps
+Sitemap: https://motqen.sa/sitemap.xml
+Sitemap: https://motqen.sa/server-sitemap.xml
