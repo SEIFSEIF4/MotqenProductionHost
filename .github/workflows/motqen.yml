@@ -13,13 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js and pnpm
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "pnpm"
-      - run: pnpm install
-      - run: pnpm test
 
       - name: Install pnpm
         run: |
@@ -29,6 +27,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
 
       - name: Build Next.js app
         env:
@@ -55,7 +56,7 @@ jobs:
           cp -r public .next/standalone/ build/
           cp -r .next/static build/.next/
 
-      - name: Deploy to Digital Ocean
+      - name: Deploy to DigitalOcean Droplet
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.PUBLIC_IP }}
