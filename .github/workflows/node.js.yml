@@ -15,31 +15,36 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     
-    # Step 2: Set up Node.js and install dependencies
+    # Step 2: Set up Node.js and install pnpm
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '20.16.0'  # Use your Node.js version
     
+    - name: Install pnpm
+      run: |
+        npm install -g pnpm  # Install pnpm globally
+    
+    # Step 3: Install dependencies using pnpm
     - name: Install dependencies
-      run: npm install
+      run: pnpm install
     
-    # Step 3: Build the Next.js app
+    # Step 4: Build the Next.js app using pnpm
     - name: Build Next.js app
-      run: npm run build
+      run: pnpm run build
 
-    # Step 4: Build the site map
+    # Step 5: Build the site map using pnpm
     - name: Build Site Map
-      run: npm run postbuild
+      run: pnpm run postbuild
     
-    # Step 5: Prepare build files to copy to the server
+    # Step 6: Prepare build files to copy to the server
     - name: Prepare build files
       run: |
         mkdir -p build
         cp -r public .next/standalone/ build/
         cp -r .next/static build/.next/
-
-    # Step 6: Backup and Deploy to Droplet, Exclude Environment Files
+    
+    # Step 7: Backup and Deploy to Droplet, Exclude Environment Files
     - name: Deploy to Droplet
       uses: appleboy/ssh-action@v0.1.5
       with:
