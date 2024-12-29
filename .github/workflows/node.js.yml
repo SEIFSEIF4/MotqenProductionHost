@@ -1,4 +1,4 @@
-name: Deploy Motqen to Droplet
+name: Deploy Motqen website to Droplet
 
 on:
   push:
@@ -65,4 +65,5 @@ jobs:
             rm -rf /var/www/MotqenProduction/*
             cp -r ~/build/* /var/www/MotqenProduction/
             pm2 restart motqen-app
+
 
