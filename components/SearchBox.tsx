@@ -34,7 +34,6 @@ const SearchBox = ({
 
     if (params.has("query")) {
       params.delete("query");
-
       replace(`${pathname}?${params.toString()}`);
     }
   }, []);
