@@ -73,7 +73,7 @@ export default function Hero({ locale }: { locale: string }) {
                 src={slide?.image?.asset?.url || ""}
                 alt={slide.title || "Hero Image"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"
-                quality={70} // Increased quality slightly for better hero visuals
+                quality={60} // Increased quality slightly for better hero visuals
                 style={{
                   objectFit: "cover",
                 }}
