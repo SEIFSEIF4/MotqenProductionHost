@@ -9,43 +9,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.16.0'
-          cache: 'pnpm'
 
+      # Step 3: Install pnpm
       - name: Install pnpm
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
           pnpm --version
 
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
+      # Step 4: Install dependencies
       - name: Install dependencies with pnpm
         run: pnpm install
 
+      # Step 5: Build the Next.js app
       - name: Build Next.js app
         env:
-          NODE_OPTIONS: --max_old_space_size=4096
+          NODE_OPTIONS: --max_old_space_size=4096 # Increase memory limit
         run: pnpm run build
 
+      # Step 6: Prepare files for deployment
       - name: Prepare build files
         run: |
           mkdir -p build
           cp -r public .next/standalone/ build/
           cp -r .next/static build/.next/
 
+      # Step 7: Deploy to Droplet
       - name: Deploy to Droplet
         uses: appleboy/ssh-action@v0.1.5
         with:
