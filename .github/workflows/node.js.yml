@@ -18,11 +18,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.16.0'
-          cache: 'pnpm' # Use pnpm caching provided by setup-node
+          cache: 'pnpm' # Enable pnpm caching
 
       # Step 3: Install pnpm
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       # Step 4: Cache pnpm and Next.js build cache
       - name: Cache pnpm and Next.js cache
