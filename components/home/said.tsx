@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Carousel,
   CarouselIndicator,
@@ -9,18 +11,15 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { SectionWrapper } from "@/components/Wrapper";
-import { getTranslations } from "next-intl/server";
 import { SubTitle } from "@/components/ui/heading";
 import { SAID_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
-import { Testimonial } from "@/sanity.types";
+import { useTranslations } from "next-intl";
+import useQuerySaid from "@/hooks/useQuerySaid";
 
-export default async function Said({
-  saidItems,
-}: {
-  saidItems: Testimonial[];
-}) {
-  const t = await getTranslations("HomePage.SaidSections");
+export default function Said({ locale }: { locale: string }) {
+  const t = useTranslations("HomePage.SaidSections");
+  const { data: saidItems } = useQuerySaid({ locale: locale });
 
   return (
     <SectionWrapper id="said">
@@ -43,7 +42,7 @@ export default async function Said({
             width: "100%",
           }}
         >
-          {saidItems.map((item, index) => (
+          {saidItems?.map((item, index) => (
             <SliderMainItem
               key={index}
               className="flex-shrink-0 flex-grow-0 basis-full bg-transparent"
@@ -61,7 +60,7 @@ export default async function Said({
         </CarouselMainContainer>
         <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
           <CarouselThumbsContainer className="gap-x-1">
-            {saidItems.map((_, index) => (
+            {saidItems?.map((_, index) => (
               <CarouselIndicator className="mx-1" key={index} index={index} />
             ))}
           </CarouselThumbsContainer>
