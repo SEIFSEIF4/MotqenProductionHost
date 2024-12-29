@@ -2,7 +2,8 @@ name: Deploy Motqen website to Droplet
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [$default-branch]
+  workflow_dispatch:
 
 jobs:
   build_and_deploy:
@@ -12,20 +13,57 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Detect package manager
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=pnpm" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=ci" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.16.0'
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Install pnpm
+        if: ${{ steps.detect-package-manager.outputs.manager == 'pnpm' }}
         run: |
           corepack enable
           corepack prepare pnpm@latest --activate
           pnpm --version
 
-      # Set environment variables using GitHub Secrets
-      - name: Set environment variables
+      - name: Setup Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      - name: Install dependencies (${{ steps.detect-package-manager.outputs.manager }})
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      - name: Build Next.js app
         env:
+          NODE_OPTIONS: --max_old_space_size=4096
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
@@ -40,14 +78,7 @@ jobs:
           RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
           CSRF_SECRET: ${{ secrets.CSRF_SECRET }}
-
-      - name: Install dependencies with pnpm
-        run: pnpm install
-
-      - name: Build Next.js app
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-        run: pnpm run build
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Prepare build files
         run: |
@@ -55,8 +86,8 @@ jobs:
           cp -r public .next/standalone/ build/
           cp -r .next/static build/.next/
 
-      - name: Deploy to Droplet
-        uses: appleboy/ssh-action@v0.1.5
+      - name: Deploy to Digital Ocean
+        uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.PUBLIC_IP }}
           username: root
@@ -65,5 +96,3 @@ jobs:
             rm -rf /var/www/MotqenProduction/*
             cp -r ~/build/* /var/www/MotqenProduction/
             pm2 restart motqen-app
-
-
