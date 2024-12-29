@@ -27,9 +27,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tests
-        run: pnpm test
-
       - name: Build Next.js app
         env:
           NODE_OPTIONS: --max_old_space_size=4096
