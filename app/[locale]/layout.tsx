@@ -1,9 +1,6 @@
 import { notFound } from "next/navigation";
 import { ViewTransitions } from "next-view-transitions";
 
-import { IBM_Plex_Sans_Arabic as IBM } from "next/font/google";
-import { Inter } from "next/font/google";
-
 import { NextIntlClientProvider } from "next-intl";
 import { Locale, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
@@ -15,17 +12,17 @@ import Providers from "@/components/providers";
 import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
 
-const ibmArabic = IBM({
-  subsets: ["arabic"],
-  display: "swap", //Better performance for font loading
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-});
+// const ibmArabic = IBM({
+//   subsets: ["arabic"],
+//   display: "swap", //Better performance for font loading
+//   weight: ["100", "200", "300", "400", "500", "600", "700"],
+// });
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   display: "swap",
+//   weight: ["100", "200", "300", "400", "500", "600", "700"],
+// });
 
 export const metadata = constructMetadata();
 
@@ -65,7 +62,7 @@ export default async function RootLayout({
         </head>
         <body
           className={cn(
-            isArabic ? ibmArabic.className : inter.className,
+            // isArabic ? ibmArabic.className : inter.className,
             "flex min-h-screen flex-col bg-background antialiased",
           )}
         >
