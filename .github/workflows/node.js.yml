@@ -3,59 +3,63 @@ name: Deploy Motqen to Droplet
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build_and_deploy:
     runs-on: self-hosted
-    
-    steps:
-    # Step 1: Checkout repository
-    - name: Checkout code
-      uses: actions/checkout@v2
-    
-    # Step 2: Set up Node.js and install pnpm
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20.16.0'  # Use your Node.js version
-    
-    - name: Install pnpm
-      run: |
-        npm install -g pnpm  # Install pnpm globally
-    
-    # Step 3: Install dependencies using pnpm
-    - name: Install dependencies
-      run: pnpm install
-    
-    # Step 4: Build the Next.js app using pnpm
-    - name: Build Next.js app
-      run: pnpm run build
 
-    # Step 5: Build the site map using pnpm
-    - name: Build Site Map
-      run: pnpm run postbuild
-    
-    # Step 6: Prepare build files to copy to the server
-    - name: Prepare build files
-      run: |
-        mkdir -p build
-        cp -r public .next/standalone/ build/
-        cp -r .next/static build/.next/
-    
-    # Step 7: Backup and Deploy to Droplet, Exclude Environment Files
-    - name: Deploy to Droplet
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        host: ${{ secrets.PUBLIC_IP }}  # droplet's public IP
-        username: root                  # SSH username
-        key: ${{ secrets.SSH_PRIVATE_KEY }}  # The private SSH key stored in GitHub Secrets
-        script: |
-          # Backup and deploy excluding .env
-          cp /var/www/MotqenProduction/.env /tmp/.env-backup || true
-          find /var/www/MotqenProduction/ -type f ! -name ".env" -exec rm -f {} \;
-          cp -r ~/build/* /var/www/MotqenProduction/
-          cp /tmp/.env-backup /var/www/MotqenProduction/.env || true
-          # Restart the app if needed (e.g., using pm2)
-          pm2 restart motqen-app
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.16.0'
+          cache: 'pnpm' # Use pnpm caching provided by setup-node
+
+      # Step 3: Install pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Step 4: Cache pnpm and Next.js build cache
+      - name: Cache pnpm and Next.js cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pnpm-store
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      # Step 5: Install dependencies
+      - name: Install dependencies with pnpm
+        run: pnpm install
+
+      # Step 6: Build the Next.js app
+      - name: Build Next.js app
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096 # Increase memory limit
+        run: pnpm run build
+
+      # Step 7: Prepare files for deployment
+      - name: Prepare build files
+        run: |
+          mkdir -p build
+          cp -r public .next/standalone/ build/
+          cp -r .next/static build/.next/
+
+      # Step 8: Deploy to Droplet
+      - name: Deploy to Droplet
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.PUBLIC_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rm -rf /var/www/MotqenProduction/*
+            cp -r ~/build/* /var/www/MotqenProduction/
+            pm2 restart motqen-app
