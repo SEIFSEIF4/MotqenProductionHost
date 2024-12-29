@@ -76,7 +76,7 @@ const SearchBar = ({
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
-  }, 300);
+  }, 500);
 
   const handleSearch = (term: string) => {
     debouncedSearch(term);
