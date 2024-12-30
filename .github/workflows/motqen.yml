@@ -46,6 +46,9 @@ jobs:
           CSRF_SECRET: ${{ secrets.CSRF_SECRET }}
         run: pnpm run build
 
+      - name: Create deployment archive
+        run: tar -czf next-build.tar.gz .next node_modules package.json pnpm-lock.yaml
+
       - name: Deploy to DigitalOcean droplet via SSH
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -54,27 +57,54 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/MotqenProduction
-            git pull
-            pnpm install
 
-            # Copy the .next directory from the previous build if it exists
-            if [ -d ".next.bak" ]; then
-              rm -rf .next.bak
-            fi
+            # Backup current build
             if [ -d ".next" ]; then
               mv .next .next.bak
+            fi
+            if [ -d "node_modules" ]; then
+              mv node_modules node_modules.bak
+            fi
+
+      - name: Copy build files to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.PUBLIC_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "next-build.tar.gz"
+          target: "/var/www/MotqenProduction"
+
+      - name: Extract build files and restart PM2
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.PUBLIC_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/MotqenProduction
+
+            # Extract the new build
+            tar -xzf next-build.tar.gz
+            rm next-build.tar.gz
+
+            # Remove backups if extraction was successful
+            if [ $? -eq 0 ]; then
+              rm -rf .next.bak node_modules.bak
+            else
+              # Restore from backup if extraction failed
+              rm -rf .next node_modules
+              mv .next.bak .next
+              mv node_modules.bak node_modules
+              echo "Deployment failed, restored from backup"
+              exit 1
             fi
 
             # Start or reload PM2 process
             if pm2 list | grep -q 'motqen-app'; then
               pm2 reload motqen-app --update-env
             else
-              pm2 start npm --name "motqen-app" -- start
-            fi
-
-            # If the new instance starts successfully, remove the backup
-            if [ $? -eq 0 ] && [ -d ".next.bak" ]; then
-              rm -rf .next.bak
+              pm2 start pnpm --name "motqen-app" -- start
             fi
 
             pm2 save
