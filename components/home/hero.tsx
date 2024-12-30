@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -12,15 +14,11 @@ import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 
 import { HomeIcons } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
-import { Carousel as CarouselSlides } from "@/sanity.types";
+import useQueryCarousel from "@/hooks/useQueryCarousel";
 
-export default async function Hero({
-  CarouselSlides,
-  locale,
-}: {
-  CarouselSlides: CarouselSlides[];
-  locale: string;
-}) {
+export default function Hero({ locale }: { locale: string }) {
+  const { data: CarouselSlides } = useQueryCarousel({ locale: locale });
+
   return (
     <section id="hero" className="w-full">
       <Carousel
@@ -38,7 +36,7 @@ export default async function Hero({
           style={{ height: HERO_CAROUSEL_FIXED_HEIGHT }}
           className="relative h-full"
         >
-          {CarouselSlides.map((slide, index) => (
+          {CarouselSlides?.map((slide, index) => (
             <SliderMainItem key={index} className="relative h-full">
               <div
                 className={`absolute inset-0 z-10 ${locale === "ar" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-[rgba(22,92,103,1)] duration-300 group-hover:rounded-3xl`}
@@ -72,11 +70,10 @@ export default async function Hero({
               <Image
                 fill
                 priority
-                //@ts-expect-error always string type
-                src={slide.imageUrl || ""}
+                src={slide?.image?.asset?.url || ""}
                 alt={slide.title || "Hero Image"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"
-                quality={100} // Increased quality slightly for better hero visuals
+                quality={60} // Increased quality slightly for better hero visuals
                 style={{
                   objectFit: "cover",
                 }}
@@ -86,7 +83,7 @@ export default async function Hero({
           ))}
         </CarouselMainContainer>
         <CarouselThumbsContainer containerClassName="absolute bottom-10 left-1/2  transform -translate-x-1/2 -translate-y-1/2">
-          {CarouselSlides.map((_, index) => (
+          {CarouselSlides?.map((_, index) => (
             <CarouselIndicator
               className="mx-1 data-[active='false']:bg-[rgba(229,231,235,0.2)] data-[active='true']:bg-white"
               key={index}

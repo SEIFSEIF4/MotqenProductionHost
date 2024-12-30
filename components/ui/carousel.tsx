@@ -174,13 +174,45 @@ const Carousel = forwardRef<
     }, [emblaMainApi, onSelect]);
 
     useEffect(() => {
-      if (carouselOptions?.autoplay) {
-        const interval = setInterval(() => {
-          ScrollNext();
-        }, 5000);
+      let interval: NodeJS.Timeout | null = null;
 
-        return () => clearInterval(interval);
-      }
+      const startAutoplay = () => {
+        if (carouselOptions?.autoplay) {
+          interval = setInterval(() => {
+            ScrollNext();
+          }, 5000);
+        }
+      };
+
+      const stopAutoplay = () => {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      };
+
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      };
+
+      // Attach visibility change listener
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      // Start autoplay initially
+      startAutoplay();
+
+      return () => {
+        // Cleanup
+        stopAutoplay();
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange,
+        );
+      };
     }, [ScrollNext, carouselOptions?.autoplay]);
 
     return (
