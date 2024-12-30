@@ -38,20 +38,20 @@ function Statics() {
   const t = useTranslations("HomePage.StaticsSection");
 
   return (
-    <SectionWrapper
+    <section
       id="goals"
-      className="relative flex items-center justify-center"
+      className="relative flex w-full items-center justify-center px-10 py-verticalSpace md:px-horizontalSpace"
       style={{
         minHeight: STATICS_FIXED_HEIGHT,
       }}
     >
       <Image
         priority
-        quality={75}
+        quality={50}
         src={StaticsBg}
         alt="Statics background"
         placeholder="blur"
-        sizes="100vw"
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 80vw"
         className="absolute left-0 top-0 -z-10 h-[-webkit-fill-available] w-full rounded-lg md:h-[548px]"
         style={{
           objectFit: "cover",
@@ -89,7 +89,7 @@ function Statics() {
           ))}
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
 
