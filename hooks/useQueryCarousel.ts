@@ -1,22 +1,8 @@
 "use client";
 
-import { Carousel as CarouselSlides } from "@/sanity.types";
+import { CarouselWithUrl } from "@/sanity/lib/news/getCarousel";
 import { client } from "@/sanity/lib/client";
 import { useQuery } from "@tanstack/react-query";
-
-export type CarouselWithUrl = CarouselSlides & {
-  image: {
-    asset?: {
-      url: string;
-      metadata: {
-        dimensions: {
-          width: number;
-          height: number;
-        };
-      };
-    };
-  };
-};
 
 export default function useQueryCarousel({ locale }: { locale: string }) {
   return useQuery<CarouselWithUrl[]>({

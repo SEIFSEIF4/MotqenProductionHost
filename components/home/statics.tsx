@@ -46,7 +46,6 @@ function Statics() {
       }}
     >
       <Image
-        priority
         quality={50}
         src={StaticsBg}
         alt="Statics background"
