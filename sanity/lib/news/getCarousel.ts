@@ -3,8 +3,22 @@ import { defineQuery } from "next-sanity";
 import { querySanity } from "@/lib/queryWrapper";
 import { Carousel } from "@/sanity.types";
 
+export type CarouselWithUrl = Carousel & {
+  image: {
+    asset?: {
+      url: string;
+      metadata: {
+        dimensions: {
+          width: number;
+          height: number;
+        };
+      };
+    };
+  };
+};
+
 export const getCarousel = (limit: number = 5) =>
-  querySanity<Carousel>({
+  querySanity<CarouselWithUrl>({
     query: `*[_type == "carousel"] | order(_createdAt desc)[0...${limit}] {
   _id,
   title,

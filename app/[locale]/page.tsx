@@ -13,11 +13,11 @@ import { getCarousel } from "@/sanity/lib/news/getCarousel";
 import { getLocale } from "next-intl/server";
 import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
 import { getNews } from "@/sanity/lib/news/getNews";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+// import {
+//   dehydrate,
+//   HydrationBoundary,
+//   QueryClient,
+// } from "@tanstack/react-query";
 export const dynamic = "auto";
 export const revalidate = 60;
 
@@ -39,30 +39,30 @@ export default async function HomePage({
   // const query = awaitedSearchParams?.query || "";
   // const currentPage = Number(awaitedSearchParams?.page) || 1;
 
-  const queryClient = new QueryClient();
+  // const queryClient = new QueryClient();
 
-  queryClient.setQueryData(["HeroCarousel"], CarouselSlides);
-  queryClient.setQueryData(["Testimonials"], saidItems);
+  // queryClient.setQueryData(["HeroCarousel"], CarouselSlides);
+  // queryClient.setQueryData(["Testimonials"], saidItems);
 
-  const dehydratedState = dehydrate(queryClient);
+  // const dehydratedState = dehydrate(queryClient);
 
   return (
     <>
-      <HydrationBoundary state={dehydratedState}>
-        <Hero locale={locale} />
-        <PageWrapper className="-translate-y-2 bg-white">
-          <div
-            className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
-            aria-hidden
-          />
-          <About />
-          <Goals />
-          <Statics />
-          <Programs />
-          <News newsItems={news} locale={locale} />
-          <Said locale={locale} />
-        </PageWrapper>
-      </HydrationBoundary>
+      {/* <HydrationBoundary state={dehydratedState}> */}
+      <Hero locale={locale} CarouselSlides={CarouselSlides} />
+      <PageWrapper className="-translate-y-2 bg-white">
+        <div
+          className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
+          aria-hidden
+        />
+        <About />
+        <Goals />
+        <Statics />
+        <Programs />
+        <News newsItems={news} locale={locale} />
+        <Said locale={locale} saidItems={saidItems} />
+      </PageWrapper>
+      {/* </HydrationBoundary> */}
     </>
   );
 }

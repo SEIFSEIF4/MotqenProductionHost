@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Carousel,
   CarouselIndicator,
@@ -15,11 +13,18 @@ import { SubTitle } from "@/components/ui/heading";
 import { SAID_FIXED_HEIGHT } from "@/constant/common";
 import { HomeIcons } from "@/components/icons";
 import { useTranslations } from "next-intl";
-import useQuerySaid from "@/hooks/useQuerySaid";
+// import useQuerySaid from "@/hooks/useQuerySaid";
+import { type Testimonial } from "@/sanity.types";
 
-export default function Said({ locale }: { locale: string }) {
+export default function Said({
+  locale,
+  saidItems,
+}: {
+  locale: string;
+  saidItems: Testimonial[];
+}) {
   const t = useTranslations("HomePage.SaidSections");
-  const { data: saidItems } = useQuerySaid({ locale: locale });
+  // const { data: saidItems } = useQuerySaid({ locale: locale });
 
   return (
     <SectionWrapper id="said">
