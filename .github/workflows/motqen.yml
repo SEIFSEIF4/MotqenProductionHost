@@ -58,7 +58,10 @@ jobs:
           host: ${{ secrets.PUBLIC_IP }}
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          debug: true 
           script: |
+            mkdir -p /var/www/MotqenProduction
             rm -rf /var/www/MotqenProduction/*
             cp -r ~/build/* /var/www/MotqenProduction/
-            pm2 restart motqen-app
+            chown -R www-data:www-data /var/www/MotqenProduction
+            pm2 restart motqen || pm2 start server.js --name "motqen"
