@@ -53,15 +53,6 @@ jobs:
           cp -r .next/static build/.next/
 
       - name: Deploy to DigitalOcean Droplet
-        uses: appleboy/ssh-action@v0.1.6
+        uses: digitalocean/app_action/deploy@v2
         with:
-          host: ${{ secrets.PUBLIC_IP }}
-          username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          debug: true 
-          script: |
-            mkdir -p /var/www/MotqenProduction
-            rm -rf /var/www/MotqenProduction/*
-            cp -r ~/build/* /var/www/MotqenProduction/
-            chown -R www-data:www-data /var/www/MotqenProduction
-            pm2 restart motqen || pm2 start server.js --name "motqen"
+         token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}
