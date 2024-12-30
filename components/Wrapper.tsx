@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { useMediaQuery } from "react-responsive";
 
 interface PageWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -49,8 +48,6 @@ function SectionWrapper({
   customAmount = 0.6,
   ...props
 }: SectionWrapperProps) {
-  const isLgScreen = useMediaQuery({ query: "(min-width: 1024px)" }); // Tailwind's lg breakpoint
-
   return (
     <section
       id={id}
@@ -61,19 +58,16 @@ function SectionWrapper({
       )}
       {...props}
     >
-      {isLgScreen ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: customAmount }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="w-full"
-        >
-          {children}
-        </motion.div>
-      ) : (
-        <div className="w-full">{children}</div>
-      )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: customAmount }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+        className="hidden w-full lg:block"
+      >
+        {children}
+      </motion.div>
+      <div className="block w-full lg:hidden">{children}</div>
     </section>
   );
 }
@@ -84,7 +78,7 @@ interface BodyClassWrapperProps {
 }
 
 function BodyClassWrapper({ className, children }: BodyClassWrapperProps) {
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.classList.add(className);
 
     return () => {
