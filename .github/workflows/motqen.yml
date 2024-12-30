@@ -46,38 +46,35 @@ jobs:
           CSRF_SECRET: ${{ secrets.CSRF_SECRET }}
         run: pnpm run build
 
-      - name: Prepare build files
-        run: |
-          mkdir -p build
-          cp -r public .next/standalone/ build/
-          cp -r .next/static build/.next/
-
-      - name: Transfer build files to Droplet via SCP
-        run: |
-          scp -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ root@${{ secrets.PUBLIC_IP }}:/root/build/
-
       - name: Deploy to DigitalOcean droplet via SSH
-        uses: appleboy/ssh-action@v0.1.8
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.PUBLIC_IP }}
+          host: ${{ secrets.SSH_HOST_FRONTEND }}
           username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            # Ensure the build folder exists before proceeding
-            if [ -d "/root/build" ]; then
-              rm -rf /var/www/MotqenProduction/*
-              cp -r /root/build/* /var/www/MotqenProduction/
-              
-              # Check if PM2 process is running
-              if pm2 list | grep -q 'motqen-app'; then
-                # Reload application to ensure zero downtime
-                pm2 reload motqen-app
-              else
-                # Start the application with PM2 if not already running
-                pm2 start yarn --name "motqen-app" -- start
-              fi
-              pm2 list
-            else
-              echo "Error: Build folder does not exist at /root/build/"
-              exit 1
+            cd /var/www/MotqenProduction
+            git pull
+            pnpm install
+
+            # Copy the .next directory from the previous build if it exists
+            if [ -d ".next.bak" ]; then
+              rm -rf .next.bak
             fi
+            if [ -d ".next" ]; then
+              mv .next .next.bak
+            fi
+
+            # Start or reload PM2 process
+            if pm2 list | grep -q 'motqen-app'; then
+              pm2 reload motqen-app --update-env
+            else
+              pm2 start npm --name "motqen-app" -- start
+            fi
+
+            # If the new instance starts successfully, remove the backup
+            if [ $? -eq 0 ] && [ -d ".next.bak" ]; then
+              rm -rf .next.bak
+            fi
+
+            pm2 save
