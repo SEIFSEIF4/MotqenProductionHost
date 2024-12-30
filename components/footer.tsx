@@ -108,7 +108,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Privacy and Terms */}
-        <div className="flex flex-col-reverse items-start gap-x-3 md:flex-row">
+        <div className="flex flex-col-reverse items-start gap-x-3 gap-y-1 md:flex-row">
           <a href="#" className="hover:underline">
             {t("terms")}
           </a>
