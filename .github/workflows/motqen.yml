@@ -55,4 +55,4 @@ jobs:
       - name: Deploy to DigitalOcean Droplet
         uses: digitalocean/app_action/deploy@v2
         with:
-         token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}
+         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
