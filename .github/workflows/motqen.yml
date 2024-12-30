@@ -52,7 +52,21 @@ jobs:
           cp -r public .next/standalone/ build/
           cp -r .next/static build/.next/
 
-      - name: Deploy to DigitalOcean Droplet
-        uses: digitalocean/app_action/deploy@v2
+      - name: Deploy to DigitalOcean droplet via SSH
+        uses: appleboy/ssh-action@v0.1.8
         with:
-         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          host: ${{ secrets.PUBLIC_IP }}
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rm -rf /var/www/MotqenProduction/*
+            cp -r ~/build/* /var/www/MotqenProduction/
+            # Check if PM2 process is running
+            if pm2 list | grep -q 'motqen-app'; then
+              # Reload application to ensure zero downtime
+              pm2 reload motqen-app
+            else
+              # Start the application with PM2 if not already running
+              pm2 start yarn --name "motqen-app" -- start
+            fi
+            pm2 list
