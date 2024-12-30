@@ -52,6 +52,10 @@ jobs:
           cp -r public .next/standalone/ build/
           cp -r .next/static build/.next/
 
+      - name: Transfer build files to Droplet via SCP
+        run: |
+          scp -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ root@${{ secrets.PUBLIC_IP }}:/root/build/
+
       - name: Deploy to DigitalOcean droplet via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
@@ -59,14 +63,21 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            rm -rf /var/www/MotqenProduction/*
-            cp -r ~/build/* /var/www/MotqenProduction/
-            # Check if PM2 process is running
-            if pm2 list | grep -q 'motqen-app'; then
-              # Reload application to ensure zero downtime
-              pm2 reload motqen-app
+            # Ensure the build folder exists before proceeding
+            if [ -d "/root/build" ]; then
+              rm -rf /var/www/MotqenProduction/*
+              cp -r /root/build/* /var/www/MotqenProduction/
+              
+              # Check if PM2 process is running
+              if pm2 list | grep -q 'motqen-app'; then
+                # Reload application to ensure zero downtime
+                pm2 reload motqen-app
+              else
+                # Start the application with PM2 if not already running
+                pm2 start yarn --name "motqen-app" -- start
+              fi
+              pm2 list
             else
-              # Start the application with PM2 if not already running
-              pm2 start yarn --name "motqen-app" -- start
+              echo "Error: Build folder does not exist at /root/build/"
+              exit 1
             fi
-            pm2 list
