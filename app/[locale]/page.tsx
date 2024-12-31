@@ -34,11 +34,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={locale} CarouselSlides={CarouselSlides} />
-      <PageWrapper className="-translate-y-2 bg-white">
-        <div
-          className="pointer-events-none fixed -z-50 h-10 w-full bg-primary"
-          aria-hidden
-        />
+      <PageWrapper className="-translate-y-8 rounded-t-[48px] bg-white md:-translate-y-10">
         <About />
         <Goals />
         <Statics />

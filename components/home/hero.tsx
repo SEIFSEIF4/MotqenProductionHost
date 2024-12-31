@@ -87,7 +87,7 @@ export default function Hero({
             </SliderMainItem>
           ))}
         </CarouselMainContainer>
-        <CarouselThumbsContainer containerClassName="absolute bottom-10 left-1/2  transform -translate-x-1/2 -translate-y-1/2">
+        <CarouselThumbsContainer containerClassName="absolute bottom-14 left-1/2  transform -translate-x-1/2 -translate-y-1/2">
           {CarouselSlides?.map((_, index) => (
             <CarouselIndicator
               className="mx-1 data-[active='false']:bg-[rgba(229,231,235,0.2)] data-[active='true']:bg-white"

@@ -21,9 +21,8 @@ function PageWrapper({ children, className, ...props }: PageWrapperProps) {
 
 interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
   id: string;
-  isSinglePage?: boolean;
   className?: string;
-  customAmount?: number;
+  isSinglePage?: boolean;
   children: React.ReactNode;
 }
 
@@ -31,9 +30,6 @@ interface SectionWrapperProps {
   id: string;
   className?: string;
   children: React.ReactNode;
-  isSinglePage?: boolean;
-  customAmount?: number;
-  [key: string]: any;
 }
 
 function SectionWrapper({
@@ -41,7 +37,6 @@ function SectionWrapper({
   className,
   children,
   isSinglePage = false,
-  customAmount = 0.6,
   ...props
 }: SectionWrapperProps) {
   return (
