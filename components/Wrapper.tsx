@@ -55,8 +55,6 @@ function SectionWrapper({
       {...props}
     >
       {children}
-
-      <div className="block w-full lg:hidden">{children}</div>
     </section>
   );
 }
