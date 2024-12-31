@@ -13,12 +13,8 @@ import { getCarousel } from "@/sanity/lib/news/getCarousel";
 import { getLocale } from "next-intl/server";
 import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
 import { getNews } from "@/sanity/lib/news/getNews";
-// import {
-//   dehydrate,
-//   HydrationBoundary,
-//   QueryClient,
-// } from "@tanstack/react-query";
-// export const dynamic = "auto";
+
+export const dynamic = "auto";
 export const revalidate = 60;
 
 export default async function HomePage({
@@ -35,20 +31,9 @@ export default async function HomePage({
     getTestimonial(),
     getNews(),
   ]);
-  // const awaitedSearchParams = await searchParams;
-  // const query = awaitedSearchParams?.query || "";
-  // const currentPage = Number(awaitedSearchParams?.page) || 1;
-
-  // const queryClient = new QueryClient();
-
-  // queryClient.setQueryData(["HeroCarousel"], CarouselSlides);
-  // queryClient.setQueryData(["Testimonials"], saidItems);
-
-  // const dehydratedState = dehydrate(queryClient);
 
   return (
     <>
-      {/* <HydrationBoundary state={dehydratedState}> */}
       <Hero locale={locale} CarouselSlides={CarouselSlides} />
       <PageWrapper className="-translate-y-2 bg-white">
         <div
@@ -62,7 +47,6 @@ export default async function HomePage({
         <News newsItems={news} locale={locale} />
         <Said locale={locale} saidItems={saidItems} />
       </PageWrapper>
-      {/* </HydrationBoundary> */}
     </>
   );
 }
