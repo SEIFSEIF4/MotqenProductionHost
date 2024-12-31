@@ -45,18 +45,18 @@ function Statics() {
         minHeight: STATICS_FIXED_HEIGHT,
       }}
     >
-      <Image
-        quality={50}
-        src={StaticsBg}
-        alt="Statics background"
-        placeholder="blur"
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 80vw"
-        className="absolute left-0 top-0 -z-10 h-[-webkit-fill-available] w-full rounded-lg md:h-[548px]"
-        style={{
-          objectFit: "cover",
-          height: "fill-available",
-        }}
-      />
+      <div className="absolute inset-0 -z-10">
+        <Image
+          fill
+          quality={80}
+          src={StaticsBg}
+          alt="Statics background"
+          placeholder="blur"
+          sizes="100vw"
+          className="rounded-lg object-cover"
+          priority
+        />
+      </div>
 
       <div
         className="to-[rgba(21, 21, 21, 0.5)] absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-[rgba(0,14,16,0.8)] duration-300 group-hover:rounded-3xl"
