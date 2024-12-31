@@ -64,11 +64,11 @@ export default function NewsInfiniteList({
           <LoaderCircle className="text-primary-500 h-8 w-8 animate-spin" />
         </div>
       }
-      endMessage={
-        <div className="w-full py-4 text-center text-gray-500 md:text-start">
-          {NoMoreNews ?? "لا يوجد مزيد من الأخبار"}
-        </div>
-      }
+      // endMessage={
+      //   <div className="w-full py-4 text-center text-gray-500 md:text-start">
+      //     {NoMoreNews ?? "لا يوجد مزيد من الأخبار"}
+      //   </div>
+      // }
       className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3"
     >
       {allNews.map((newsItem) => (
