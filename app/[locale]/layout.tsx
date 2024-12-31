@@ -57,8 +57,6 @@ export default async function RootLayout({
             href="favicon-16x16.png"
             sizes="16x16"
           />
-          {/* <link rel="canonical" href="https://example.com" /> */}
-          {/* Look at the end of this file */}
           <meta name="theme-color" content="white" />
         </head>
         <body
@@ -83,12 +81,3 @@ export default async function RootLayout({
     </ViewTransitions>
   );
 }
-
-/**
- * <link rel="canonical" href="https://example.com" />
- *
- * @description When multiple pages have similar content, search engines consider them duplicate versions of the same page.
- * For example, desktop and mobile versions of a product page are often considered duplicates.
- * Search engines select one of the pages as the canonical, or primary, version and crawl that one more.
- * Valid canonical links let you tell search engines which version of a page to crawl and display to users in search results.
- */

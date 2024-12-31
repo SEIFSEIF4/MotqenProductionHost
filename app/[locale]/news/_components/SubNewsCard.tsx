@@ -49,11 +49,7 @@ const SubNewsCard = ({
       </CardHeader>
 
       <CardFooter className="p-4">
-        <Link
-          href={href}
-          // href={`/${locale}/news/${newsItem.id}`}
-          className="w-full"
-        >
+        <Link href={href} className="w-full">
           <Button className="w-fit hover:opacity-75">{buttonTitle}</Button>
         </Link>
       </CardFooter>
