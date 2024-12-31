@@ -9,7 +9,7 @@ function PageWrapper({ children, className, ...props }: PageWrapperProps) {
   return (
     <div
       className={cn(
-        "mx-auto flex min-h-[inherit] w-full max-w-base flex-col items-start",
+        "mx-auto flex min-h-[inherit] w-full max-w-base flex-col items-start overflow-hidden",
         className,
       )}
       {...props}
@@ -48,7 +48,7 @@ function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "w-full px-10 py-verticalSpace md:px-horizontalSpace",
+        "w-full overflow-hidden px-10 py-verticalSpace md:px-horizontalSpace",
         className,
         isSinglePage && "min-h-[inherit]",
       )}

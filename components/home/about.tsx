@@ -22,7 +22,7 @@ function About() {
       <SubTitle text={t("title")} />
       <p className="my-8 font-medium">{t("about")}</p>
       <div className="grid grid-cols-1 gap-3 rounded-lg py-5 md:grid-cols-10 md:py-16">
-        <div className="group relative col-span-7 h-[186px] rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl">
+        <div className="group relative col-span-7 h-[186px] overflow-hidden rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl">
           <div
             className="absolute inset-0 z-10 rounded-2xl bg-gradient-to-r from-[rgba(0,14,16,0.8)] to-[rgba(22,92,103,0.8)] duration-300 group-hover:rounded-3xl"
             aria-hidden="true"
@@ -45,7 +45,7 @@ function About() {
           />
         </div>
 
-        <div className="group relative col-span-7 row-span-2 h-full rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl md:col-span-3">
+        <div className="group relative col-span-7 row-span-2 h-full overflow-hidden rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl md:col-span-3">
           <div
             className={`absolute inset-0 z-10 rounded-2xl from-[rgba(36,36,36,0.8)] to-[rgba(130,128,70,0.35)] duration-300 group-hover:rounded-3xl ltr:bg-gradient-to-l rtl:bg-gradient-to-r`}
             aria-hidden="true"
@@ -76,7 +76,7 @@ function About() {
           />
         </div>
 
-        <div className="group relative col-span-7 h-[186px] rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl">
+        <div className="group relative col-span-7 h-[186px] overflow-hidden rounded-2xl p-6 text-white backdrop-blur-xl duration-300 hover:rounded-3xl">
           <div
             className="absolute inset-0 z-10 rounded-2xl bg-gradient-to-r from-[rgba(0,0,0,0.8)] to-[rgba(36,36,36,0.8)] duration-300 group-hover:rounded-3xl"
             aria-hidden="true"
