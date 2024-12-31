@@ -1,8 +1,5 @@
-"use client";
-
-import { useEffect } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+// import { motion } from "motion/react";
 
 interface PageWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -58,35 +55,18 @@ function SectionWrapper({
       )}
       {...props}
     >
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: customAmount }}
         transition={{ duration: 1, ease: "easeInOut" }}
         className="hidden w-full lg:block"
-      >
-        {children}
-      </motion.div>
+      > */}
+      {children}
+      {/* </motion.div> */}
       <div className="block w-full lg:hidden">{children}</div>
     </section>
   );
 }
 
-interface BodyClassWrapperProps {
-  className: string;
-  children: React.ReactNode;
-}
-
-function BodyClassWrapper({ className, children }: BodyClassWrapperProps) {
-  useEffect(() => {
-    document.body.classList.add(className);
-
-    return () => {
-      document.body.classList.remove(className);
-    };
-  }, [className]);
-
-  return <>{children}</>;
-}
-
-export { PageWrapper, SectionWrapper, BodyClassWrapper };
+export { PageWrapper, SectionWrapper };

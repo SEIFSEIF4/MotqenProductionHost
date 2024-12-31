@@ -18,7 +18,7 @@ import { getNews } from "@/sanity/lib/news/getNews";
 //   HydrationBoundary,
 //   QueryClient,
 // } from "@tanstack/react-query";
-export const dynamic = "auto";
+// export const dynamic = "auto";
 export const revalidate = 60;
 
 export default async function HomePage({
