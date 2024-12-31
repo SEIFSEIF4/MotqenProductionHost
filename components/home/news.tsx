@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-//data
+// data
 import { Link } from "next-view-transitions";
 import newsImage from "@/images/card-2.jpg";
 import type { NewsItem } from "@/hooks/useNews";
@@ -26,7 +26,7 @@ export default async function News({
   newsItems: NewsItem[];
   locale: string;
 }) {
-  //lang
+  // lang
   const t = await getTranslations("HomePage.NewsSection");
 
   return (

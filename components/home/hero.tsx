@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -12,17 +14,20 @@ import { HERO_CAROUSEL_FIXED_HEIGHT } from "@/constant/common";
 
 import { HomeIcons } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
-// import useQueryCarousel from "@/hooks/useQueryCarousel";
+import useQueryCarousel from "@/hooks/useQueryCarousel";
 import { CarouselWithUrl } from "@/sanity/lib/news/getCarousel";
 
 export default function Hero({
   locale,
-  CarouselSlides,
+  initialCarousel,
 }: {
   locale: string;
-  CarouselSlides: CarouselWithUrl[];
+  initialCarousel: CarouselWithUrl[];
 }) {
-  // const { data: CarouselSlides } = useQueryCarousel({ locale: locale });
+  const { data: CarouselSlides } = useQueryCarousel({
+    locale,
+    initialCarousel,
+  });
 
   return (
     <section id="hero" className="w-full">
@@ -75,7 +80,7 @@ export default function Hero({
               <Image
                 fill
                 priority
-                src={slide?.image?.asset?.url || ""}
+                src={slide.image.asset?.url || ""}
                 alt={slide.title || "Hero Image"}
                 sizes="(max-width: 768px) 100vw, (max-width: 1440px) 50vw, 1440px"
                 quality={60} // Increased quality slightly for better hero visuals
