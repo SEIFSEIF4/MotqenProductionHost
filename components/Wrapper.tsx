@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface PageWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
