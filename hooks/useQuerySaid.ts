@@ -4,7 +4,13 @@ import { Testimonial } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
 import { useQuery } from "@tanstack/react-query";
 
-export default function useQuerySaid({ locale }: { locale: string }) {
+export default function useQuerySaid({
+  locale,
+  initialSaidItems,
+}: {
+  locale: string;
+  initialSaidItems: Testimonial[];
+}) {
   return useQuery<Testimonial[]>({
     queryKey: ["Testimonials", locale],
     queryFn: async () => {
@@ -18,6 +24,7 @@ export default function useQuerySaid({ locale }: { locale: string }) {
 
       return testimonial;
     },
+    initialData: initialSaidItems,
     staleTime: 60 * 60, // 1-hour cache
   });
 }
