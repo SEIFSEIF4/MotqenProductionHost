@@ -35,8 +35,8 @@ export default async function HomePage({
     <>
       <Hero locale={locale} CarouselSlides={CarouselSlides} />
       <PageWrapper className="-translate-y-8 rounded-t-[48px] bg-white md:-translate-y-10">
-        <About />
-        <Goals />
+        <About locale={locale} />
+        <Goals locale={locale} />
         <Statics />
         <Programs />
         <News newsItems={news} locale={locale} />
