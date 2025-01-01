@@ -1,5 +1,3 @@
-import { querySanity } from "@/lib/queryWrapper";
-import { News } from "@/sanity.types";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 

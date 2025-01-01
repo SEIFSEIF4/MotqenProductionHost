@@ -4,16 +4,21 @@ import { useTranslations } from "next-intl";
 import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "../ui/heading";
 
-function Goals() {
+function Goals({ locale }: { locale: string }) {
   const t = useTranslations("HomePage.GoalsSection");
   const goals = ["goal1", "goal2", "goal3", "goal4"] as const;
 
   return (
     <SectionWrapper id="goals" className="bg-white">
       <SubTitle text={t("title")} />
-      <div className="grid grid-cols-1 gap-x-5 gap-y-3 py-5 md:grid-cols-2 md:px-16 md:py-16">
+      <div
+        className={`grid grid-cols-1 ${locale === "ar" ? "gap-x-5" : "gap-x-10"} gap-y-3 py-5 md:grid-cols-2 md:px-16 md:py-16`}
+      >
         {goals.map((item, idx) => (
-          <div key={idx} className="flex w-full items-center gap-x-5 py-8">
+          <div
+            key={idx}
+            className={`flex w-full items-center ${locale === "ar" ? "gap-x-5" : "gap-x-10"} py-8`}
+          >
             <div
               className="leaf flex h-32 w-24 items-center justify-center rounded-lg bg-cover bg-center"
               style={{

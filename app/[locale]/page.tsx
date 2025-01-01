@@ -24,7 +24,7 @@ export default async function HomePage({
     page?: string;
   }>;
 }) {
-  const [locale, CarouselSlides, saidItems, news] = await Promise.all([
+  const [locale, initialCarousel, initialSaidItems, news] = await Promise.all([
     getLocale(),
     getCarousel(),
     getTestimonial(),
@@ -33,14 +33,14 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero locale={locale} CarouselSlides={CarouselSlides} />
-      <PageWrapper className="-translate-y-8 rounded-t-[48px] bg-white md:-translate-y-10">
-        <About />
-        <Goals />
+      <Hero locale={locale} initialCarousel={initialCarousel} />
+      <PageWrapper className="relative z-50 -translate-y-8 rounded-t-[48px] bg-white md:-translate-y-10">
+        <About locale={locale} />
+        <Goals locale={locale} />
         <Statics />
         <Programs />
         <News newsItems={news} locale={locale} />
-        <Said locale={locale} saidItems={saidItems} />
+        <Said locale={locale} initialSaidItems={initialSaidItems} />
       </PageWrapper>
     </>
   );

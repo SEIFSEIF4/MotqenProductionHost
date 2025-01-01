@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-import { SectionWrapper } from "@/components/Wrapper";
 import { SubTitle } from "../ui/heading";
 
 import Count from "@/components/count";
@@ -54,7 +53,6 @@ function Statics() {
           placeholder="blur"
           sizes="100vw"
           className="rounded-lg object-cover"
-          priority
         />
       </div>
 

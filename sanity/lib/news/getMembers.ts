@@ -35,6 +35,6 @@ export const getMembers = (): Promise<Member[]> =>
     transformResults: (data) =>
       data.map((item) => ({
         ...item,
-        imageUrl: item.avatar?.asset?.url || "", // Set imageUrl
+        imageUrl: item.avatar?.asset?.url || "",
       })),
   });
