@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center space-x-4 rtl:space-x-reverse">
           <a
-            href="https://www.whatsapp.com"
+            href="https://wa.me/+966508811448"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("ariaLabels.whatsApp")}
@@ -44,7 +44,7 @@ const Footer = () => {
             <FooterIcons.WhatsApp />
           </a>
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/motqn100"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("ariaLabels.instagram")}
@@ -53,7 +53,7 @@ const Footer = () => {
             <FooterIcons.Instagram />
           </a>
           <a
-            href="https://www.twitter.com"
+            href="https://x.com/motqn100"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("ariaLabels.twitter")}
@@ -61,7 +61,7 @@ const Footer = () => {
           >
             <FooterIcons.Twitter />
           </a>
-          <a
+          {/* <a
             href="https://www.linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -69,7 +69,7 @@ const Footer = () => {
             className="cursor-pointer hover:opacity-75"
           >
             <FooterIcons.LinkedIn />
-          </a>
+          </a> */}
         </div>
       </div>
 
@@ -85,12 +85,12 @@ const Footer = () => {
           <div className="flex items-center gap-x-1">
             <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
             <a
-              href="tel:+966550000000"
+              href="tel:+966508811448"
               className="hover:underline"
               aria-label={t("ariaLabels.phone")}
               dir="ltr"
             >
-              +966 55 000 0000
+              +966 50 881 1448
             </a>
           </div>
           {/* Email */}
@@ -98,11 +98,11 @@ const Footer = () => {
             <Mail className="h-[18px] w-[18px]" aria-hidden="true" />
             <p>
               <a
-                href="mailto:email@example.com"
+                href="mailto:Info@motqen.sa"
                 className="hover:underline"
                 aria-label={t("ariaLabels.email")}
               >
-                email@example.com
+                Info@motqen.sa
               </a>
             </p>
           </div>
