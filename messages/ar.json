@@ -60,7 +60,8 @@
       "search": "بحث",
       "searchLoading": "جاري البحث...",
       "noResultsMessage": "لا توجد نتائج ل",
-      "english": "English"
+      "english": "English",
+      "langAriaLabel": "Change language to English"
     },
     "HeroSection": {
       "title": "تأسيس مُــتـقــن",

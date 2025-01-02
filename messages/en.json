@@ -60,7 +60,8 @@
       "search": "Search",
       "searchLoading": "Searching...",
       "noResultsMessage": "No results found for",
-      "english": "العربية"
+      "english": "العربية",
+      "langAriaLabel": "تغيير اللغة إلى العربية"
     },
     "HeroSection": {
       "title": "The Establishment of Motqen",

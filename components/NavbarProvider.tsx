@@ -14,6 +14,7 @@ export default async function NavbarProvider() {
     searchLoading: t("searchLoading"),
     noResultsMessage: t("noResultsMessage"),
     english: t("english"),
+    langAriaLabel: t("langAriaLabel"),
   };
 
   return <Navbar translations={translations} />;

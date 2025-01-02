@@ -40,6 +40,7 @@ type NavbarProps = {
     searchLoading: string;
     noResultsMessage: string;
     english: string;
+    langAriaLabel: string;
   };
 };
 
@@ -195,6 +196,7 @@ export default function Navbar({ translations }: NavbarProps) {
             {/* Language Switch */}
             <LocaleSwitcher
               langLabel={translations.english}
+              langAriaLabel={translations.langAriaLabel}
               handleClick={switchLocale}
             />
           </div>
