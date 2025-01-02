@@ -8,67 +8,23 @@ import { Separator } from "@/components/ui/separator";
 import { ContactIcons } from "@/components/icons";
 import { copyToClipboard } from "@/lib/utils";
 
-const socialMediaLinks = [
-  {
-    icon: ContactIcons.TwitterFilled,
-    link: "https://www.twitter.com",
-    ariaLabel: "Twitter",
-  },
-  {
-    icon: ContactIcons.InstagramFilled,
-    link: "https://www.instagram.com",
-    ariaLabel: "Instagram",
-  },
-  {
-    icon: ContactIcons.LinkedInFilled,
-    link: "https://www.linkedin.com",
-    ariaLabel: "LinkedIn",
-  },
-  {
-    icon: ContactIcons.WhatsappFilled,
-    link: "https://wa.me/yourwhatsappnumber", // change WhatsApp number
-    ariaLabel: "WhatsApp",
-  },
-];
-
 export default function CardDetails() {
   const t = useTranslations("contactUsPage");
-  const socialMediaLinks = [
-    {
-      icon: ContactIcons.TwitterFilled,
-      link: "https://www.twitter.com",
-      ariaLabel: t("socialMedia.twitter"),
-    },
-    {
-      icon: ContactIcons.InstagramFilled,
-      link: "https://www.instagram.com",
-      ariaLabel: t("socialMedia.instagram"),
-    },
-    {
-      icon: ContactIcons.LinkedInFilled,
-      link: "https://www.linkedin.com",
-      ariaLabel: t("socialMedia.linkedin"),
-    },
-    {
-      icon: ContactIcons.WhatsappFilled,
-      link: "https://wa.me/yourwhatsappnumber",
-      ariaLabel: t("socialMedia.whatsapp"),
-    },
-  ];
+
   const contactDetails = [
     {
       icon: Phone,
       title: t("phone"),
-      details: "9200343222",
+      details: "+966508811448",
       subIcon: Copy,
-      link: "tel:9200343222",
+      link: "tel:+966508811448",
     },
     {
       icon: Mail,
       title: t("email"),
-      details: "help@company.sa",
+      details: "Info@motqen.sa",
       subIcon: Copy,
-      link: "mailto:help@company.sa",
+      link: "mailto:Info@motqen.sa",
     },
     {
       icon: MapPin,
@@ -78,6 +34,30 @@ export default function CardDetails() {
       link: `https://maps.google.com/?q=${t("address")}`,
     },
   ];
+
+  const socialMediaLinks = [
+    {
+      icon: ContactIcons.TwitterFilled,
+      link: "https://x.com/motqn100",
+      ariaLabel: t("socialMedia.twitter"),
+    },
+    {
+      icon: ContactIcons.InstagramFilled,
+      link: "https://www.instagram.com/motqn100",
+      ariaLabel: t("socialMedia.instagram"),
+    },
+    // {
+    //   icon: ContactIcons.LinkedInFilled,
+    //   link: "https://www.linkedin.com",
+    //   ariaLabel: t("socialMedia.linkedin"),
+    // },
+    {
+      icon: ContactIcons.WhatsappFilled,
+      link: "https://wa.me/+966508811448",
+      ariaLabel: t("socialMedia.whatsapp"),
+    },
+  ];
+
   return (
     <div className="absolute inset-0 z-20 rounded-lg p-5 md:p-10">
       <h2 className="mb-10 text-2xl font-bold text-white">
@@ -98,11 +78,27 @@ export default function CardDetails() {
               >
                 {item.details}
               </a>
-              <item.subIcon
-                className="h-5 w-5 cursor-pointer"
-                onClick={() => copyToClipboard(item.details, t("toastMessage"))}
-                aria-label={`${item.title} ${t("copy")}`}
-              />
+              {index === contactDetails.length - 1 ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.title} ${t("open")}`}
+                >
+                  <item.subIcon
+                    className="h-5 w-5"
+                    aria-label={`${item.title} ${t("open")}`}
+                  />
+                </a>
+              ) : (
+                <item.subIcon
+                  className="h-5 w-5 cursor-pointer"
+                  onClick={() =>
+                    copyToClipboard(item.details, t("toastMessage"))
+                  }
+                  aria-label={`${item.title} ${t("copy")}`}
+                />
+              )}
             </div>
           </div>
         </div>

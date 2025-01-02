@@ -4,7 +4,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -23,6 +23,7 @@ import validator from "validator";
 import { useRouter } from "next/navigation";
 
 export default function ContactForm() {
+  const locale = useLocale();
   const t = useTranslations("contactUsPage.contactUsForm");
   const router = useRouter();
 
@@ -160,7 +161,7 @@ export default function ContactForm() {
                   <PhoneInput
                     placeholder={t("phone.placeholder")}
                     defaultCountry="SA"
-                    dir="rtl"
+                    dir={locale === "ar" ? "rtl" : "ltr"}
                     {...field}
                   />
                 </FormControl>
