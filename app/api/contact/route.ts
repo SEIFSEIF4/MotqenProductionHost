@@ -12,12 +12,35 @@ const contactFormSchema = z.object({
   email: z.string().email().refine(validator.isEmail),
   phone: z.string().refine(validator.isMobilePhone),
   message: z.string().min(5).max(TEXTAREA_MAX_CHARACTER),
+  turnstileToken: z.string().nonempty(),
 });
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const validatedData = contactFormSchema.parse(body);
+
+    // Verify the Turnstile token
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: validatedData.turnstileToken,
+        }),
+      },
+    );
+
+    const verifyResult = await verifyResponse.json();
+
+    if (!verifyResult.success) {
+      return NextResponse.json(
+        { success: false, error: "Captcha verification failed" },
+        { status: 400 },
+      );
+    }
 
     // Create HTML version
     const htmlContent = `
