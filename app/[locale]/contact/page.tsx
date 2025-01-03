@@ -1,11 +1,13 @@
 import React from "react";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 // Global Components
 import { SubTitle } from "@/components/ui/heading";
 import { SectionWrapper } from "@/components/Wrapper";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
+import { constructMetadata } from "@/lib/utils";
 
 // Page based Components
 import Contact from "@/images/contact.jpg";
@@ -15,6 +17,22 @@ import CardDetails from "./_components/card-details";
 // Generate static paths for each locale
 export async function generateStaticParams() {
   return [{ locale: "ar" }, { locale: "en" }];
+}
+
+// Generate static metadata for each locale
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = (await params).locale;
+
+  const t = await getTranslations({ locale, namespace: "contactUsPage" });
+
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+  });
 }
 
 export default function ContactPage() {
