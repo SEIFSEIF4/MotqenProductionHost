@@ -87,10 +87,10 @@ export function constructMetadata({
     icons,
     metadataBase: new URL("https://motqen.sa"),
     alternates: {
-      canonical: "https://motqen.sa",
+      canonical: "https://motqen.sa/ar",
       languages: {
-        ar: "/ar",
-        en: "/en",
+        ar: "https://motqen.sa/ar",
+        en: "https://motqen.sa/en",
       },
     },
     robots: {

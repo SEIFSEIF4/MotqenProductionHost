@@ -2,6 +2,7 @@
 
 import * as z from "zod";
 import { toast } from "sonner";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
@@ -26,6 +27,7 @@ export default function ContactForm() {
   const locale = useLocale();
   const t = useTranslations("contactUsPage.contactUsForm");
   const router = useRouter();
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const contactFormSchema = z.object({
     name: z
@@ -78,13 +80,18 @@ export default function ContactForm() {
   }, [watchedMessage]);
 
   async function onSubmit(values: z.infer<typeof contactFormSchema>) {
+    if (!turnstileToken) {
+      toast.error("Please complete the captcha.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, turnstileToken }),
       });
 
       const data = await response.json();
@@ -205,6 +212,11 @@ export default function ContactForm() {
               <FormMessage />
             </FormItem>
           )}
+        />
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onError={() => toast.error("Captcha failed. Please try again.")}
         />
         <Button type="submit" className="w-fit">
           {t("submitButton")}
