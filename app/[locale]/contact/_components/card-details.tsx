@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Copy, Phone, Mail, MapPin, SquareArrowOutUpRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { ContactIcons } from "@/components/icons";
+import { FooterIcons } from "@/components/icons";
 import { copyToClipboard } from "@/lib/utils";
 
 export default function CardDetails() {
@@ -37,22 +37,22 @@ export default function CardDetails() {
 
   const socialMediaLinks = [
     {
-      icon: ContactIcons.TwitterFilled,
+      icon: FooterIcons.Twitter,
       link: "https://x.com/motqn100",
       ariaLabel: t("socialMedia.twitter"),
     },
     {
-      icon: ContactIcons.InstagramFilled,
+      icon: FooterIcons.Instagram,
       link: "https://www.instagram.com/motqn100",
       ariaLabel: t("socialMedia.instagram"),
     },
     // {
-    //   icon: ContactIcons.LinkedInFilled,
+    //   icon: FooterIcons.LinkedIn,
     //   link: "https://www.linkedin.com",
     //   ariaLabel: t("socialMedia.linkedin"),
     // },
     {
-      icon: ContactIcons.WhatsappFilled,
+      icon: FooterIcons.WhatsApp,
       link: "https://wa.me/+966508811448",
       ariaLabel: t("socialMedia.whatsapp"),
     },
