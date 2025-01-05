@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { ViewTransitions } from "next-view-transitions";
-import { IBM_Plex_Sans_Arabic as IBM } from "next/font/google";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_Arabic as IBM, Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { Locale, routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
