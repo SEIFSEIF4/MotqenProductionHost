@@ -2,7 +2,7 @@ import { getMembers } from "@/sanity/lib/news/getMembers";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { Mail, Linkedin, Twitter } from "lucide-react";
-import { HomeIcons } from "@/components/icons";
+import { FooterIcons, HomeIcons } from "@/components/icons";
 import { SubTitle } from "@/components/ui/heading";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -126,7 +126,11 @@ export default async function MembersPage({ params, searchParams }: PageProps) {
                 className={`cursor-pointer rounded-sm border p-3 hover:opacity-75 ${!getSocialLink(member, "twitter") ? "pointer-events-none opacity-50" : ""}`}
                 aria-label={tf("ariaLabels.twitter")}
               >
-                <Twitter className="h-[18px] w-[18px]" aria-hidden="true" />
+                <FooterIcons.Twitter
+                  altColor="black"
+                  className="h-[18px] w-[18px]"
+                  aria-hidden="true"
+                />
               </a>
 
               {/* LinkedIn Icon */}

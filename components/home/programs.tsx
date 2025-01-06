@@ -82,7 +82,7 @@ function Programs() {
                   </h3>
                   <div className="mt-4 text-center opacity-0 group-hover:opacity-100">
                     <p
-                      className={`text-start ${locale === "ar" ? "text-lg lg:text-2xl" : "text-lg lg:text-xl"}`}
+                      className={`text-start md:!leading-10 ${locale === "ar" ? "text-lg lg:text-2xl" : "text-lg lg:text-xl"}`}
                     >
                       {item.details}
                     </p>
