@@ -47,7 +47,7 @@ export default function ContactPage() {
         <ContactForm />
         <div className="relative h-full">
           <div
-            className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
+            className="pointer-events-none absolute inset-0 z-10 rounded-lg bg-gradient-to-b from-[rgba(21,92,103,0.9)] to-[rgba(31,42,55,0.9)] duration-300 group-hover:rounded-3xl"
             aria-hidden="true"
           />
           <CardDetails />
