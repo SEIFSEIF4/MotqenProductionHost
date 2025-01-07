@@ -115,10 +115,7 @@ const Footer = () => {
           >
             {t("terms")}
           </Link>
-          <Link
-            href={`/${locale}/terms-and-conditions/#privacyPolicyChanges`}
-            className="hover:underline"
-          >
+          <Link href={`/${locale}/privacy-policy`} className="hover:underline">
             {t("privacy")}
           </Link>
         </div>
