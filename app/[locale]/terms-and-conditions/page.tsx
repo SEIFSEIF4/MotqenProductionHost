@@ -41,7 +41,7 @@ const TermsAndConditions = () => {
       <h1 className="mb-6 text-center text-3xl font-bold">{t("title")}</h1>
 
       {sections.map(([key, section], index) => (
-        <section key={key} className="mb-6">
+        <section id={key} key={key} className="mb-6">
           <h2 className="mb-3 text-2xl font-semibold">
             {index + 1}. {section.title}
           </h2>

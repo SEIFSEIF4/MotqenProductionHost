@@ -100,6 +100,12 @@ export default function Navbar({ translations }: NavbarProps) {
         Icon: userGroup,
       },
       {
+        title: t("aboutUs.megaMenuTitle4"),
+        href: `/general-members`,
+        description: t("aboutUs.description4"),
+        Icon: userGroup,
+      },
+      {
         title: t("aboutUs.megaMenuTitle3"),
         href: `/governance`,
         description: t("aboutUs.description3"),

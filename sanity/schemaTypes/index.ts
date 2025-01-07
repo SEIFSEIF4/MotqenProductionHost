@@ -7,6 +7,7 @@ import { carouselType } from "./carouselType";
 import { newsType } from "./newsType";
 import { governanceDocumentType } from "./governanceDocumentType";
 import { memberType } from "./memberType";
+import { generalMemberType } from "./generalMemberType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -15,6 +16,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     carouselType,
     newsType,
     memberType,
+    generalMemberType,
     governanceDocumentType,
   ],
 };

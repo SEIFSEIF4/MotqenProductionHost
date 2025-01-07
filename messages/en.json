@@ -5,6 +5,7 @@
   "Breadcrumbs": {
     "home": "Home",
     "members": "Association Members",
+    "general-members": "General Assembly Members",
     "about-motqen": "About Motqen",
     "iqra-path": "Iqra Path",
     "ittqan-path": "Ittqan Path",
@@ -42,6 +43,8 @@
         "description1": "Learn about Motqen Association",
         "megaMenuTitle2": "Board Members",
         "description2": "Meet the members of Motqen Association",
+        "megaMenuTitle4": "General Assembly Members",
+        "description4": "Learn about the General Assembly Members",
         "megaMenuTitle3": "Governance",
         "description3": "Governance and transparency"
       },
@@ -218,6 +221,10 @@
   "MembersPage": {
     "title": "Board Members",
     "description": "This section contains information about the board members of Motqen Association, who contribute their vision and expertise to guide the association's path and achieve its goals."
+  },
+  "GeneralMembersPage": {
+    "title": "General Assembly Members",
+    "description": "This section includes information about the members of the General Assembly, who contribute their vision and expertise to guide the association's direction and achieve its goals."
   },
   "AboutMotqen": {
     "title": "Establishment of the Association",
