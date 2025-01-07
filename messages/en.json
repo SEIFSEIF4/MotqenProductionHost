@@ -221,6 +221,8 @@
   },
   "AboutMotqen": {
     "title": "Establishment of the Association",
+    "mainTitle": "Yesterday's seeds are today's fruits",
+    "subtitle": "Establishment of Motqen Association",
     "about": "Motqen Association is the fruit of the Motqen program, which began its work in 1436 AH. It aims to refine the outcomes of those who wish to master their memorization of the Book of Allah from Quran memorization circles and others. The program has developed over the years to suit all beneficiaries, focusing on work evaluation through periodic and diverse evaluation tools and enabling the staff from program graduates to achieve human sustainability.",
     "about2": "Based on the pressing need we observed to expand the program's scope, which served 5,000 applicants annually, and due to the evident demand in the Quran memorization sector for such successful individual initiatives, we worked diligently, relying on Allah, to transform the program into an independent association. This association specializes in this field to achieve integration and fill the missing link alongside similar organizations. We ask Allah to make this work sincerely for His sake and a source of light for all who contributed to it."
   },
@@ -371,7 +373,7 @@
   },
   "NewsPage": {
     "title": "Association News",
-    "description": "Stay updated with the latest news, events, and initiatives organized by the Mutqan Association.",
+    "description": "Stay updated with the latest news, events, and initiatives organized by the Motqen Association.",
     "button2": "Read More",
     "noNews": "No News For Now",
     "SingleNews": "Latest News",
@@ -379,7 +381,7 @@
   },
   "GovernancePage": {
     "title": "Governance and Transparency",
-    "description": "This section includes documents and files that reflect the commitment of Mutqan Association to governance and transparency.",
+    "description": "This section includes documents and files that reflect the commitment of Motqen Association to governance and transparency.",
     "button": "Read the file",
     "noDocuments": "No Documents For Now",
     "Filters": {
@@ -390,5 +392,94 @@
       "annual-documents": "Annual Budget Estimates",
       "general-meetings": "Minutes of the General Assembly Meetings"
     }
+  },
+  "TermsAndConditions": {
+    "title": "Privacy Policy and Terms & Conditions of the 'Motqen Association' Website",
+    "description": "At 'Motqen Association,' we value your privacy and strive to protect your personal data. This document outlines the privacy policy and terms & conditions of the website...",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "At 'Motqen Association,' we value your privacy and strive to protect your personal data. This document outlines the privacy policy and terms & conditions of using the 'Motqen Association' website, explaining how we collect, use, and protect the information you provide when visiting or using the website."
+      },
+      "informationWeCollect": {
+        "title": "Information We Collect",
+        "content": "We collect the following information when you visit or use the 'Motqen Association' website:",
+        "strongInfo": [
+          {
+            "title": "Personal Information:",
+            "content": "Such as your name, email address, phone number, address, and any other information you provide through the website's online forms."
+          },
+          {
+            "title": "Non-Personal Information:",
+            "content": "Such as your IP address, browser type, visit date and time, and any other information related to your use of the website."
+          }
+        ]
+      },
+      "howWeUseInformation": {
+        "title": "How We Use Information",
+        "content": "We use the information we collect to enhance your experience with the 'Motqen Association' website, including:",
+        "items": [
+          "Providing customized content or services tailored to your interests.",
+          "Responding to your inquiries and feedback.",
+          "Improving and developing the website and the services offered through it.",
+          "Sending emails regarding updates or association activities."
+        ]
+      },
+      "informationProtection": {
+        "title": "Information Protection",
+        "content": "We are committed to protecting your personal data using reasonable technical and administrative security measures to safeguard your data against unauthorized access or unlawful use. However, we cannot guarantee complete security online."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content": "The 'Motqen Association' website may use cookies to enhance your browsing experience. Cookies are small files stored on your computer to track your preferences and activities on the website."
+      },
+      "informationDisclosure": {
+        "title": "Information Disclosure",
+        "content": "We will not sell, rent, or share your personal information with third parties except in the following cases:",
+        "items": [
+          "If required by law.",
+          "If disclosure is necessary to enforce the terms of use or protect the rights of the association or other users."
+        ]
+      },
+      "userRights": {
+        "title": "User Rights",
+        "content": "You have the right to access, correct, or request the deletion of your personal information at any time by contacting us through the available channels."
+      },
+      "termsOfUse": {
+        "title": "Terms & Conditions of Website Use",
+        "strongInfo": [
+          {
+            "title": "Consent:",
+            "content": "By using the website, you agree to comply with these terms of use."
+          },
+          {
+            "title": "Website Use:",
+            "content": "You must use the website for lawful purposes and in accordance with the specified terms. You may not use the website in any way that could cause harm to the website or violate the rights of others."
+          },
+          {
+            "title": "Modifications:",
+            "content": "The association reserves the right to modify or update these terms and conditions at any time without prior notice. You should review the terms periodically."
+          },
+          {
+            "title": "External Links:",
+            "content": "The website may contain links to other websites that do not follow the privacy policy or terms and conditions of 'Motqen Association.' We are not responsible for the content of these websites or their privacy practices."
+          }
+        ]
+      },
+      "privacyPolicyChanges": {
+        "title": "Changes to the Privacy Policy",
+        "content": "We reserve the right to update or modify this privacy policy at any time. Changes will be effective from the date they are posted on the website."
+      },
+      "contactUs": {
+        "title": "Contact Us",
+        "content": "If you have any inquiries or feedback regarding the privacy policy or terms of use, you can contact us via:",
+        "items": [
+          "Email: info@motqen.sa",
+          "Phone: +966508811448",
+          "Address: Riyadh, Saudi Arabia"
+        ]
+      }
+    },
+    "lastUpdated": "Last Updated: 2025-01-01"
   }
 }
