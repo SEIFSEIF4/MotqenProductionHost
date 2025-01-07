@@ -84,11 +84,53 @@ export type GovernanceDocument = {
     | "program-reports"
     | "regulations"
     | "annual-documents"
-    | "general-meetings";
+    | "general-meetings"
+    | "board-minutes"
+    | "general-members"
+    | "beneficiary-satisfaction-survey"
+    | "supporter-satisfaction-survey"
+    | "employee-volunteer-satisfaction-survey"
+    | "membership-candidacy-survey"
+    | "stakeholder-satisfaction-results"
+    | "new-board-election-program"
+    | "association-staff";
   document?: {
     ar?: string;
     en?: string;
   };
+};
+
+export type GeneralMembers = {
+  _id: string;
+  _type: "general-members";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: {
+    ar?: string;
+    en?: string;
+  };
+  title?: {
+    ar?: string;
+    en?: string;
+  };
+  avatar?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  email?: string;
+  socialLinks?: Array<{
+    platform?: "twitter" | "linkedin";
+    url?: string;
+    _key: string;
+  }>;
 };
 
 export type Member = {
@@ -323,6 +365,7 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | GovernanceDocument
+  | GeneralMembers
   | Member
   | News
   | Slug
@@ -481,11 +524,20 @@ export type ALL_GovernanceDocument_QUERYResult = Array<{
   _id: string;
   category:
     | "annual-documents"
+    | "association-staff"
+    | "beneficiary-satisfaction-survey"
+    | "board-minutes"
+    | "employee-volunteer-satisfaction-survey"
     | "financial-statements"
     | "general-meetings"
+    | "general-members"
+    | "membership-candidacy-survey"
+    | "new-board-election-program"
     | "policies-disclosure"
     | "program-reports"
     | "regulations"
+    | "stakeholder-satisfaction-results"
+    | "supporter-satisfaction-survey"
     | null;
   title: {
     ar: string | null;

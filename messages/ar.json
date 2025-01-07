@@ -206,7 +206,7 @@
   },
   "GeneralMembersPage": {
     "title": " أعضاء الجمعية العمومية ",
-    "description": "يضم هذا القسم معلومات عن  أعضاء الجمعية العمومية، الذين يساهمون برؤيتهم وخبراتهم في توجيه مسار الجمعية وتحقيق أهدافها "
+    "description": "يضم هذا القسم معلومات عن  أعضاء الجمعية العمومية، الذين يساهمون برؤيتهم وخبراتهم في تحقيق أهداف الجمعية"
   },
   "AboutMotqen": {
     "title": "تأسيس الجمعية",
@@ -369,7 +369,16 @@
       "program-reports": "التقارير السنوية للبرامج",
       "regulations": "اللوائح والأنظمة",
       "annual-documents": "الموازنات التقديرية السنوية",
-      "general-meetings": "محاضر اجتماعات الجمعية العمومية"
+      "general-meetings": "محاضر اجتماعات الجمعية العمومية",
+      "board-minutes": "محاضر مجلس الإدارة",
+      "general-members": "أعضاء الجمعية العمومية",
+      "beneficiary-satisfaction-survey": "استبيان قياس رضا المستفيدين",
+      "supporter-satisfaction-survey": "استبيان قياس رضا الداعمين",
+      "employee-volunteer-satisfaction-survey": "استبيان قياس رضا العاملين والمتطوعين",
+      "membership-candidacy-survey": "استبيان الترشح لعضوية الجمعية العمومية",
+      "stakeholder-satisfaction-results": "نتائج رضا أصحاب العلاقة",
+      "new-board-election-program": "البرنامج الانتخابي لمجلس الإدارة الجديد",
+      "association-staff": "موظفو الجمعية"
     }
   },
   "TermsAndConditions": {

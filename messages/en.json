@@ -397,7 +397,16 @@
       "program-reports": "Annual Program Reports",
       "regulations": "Regulations and Rules",
       "annual-documents": "Annual Budget Estimates",
-      "general-meetings": "Minutes of the General Assembly Meetings"
+      "general-meetings": "Minutes of the General Assembly Meetings",
+      "board-minutes": "Board Meeting Minutes",
+      "general-members": "General Assembly Members",
+      "beneficiary-satisfaction-survey": "Beneficiary Satisfaction Survey",
+      "supporter-satisfaction-survey": "Supporter Satisfaction Survey",
+      "employee-volunteer-satisfaction-survey": "Employee and Volunteer Satisfaction Survey",
+      "membership-candidacy-survey": "Membership Candidacy Survey",
+      "stakeholder-satisfaction-results": "Stakeholder Satisfaction Results",
+      "new-board-election-program": "New Board Election Program",
+      "association-staff": "Association Staff"
     }
   },
   "TermsAndConditions": {
