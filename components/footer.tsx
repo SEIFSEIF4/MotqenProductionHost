@@ -128,7 +128,7 @@ const Footer = () => {
       <Separator className="mx-auto mt-4 max-w-base bg-[rgba(255,255,255,0.25)] px-horizontalSpace" />
 
       <div className="mb-4 mt-4 flex items-end justify-center gap-2 md:hidden">
-        <Link href={`/${locale}`} aria-label="logo">
+        <Link href={`/${locale}`} aria-label="شعال متقن">
           <Logo />
         </Link>
         <div

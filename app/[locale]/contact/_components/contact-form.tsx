@@ -185,7 +185,7 @@ export default function ContactForm() {
             <FormItem className="w-full">
               <FormLabel>{t("message.label")}</FormLabel>
               <FormControl>
-                <div>
+                <div className="relative">
                   <Textarea
                     placeholder={t("message.placeholder")}
                     className="h-20 resize-none"
@@ -195,7 +195,7 @@ export default function ContactForm() {
                       setCharacterCount(e.target.value.length);
                     }}
                   />
-                  <div className="mx-1 mt-1 text-right text-sm text-gray-500">
+                  <div className="absolute mx-1 mt-1 text-right text-sm text-gray-500">
                     <span
                       className={
                         characterCount > maxCharacter
