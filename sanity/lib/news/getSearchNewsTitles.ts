@@ -1,10 +1,10 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 type NewsItem = {
-  title: string;
-  slug: { current: string };
-  image: string;
-  shortDescription: string;
+  title: string | null;
+  slug: { current: string | null };
+  image: { asset: { url: string | null } | null };
+  shortDescription: string | null;
 };
 
 export async function searchNewsTitles(
@@ -30,7 +30,14 @@ export async function searchNewsTitles(
       params: { searchQuery },
     });
 
-    return response.data || [];
+    return (
+      response.data.map((item: any) => ({
+        title: item.title || "",
+        slug: { current: item.slug?.current || "" },
+        image: item.image?.asset?.url || "",
+        shortDescription: item.shortDescription || "",
+      })) || []
+    );
   } catch (error) {
     console.error("Error fetching news titles:", error);
     return [];
