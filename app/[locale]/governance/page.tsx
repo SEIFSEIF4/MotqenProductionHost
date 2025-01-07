@@ -13,7 +13,7 @@ import {
 import { HomeIcons } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { Eye } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, constructMetadata } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 import { Suspense } from "react";
 import {
@@ -22,8 +22,29 @@ import {
 } from "@/constant/governance";
 import { getCategoryDocument } from "@/sanity/lib/news/governanceDocument";
 
-export const dynamic = "auto";
+// export const dynamic = "auto";
 export const revalidate = 3600; // Revalidate every hour
+
+// Generate static paths for each locale
+export async function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
+// Generate static metadata for each locale
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  const t = await getTranslations({ locale, namespace: "GovernancePage" });
+
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+  });
+}
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -34,12 +55,14 @@ export default async function GovernancePage({
   params,
   searchParams,
 }: PageProps) {
-  const { locale } = await params;
   const { category } = await searchParams;
   const activeCategory = category || "policies-disclosure";
 
-  const t = await getTranslations("GovernancePage");
-  const documents = await getCategoryDocument(activeCategory);
+  const [{ locale }, documents, t] = await Promise.all([
+    params,
+    getCategoryDocument(activeCategory),
+    getTranslations("GovernancePage"),
+  ]);
 
   return (
     <SectionWrapper isSinglePage id="governance" className="bg-[#F3F4F6] px-6">

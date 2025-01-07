@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { CalendarRange, MoveRight } from "lucide-react";
-import { getLocale } from "next-intl/server";
 import { client } from "@/sanity/lib/client";
 
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
@@ -24,7 +23,7 @@ import BlockContentComponent from "../_components/renderBlockContent";
 import NewsNotFound from "../_components/NewsNotFound";
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
 interface SocialLinks {
@@ -113,10 +112,12 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function SingleNewsPage({ params }: PageProps) {
-  const { id } = await params;
+  const [{ id, locale }, tf] = await Promise.all([
+    params,
+    getTranslations("Footer"),
+  ]);
+
   const singleNews = (await fetchSingleNews(id)) as NewsData;
-  const tf = await getTranslations("Footer");
-  const locale = await getLocale();
 
   if (!singleNews) {
     return <NewsNotFound condition={true} id={id} />;

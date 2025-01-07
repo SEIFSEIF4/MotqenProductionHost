@@ -10,26 +10,34 @@ import Said from "@/components/home/said";
 
 import { PageWrapper } from "@/components/Wrapper";
 import { getCarousel } from "@/sanity/lib/news/getCarousel";
-import { getLocale } from "next-intl/server";
 import { getTestimonial } from "@/sanity/lib/news/getTestimonial";
 import { getNews } from "@/sanity/lib/news/getNews";
+import { constructMetadata } from "@/lib/utils";
 
-export const revalidate = 60;
+export const revalidate = 1800; // invalidate every 30m
+
+// Generate static paths for each locale
+export async function generateStaticParams() {
+  return [{ locale: "ar" }, { locale: "en" }];
+}
+
+// Generate static metadata for each locale
+export async function generateMetadata() {
+  return constructMetadata();
+}
 
 export default async function HomePage({
   searchParams,
+  params,
 }: {
   searchParams?: Promise<{
     query?: string;
     page?: string;
   }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const [locale, initialCarousel, initialSaidItems, news] = await Promise.all([
-    getLocale(),
-    getCarousel(),
-    getTestimonial(),
-    getNews(),
-  ]);
+  const [{ locale }, initialCarousel, initialSaidItems, news] =
+    await Promise.all([params, getCarousel(), getTestimonial(), getNews()]);
 
   return (
     <>
