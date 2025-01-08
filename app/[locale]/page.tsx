@@ -1,12 +1,14 @@
 import React from "react";
 
-import About from "@/components/home/about";
-import Goals from "@/components/home/goals";
-import Statics from "@/components/home/statics";
-import Programs from "@/components/home/programs";
-import Hero from "@/components/home/hero";
-import News from "@/components/home/news";
-import Said from "@/components/home/said";
+import {
+  About,
+  Goals,
+  Statics,
+  Programs,
+  Hero,
+  News,
+  Said,
+} from "@/components/home";
 
 import { PageWrapper } from "@/components/Wrapper";
 import { getCarousel } from "@/sanity/lib/news/getCarousel";
@@ -42,7 +44,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={locale} initialCarousel={initialCarousel} />
-      <PageWrapper className="relative z-50 -mb-[30px] -translate-y-8 rounded-t-[48px] bg-white md:-mb-[38px] md:-translate-y-10">
+      <PageWrapper className="relative z-50 -mb-[30px] -translate-y-10 rounded-t-[48px] bg-white md:-mb-[38px]">
         <About locale={locale} />
         <Goals locale={locale} />
         <Statics />
