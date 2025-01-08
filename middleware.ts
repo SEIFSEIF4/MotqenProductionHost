@@ -11,7 +11,7 @@ export default createMiddleware({
 
 export const config = {
   matcher: [
-    "/((?!api|_next|_vercel|.*\\.[^\\／]+$|studio).*)",
+    "/((?!api|_next|public|_vercel|.*\\.[^\\／]+$|studio).*)",
     // Match all localized pathnames
     "/(ar|en)/:path*",
   ],

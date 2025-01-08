@@ -57,6 +57,7 @@ export default async function RootLayout({
             sizes="16x16"
           />
           <meta name="theme-color" content="white" />
+          <link rel="manifest" href="/manifest.json" />
         </head>
         <body
           className={cn(

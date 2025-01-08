@@ -32,7 +32,7 @@ function Goals({ locale }: { locale: string }) {
                 {t(`Goals.${item}.title`)}
               </h2>
             </div>
-            <p className="ml-auto text-center font-bold text-black md:w-2/3">
+            <p className="ml-auto text-start font-bold text-black md:w-1/2">
               {t(`Goals.${item}.description`)}
             </p>
           </div>
