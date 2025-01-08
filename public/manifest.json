@@ -51,7 +51,7 @@
     {
       "name": "أخبار متقن",
       "short_name": "أخبار متقن",
-      "description": "تابع اخر أخبار متقن ",
+      "description": "تابع اخر أخبار متقن",
       "url": "/ar/news",
       "icons": [{ "src": "/manifest/news.png", "sizes": "96x96" }]
     }
