@@ -22,7 +22,6 @@ import NavbarLink from "./NavbarLink";
 import NavbarAccordionItem from "./NavbarAccordionItem";
 import NavbarMenuItem from "./NavbarMenuItem";
 
-import Search from "./icons/Search";
 import Logo from "./icons/HeaderLogo";
 import Building from "./icons/Building";
 import userGroup from "./icons/UserGroup";
@@ -45,8 +44,15 @@ type NavbarProps = {
 };
 
 type MobileMenuContextType = Dispatch<SetStateAction<boolean>> | null;
+export type SearchBoxContextType = {
+  title: string;
+  loadingTitle: string;
+  noResultsMessage: string;
+  setShowSearchBox: Dispatch<SetStateAction<boolean>>;
+} | null;
 
 export const MobileMenuContext = createContext<MobileMenuContextType>(null);
+export const SearchBoxContext = createContext<SearchBoxContextType>(null);
 
 export default function Navbar({ translations }: NavbarProps) {
   const locale = useLocale();
@@ -190,14 +196,16 @@ export default function Navbar({ translations }: NavbarProps) {
 
           <div className="order-3 flex items-center justify-end gap-1 lg:flex-auto xl:gap-8">
             {/* Search Box */}
-            <SearchBox
-              Search={Search}
-              title={translations.search}
-              loadingTitle={translations.searchLoading}
-              noResultsMessage={translations.noResultsMessage}
-              isOpen={showSearchBox}
-              setIsOpen={setShowSearchBox}
-            />
+            <SearchBoxContext.Provider
+              value={{
+                title: translations.search,
+                loadingTitle: translations.searchLoading,
+                noResultsMessage: translations.noResultsMessage,
+                setShowSearchBox,
+              }}
+            >
+              <SearchBox isOpen={showSearchBox} />
+            </SearchBoxContext.Provider>
 
             {/* Language Switch */}
             <LocaleSwitcher

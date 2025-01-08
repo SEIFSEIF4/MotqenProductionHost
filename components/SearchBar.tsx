@@ -1,21 +1,14 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { useContext } from "react";
 import { useLocale } from "next-intl";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import debounce from "lodash/debounce";
 import { client } from "@/sanity/lib/client";
-import { Link } from "next-view-transitions";
-import Image from "next/image";
-
-interface SearchBarProps {
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-  Search: any;
-  title: string;
-  loadingTitle: string;
-  noResultsMessage: string;
-}
+import SearchResult from "@/components/SearchResult";
+import { SearchBoxContext, type SearchBoxContextType } from "./Navbar";
+import Search from "./icons/Search";
 
 interface NewsItem {
   title: string;
@@ -28,19 +21,19 @@ interface NewsItem {
   shortDescription: string;
 }
 
-const SearchBar = ({
-  setIsOpen,
-  Search,
-  title,
-  loadingTitle,
-  noResultsMessage,
-}: SearchBarProps) => {
+const SearchBar = () => {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const currentQuery = searchParams.get("query")?.toString() || "";
+  const searchContext: SearchBoxContextType = useContext(SearchBoxContext);
+
+  if (!searchContext?.setShowSearchBox) {
+    throw new Error("SearchBoxContext must be used within a provider");
+  }
+
+  const currentQuery = searchParams.get("q")?.toString() || "";
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ["newsSearch", currentQuery],
@@ -71,9 +64,9 @@ const SearchBar = ({
   const debouncedSearch = debounce((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
-      params.set("query", term);
+      params.set("q", term);
     } else {
-      params.delete("query");
+      params.delete("q");
     }
     replace(`${pathname}?${params.toString()}`);
   }, 500);
@@ -92,7 +85,7 @@ const SearchBar = ({
       <div className="relative flex flex-col items-end lg:px-24">
         <button
           className="hidden pt-8 text-2xl text-gray-600 hover:text-gray-900 lg:block"
-          onClick={() => setIsOpen(false)}
+          onClick={() => searchContext.setShowSearchBox(false)}
         >
           &times;
         </button>
@@ -116,7 +109,7 @@ const SearchBar = ({
             </div>
             <input
               type="text"
-              placeholder={`${title}...`}
+              placeholder={`${searchContext.title}...`}
               onChange={(e) => handleSearch(e.target.value)}
               defaultValue={currentQuery}
               className="w-full flex-grow rounded-md border border-gray-300 px-12 py-2 focus:outline-none focus:ring-2 focus:ring-[#6FA0A7]"
@@ -136,45 +129,15 @@ const SearchBar = ({
             className={`w-full rounded-md bg-[#165C67] px-4 py-2 text-white ${isLoading ? "lg:w-[150px]" : "lg:w-fit"}`}
             disabled={isLoading}
           >
-            {isLoading ? loadingTitle : title}
+            {isLoading ? searchContext.loadingTitle : searchContext.title}
           </button>
         </form>
 
         {/* Search Results */}
-        {searchResults && searchResults.length > 0 && (
-          <div className="mt-4 max-h-[500px] w-full space-y-4 overflow-y-auto px-4">
-            {searchResults.map((item: NewsItem) => (
-              <Link
-                href={`/news/${item.slug.current}`}
-                key={item.slug.current}
-                className="mb-3 flex items-start gap-10 space-x-4 rounded-lg border p-4 hover:bg-gray-50"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.image?.asset?.url && (
-                  <Image
-                    src={item.image.asset.url}
-                    alt={item.title}
-                    width={64}
-                    height={64}
-                    className="h-16 w-16 rounded-md object-cover"
-                  />
-                )}
-                <div>
-                  <h3 className="font-medium text-gray-900">{item.title}</h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {item.shortDescription}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {searchResults && searchResults.length === 0 && currentQuery && (
-          <div className="mt-4 w-full p-4 text-center text-gray-500">
-            {noResultsMessage} &ldquo;{currentQuery}&rdquo;
-          </div>
-        )}
+        <SearchResult
+          searchResults={searchResults || []}
+          currentQuery={currentQuery}
+        />
       </div>
     </div>
   );
