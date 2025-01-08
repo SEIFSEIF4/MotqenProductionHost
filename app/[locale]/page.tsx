@@ -42,7 +42,7 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={locale} initialCarousel={initialCarousel} />
-      <PageWrapper className="relative z-50 -mb-[33px] -translate-y-8 rounded-t-[48px] bg-white md:-mb-[40px] md:-translate-y-10">
+      <PageWrapper className="relative z-50 -mb-[30px] -translate-y-8 rounded-t-[48px] bg-white md:-mb-[38px] md:-translate-y-10">
         <About locale={locale} />
         <Goals locale={locale} />
         <Statics />
