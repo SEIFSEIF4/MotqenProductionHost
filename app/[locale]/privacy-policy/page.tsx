@@ -16,7 +16,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
 
-  const t = await getTranslations({ locale, namespace: "TermsAndConditions" });
+  const t = await getTranslations({ locale, namespace: "PrivacyPolicy" });
 
   return constructMetadata({
     title: t("title"),
@@ -24,8 +24,8 @@ export async function generateMetadata({
   });
 }
 
-const TermsAndConditions = () => {
-  const t = useTranslations("TermsAndConditions");
+const PrivacyPolicy = () => {
+  const t = useTranslations("PrivacyPolicy");
   const sections: [
     string,
     {
@@ -39,7 +39,6 @@ const TermsAndConditions = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-6 text-center text-3xl font-bold">{t("title")}</h1>
-      <p className="mb-6 text-center text-xl">{t("description")}</p>
 
       {sections.map(([key, section], index) => (
         <section id={key} key={key} className="mb-6">
@@ -61,8 +60,10 @@ const TermsAndConditions = () => {
           ))}
         </section>
       ))}
+
+      <p className="mt-8 text-sm text-gray-600">{t("lastUpdated")}</p>
     </div>
   );
 };
 
-export default TermsAndConditions;
+export default PrivacyPolicy;

@@ -409,9 +409,9 @@
       "association-staff": "Association Staff"
     }
   },
-  "TermsAndConditions": {
+  "PrivacyPolicy": {
     "title": "Privacy Policy and Terms & Conditions of the 'Motqen Association' Website",
-    "description": "At 'Motqen Association,' we value your privacy and strive to protect your personal data. This document outlines the privacy policy and terms & conditions of the website...",
+    "description": "At 'Motqen Association,' we value your privacy and strive to protect your personal data. This document outlines the privacy policy and terms & conditions of using the 'Motqen Association' website, explaining how we collect, use, and protect the information you provide when visiting or using the website.",
     "sections": {
       "introduction": {
         "title": "Introduction",
@@ -497,5 +497,105 @@
       }
     },
     "lastUpdated": "Last Updated: 2025-01-01"
+  },
+  "TermsAndConditions": {
+    "title": "Terms and Conditions",
+    "description": "Welcome to the Motqen Association for Quranic Education website. By using our website, you agree to comply with these terms and conditions. Please read them carefully before using the site.",
+    "sections": {
+      "Definitions": {
+        "title": "Definitions",
+        "strongInfo": [
+          {
+            "title": "Association:",
+            "content": "The Motqen Association for Quranic Education, registered in accordance with the regulations of the Kingdom of Saudi Arabia."
+          },
+          {
+            "title": "Website:",
+            "content": "The association's official website and all its electronic services."
+          },
+          {
+            "title": "User:",
+            "content": "Any individual using the website or benefiting from the association's services."
+          }
+        ]
+      },
+      "TermsOfUse": {
+        "title": "Terms of Use",
+        "items": [
+          "Compliance with the regulations and instructions issued by the competent authorities in the Kingdom of Saudi Arabia.",
+          "Respect for Islamic values and public morals when using the site.",
+          "Prohibition of using the site for any unlawful purposes or actions contrary to Islamic law.",
+          "Maintaining the confidentiality of the user's login information."
+        ]
+      },
+      "RegistrationAndMembership": {
+        "title": "Registration and Membership",
+        "items": [
+          "The association reserves the right to accept or reject registration requests without stating reasons.",
+          "Accurate and truthful information must be provided during registration.",
+          "The association reserves the right to revoke any membership that violates the terms and conditions."
+        ]
+      },
+      "EducationalServices": {
+        "title": "Educational Services",
+        "items": [
+          "The association provides Quranic education services following the approved curriculum.",
+          "The association reserves the right to modify its educational programs in alignment with its objectives.",
+          "Beneficiaries are required to attend and adhere to the scheduled lesson times."
+        ]
+      },
+      "IntellectualPropertyRights": {
+        "title": "Intellectual Property Rights",
+        "items": [
+          "All content published on the website is protected under intellectual property rights.",
+          "Copying or using website content for commercial purposes without written permission is prohibited.",
+          "The association reserves the right to utilize educational materials provided by instructors and trainers."
+        ]
+      },
+      "PrivacyAndDataProtection": {
+        "title": "Privacy and Data Protection",
+        "content": "The association is committed to protecting users' data in accordance with applicable regulations."
+      },
+      "DonationsAndPayments": {
+        "title": "Donations and Payments",
+        "items": [
+          "All donations are subject to the regulations governing charitable work in the Kingdom.",
+          "The association is committed to transparency in managing donations and allocating them to designated purposes."
+        ]
+      },
+      "LegalResponsibility": {
+        "title": "Legal Responsibility",
+        "items": [
+          "The association is not responsible for any damages resulting from misuse of the website.",
+          "The user bears full responsibility for any violations of the terms and conditions."
+        ]
+      },
+      "Modifications": {
+        "title": "Modifications",
+        "items": [
+          "The association reserves the right to amend these terms and conditions at any time.",
+          "Continued use of the website after modifications constitutes acceptance of the new terms."
+        ]
+      },
+      "CommunicationAndComplaints": {
+        "title": "Communication and Complaints",
+        "items": [
+          "Users can contact the association through the officially announced communication channels.",
+          "The association is committed to responding to complaints and inquiries within a reasonable time frame."
+        ]
+      },
+      "ApplicableLaw": {
+        "title": "Applicable Law",
+        "content": "These terms and conditions are governed and interpreted in accordance with the laws of the Kingdom of Saudi Arabia."
+      },
+      "FinalProvisions": {
+        "title": "Final Provisions",
+        "items": [
+          "If any provision of these terms is deemed invalid, the remaining provisions shall remain in effect.",
+          "Failure by the association to enforce any of its rights does not constitute a waiver of those rights.",
+          "These terms and conditions are binding on all users."
+        ]
+      }
+    }
   }
 }

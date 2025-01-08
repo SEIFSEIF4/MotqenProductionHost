@@ -34,7 +34,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const locale = (await params).locale;
+  const { locale } = await params;
 
   const t = await getTranslations({ locale, namespace: "GeneralMembersPage" });
 
@@ -45,10 +45,12 @@ export async function generateMetadata({
 }
 
 export default async function MembersPage({ params, searchParams }: PageProps) {
-  const { locale } = await params;
-  const members = await getGeneralMembers();
-  const t = await getTranslations("GeneralMembersPage");
-  const tf = await getTranslations("Footer");
+  const [{ locale }, members, t, tf] = await Promise.all([
+    params,
+    getGeneralMembers(),
+    getTranslations("GeneralMembersPage"),
+    getTranslations("Footer"),
+  ]);
 
   // Function to get localized text with fallback
   const getLocalizedText = (obj: { ar?: string; en?: string }) => {
