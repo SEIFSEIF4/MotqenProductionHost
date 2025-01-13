@@ -2,7 +2,7 @@ import React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Mail, MapPin, Phone } from "lucide-react";
 
-import Logo from "./icons/FooterLogo";
+import { FooterLogo, FooterWhiteLogo } from "./icons/FooterLogo";
 import { FooterIcons } from "@/components/icons";
 import { Separator } from "./ui/separator";
 import { Link } from "next-view-transitions";
@@ -19,19 +19,19 @@ const Footer = () => {
       <FooterIcons.SmallPattern className="absolute bottom-[-17px] -z-10 block opacity-50 transition-all duration-500 group-hover:opacity-100 md:hidden ltr:right-0 ltr:-scale-x-100 rtl:left-0" />
 
       {/* Top Section */}
-      <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 md:flex-row md:space-y-0">
+      <div className="container z-10 mx-auto flex max-w-base flex-wrap items-center justify-between space-y-4 md:flex-row md:space-y-0 ltr:flex-row-reverse">
         <div className="hidden items-end gap-2 md:flex">
           <Link href={`/${locale}`} aria-label="logo">
-            <Logo />
+            <FooterWhiteLogo />
           </Link>
-          <div
+          {/* <div
             className="text-sm font-semibold"
             style={{ lineHeight: "1rem", letterSpacing: "0.2px" }}
           >
             <p>{t("logoText.title")}</p>
             <p>{t("logoText.description")}</p>
             <p className="text-xs font-normal">{t("logoText.licenseNum")}</p>
-          </div>
+          </div> */}
         </div>
         <div className="flex items-center space-x-4 rtl:space-x-reverse">
           <a
@@ -126,16 +126,16 @@ const Footer = () => {
 
       <div className="mb-4 mt-4 flex items-end justify-center gap-2 md:hidden">
         <Link href={`/${locale}`} aria-label="شعال متقن">
-          <Logo />
+          <FooterWhiteLogo />
         </Link>
-        <div
+        {/* <div
           className="text-sm font-semibold"
           style={{ lineHeight: "1rem", letterSpacing: "0.2px" }}
         >
           <p>{t("logoText.title")}</p>
           <p>{t("logoText.description")}</p>
           <p className="text-xs font-normal">{t("logoText.licenseNum")}</p>
-        </div>
+        </div> */}
       </div>
       <p className="text-center md:mt-4">
         {t("rights", { year: currentYear })}

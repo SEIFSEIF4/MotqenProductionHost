@@ -23,23 +23,23 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      {process.env.NODE_ENV === "development" && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
+      {/* {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools initialIsOpen={true} />
+      )} */}
       {children}
-      <ProgressBar
+      {/* <ProgressBar
         height="4px"
         color="#165e69"
         delay={60}
         disableSameURL
         options={{ showSpinner: false }}
         shallowRouting
-      />
-      <ScrollToTop
+      /> */}
+      {/* <ScrollToTop
         smooth
         color="#165e69"
         className="fixed flex items-center justify-center"
-      />
+      /> */}
     </QueryClientProvider>
   );
 }
