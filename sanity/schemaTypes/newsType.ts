@@ -3,7 +3,7 @@ import { ImageIcon, CalendarIcon } from "@sanity/icons";
 
 export const newsType = defineType({
   name: "news",
-  title: "News",
+  title: "الاخبار",
   type: "document",
   icon: CalendarIcon,
   fields: [

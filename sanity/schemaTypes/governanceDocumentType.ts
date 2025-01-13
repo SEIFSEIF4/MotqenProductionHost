@@ -3,7 +3,7 @@ import { defineType, defineField } from "sanity";
 
 export const governanceDocumentType = defineType({
   name: "governanceDocument",
-  title: "Governance Documents",
+  title: "الحوكمة",
   type: "document",
   fields: [
     defineField({

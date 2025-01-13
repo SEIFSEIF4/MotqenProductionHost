@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export const generalMemberType = defineType({
   name: "general-members",
-  title: "General Members",
+  title: "أعضاء الجمعية العمومية",
   type: "document",
   fields: [
     defineField({

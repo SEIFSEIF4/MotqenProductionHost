@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export const carouselType = defineType({
   name: "carousel",
-  title: "Carousel",
+  title: "دوّارة",
   type: "document",
   icon: ImageIcon,
   fields: [
