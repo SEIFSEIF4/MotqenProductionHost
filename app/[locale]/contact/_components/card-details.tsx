@@ -15,7 +15,7 @@ export default function CardDetails() {
     {
       icon: Phone,
       title: t("phone"),
-      details: "+966508811448",
+      details: "966508811448",
       subIcon: Copy,
       link: "tel:+966508811448",
     },
@@ -76,7 +76,7 @@ export default function CardDetails() {
                 className="hover:opacity-75"
                 aria-label={`${item.title} ${t("open")}`}
               >
-                {item.details}
+                {index === 0 ? `${item.details}+` : item.details}
               </a>
               {index === contactDetails.length - 1 ? (
                 <a
@@ -94,7 +94,7 @@ export default function CardDetails() {
                 <item.subIcon
                   className="h-5 w-5 cursor-pointer"
                   onClick={() =>
-                    copyToClipboard(item.details, t("toastMessage"))
+                    copyToClipboard(`+${item.details}`, t("toastMessage"))
                   }
                   aria-label={`${item.title} ${t("copy")}`}
                 />

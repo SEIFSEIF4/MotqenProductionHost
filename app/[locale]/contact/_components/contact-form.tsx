@@ -168,7 +168,6 @@ export default function ContactForm() {
                   <PhoneInput
                     placeholder={t("phone.placeholder")}
                     defaultCountry="SA"
-                    dir={locale === "ar" ? "rtl" : "ltr"}
                     {...field}
                   />
                 </FormControl>
