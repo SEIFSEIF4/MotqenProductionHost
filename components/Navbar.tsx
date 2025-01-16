@@ -27,6 +27,7 @@ import Building from "./icons/Building";
 import userGroup from "./icons/UserGroup";
 import News from "./icons/News";
 import Quran from "./icons/QuranNotFill";
+import AssemblyMembersIcon from "./icons/AssemblyMembersIcon";
 
 type NavbarProps = {
   translations: {
@@ -100,16 +101,16 @@ export default function Navbar({ translations }: NavbarProps) {
         Icon: Building,
       },
       {
-        title: t("aboutUs.megaMenuTitle2"),
-        href: `/members`,
-        description: t("aboutUs.description2"),
-        Icon: userGroup,
-      },
-      {
         title: t("aboutUs.megaMenuTitle4"),
         href: `/general-members`,
         description: t("aboutUs.description4"),
         Icon: userGroup,
+      },
+      {
+        title: t("aboutUs.megaMenuTitle2"),
+        href: `/members`,
+        description: t("aboutUs.description2"),
+        Icon: AssemblyMembersIcon,
       },
       {
         title: t("aboutUs.megaMenuTitle3"),
