@@ -13,6 +13,7 @@ export default function CardDetails() {
 
   const contactDetails = [
     {
+      id: 1,
       icon: Phone,
       title: t("phone"),
       details: "966508811448",
@@ -20,6 +21,7 @@ export default function CardDetails() {
       link: "tel:+966508811448",
     },
     {
+      id: 2,
       icon: Mail,
       title: t("email"),
       details: "Info@motqen.sa",
@@ -27,6 +29,7 @@ export default function CardDetails() {
       link: "mailto:Info@motqen.sa",
     },
     {
+      id: 3,
       icon: MapPin,
       title: t("location"),
       details: t("address"),
@@ -76,9 +79,9 @@ export default function CardDetails() {
                 className="hover:opacity-75"
                 aria-label={`${item.title} ${t("open")}`}
               >
-                {index === 0 ? `${item.details}+` : item.details}
+                {item.id === 1 ? `${item.details}+` : item.details}
               </a>
-              {index === contactDetails.length - 1 ? (
+              {item.id === 3 ? (
                 <a
                   href={item.link}
                   target="_blank"
@@ -94,7 +97,10 @@ export default function CardDetails() {
                 <item.subIcon
                   className="h-5 w-5 cursor-pointer"
                   onClick={() =>
-                    copyToClipboard(`+${item.details}`, t("toastMessage"))
+                    copyToClipboard(
+                      item.id === 1 ? `+${item.details}` : item.details,
+                      t("toastMessage"),
+                    )
                   }
                   aria-label={`${item.title} ${t("copy")}`}
                 />
