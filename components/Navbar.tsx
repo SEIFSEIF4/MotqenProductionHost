@@ -180,7 +180,7 @@ export default function Navbar({ translations }: NavbarProps) {
                   <NavbarLink
                     isExternal
                     title={translations.store}
-                    href={`https://store.motqen.sa`}
+                    href={`https://jood.motqen.sa`}
                     isMobileMenu={false}
                   />
                 </NavigationMenuItem>
