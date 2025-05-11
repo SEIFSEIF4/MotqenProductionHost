@@ -100,7 +100,7 @@ export default async function MembersPage({ params, searchParams }: PageProps) {
               <h2 className="line-clamp-1 text-lg font-bold text-[#1F2A37]">
                 {member.name ? getLocalizedText(member.name) : ""}
               </h2>
-              <p className="mt-2 line-clamp-2">
+              <p className="mt-2 line-clamp-3">
                 {member.title ? getLocalizedText(member.title) : ""}
               </p>
             </div>

@@ -45,3 +45,5 @@ next-env.d.ts
 # editor configuration and tools
 .editorconfig
 cspell.json
+
+production.md
