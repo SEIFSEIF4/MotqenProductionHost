@@ -2,12 +2,12 @@ import { querySanity } from "@/lib/queryWrapper";
 import { Member as SanityMember } from "@/sanity.types";
 
 interface Member extends SanityMember {
-  imageUrl: string;
+    imageUrl: string;
 }
 
 export const getMembers = (): Promise<Member[]> =>
-  querySanity({
-    query: `*[_type == "member"]{
+    querySanity({
+        query: `*[_type == "member"]{
       _id,
       email,
       avatar {
@@ -28,13 +28,13 @@ export const getMembers = (): Promise<Member[]> =>
         url
       }
     }`,
-    cache: {
-      revalidate: 21600, // 6-hours cache
-      tags: ["Members"],
-    },
-    transformResults: (data) =>
-      data.map((item) => ({
-        ...item,
-        imageUrl: item.avatar?.asset?.url || "",
-      })),
-  });
+        cache: {
+            revalidate: 21600, // 6-hours cache
+            tags: ["Members"],
+        },
+        transformResults: (data) =>
+            data.map((item) => ({
+                ...item,
+                imageUrl: item.avatar?.asset?.url || "",
+            })),
+    });

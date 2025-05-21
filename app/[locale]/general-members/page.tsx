@@ -1,16 +1,11 @@
 import { getGeneralMembers } from "@/sanity/lib/news/getGeneralMembers";
 import { getTranslations } from "next-intl/server";
-import { Mail, Linkedin } from "lucide-react";
-import { FooterIcons, HomeIcons } from "@/components/icons";
 import { SubTitle } from "@/components/ui/heading";
 import DynamicBreadcrumb from "@/components/dynamicBreadcrumb";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionWrapper } from "@/components/Wrapper";
 import { Member as SanityMember } from "@/sanity.types";
 import { constructMetadata } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { DownloadButton } from "@/components/download-button";
-import DownloadPdf from "@/components/downlaod-pdf";
+import GeneralMemberDownloadPdf from "@/components/general-members-download-button";
 
 // Assuming you have a type for `PageProps` that includes `params`
 interface PageProps {
@@ -82,7 +77,7 @@ export default async function MembersPage({ params, searchParams }: PageProps) {
                     <p className="mt-4">{t("description")}</p>
                 </div>
 
-                <DownloadPdf />
+                <GeneralMemberDownloadPdf />
             </div>
 
             <div className="grid grid-cols-1 gap-x-5 gap-y-3 py-5 sm:grid-cols-2 md:grid-cols-3 md:py-16 lg:md:grid-cols-4 xl:grid-cols-5">

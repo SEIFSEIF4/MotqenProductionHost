@@ -8,15 +8,19 @@ import { newsType } from "./newsType";
 import { governanceDocumentType } from "./governanceDocumentType";
 import { memberType } from "./memberType";
 import { generalMemberType } from "./generalMemberType";
+import { memberCouncilType } from "./membercouncilType";
+import { generalMemberCouncilType } from "./generalMembercouncilType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    blockContentType,
-    testimonialType,
-    carouselType,
-    newsType,
-    memberType,
-    generalMemberType,
-    governanceDocumentType,
-  ],
+    types: [
+        blockContentType,
+        testimonialType,
+        carouselType,
+        newsType,
+        memberType,
+        memberCouncilType,
+        generalMemberType,
+        generalMemberCouncilType,
+        governanceDocumentType,
+    ],
 };

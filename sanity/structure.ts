@@ -2,17 +2,17 @@ import { StructureResolver } from "sanity/structure";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
-  S.list()
-    .title("جمعية متقــن")
-    .items([
-      // Manually add specific schemas
-      // S.documentTypeListItem("testimonial").title("Testimonials"),
-      // S.divider(),
-      // S.documentTypeListItem("carousel").title("Carousel"),
-      // S.divider(),
-      // S.documentTypeListItem("news").title("News"),
-      // S.divider(),
+    S.list()
+        .title("جمعية متقــن")
+        .items([
+            // Manually add specific schemas
+            // S.documentTypeListItem("testimonial").title("Testimonials"),
+            // S.divider(),
+            // S.documentTypeListItem("carousel").title("Carousel"),
+            // S.divider(),
+            // S.documentTypeListItem("news").title("News"),
+            // S.divider(),
 
-      // Dynamically include all other document types
-      ...S.documentTypeListItems(),
-    ]);
+            // Dynamically include all other document types
+            ...S.documentTypeListItems(),
+        ]);

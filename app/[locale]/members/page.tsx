@@ -1,6 +1,5 @@
 import { getMembers } from "@/sanity/lib/news/getMembers";
 import { getTranslations } from "next-intl/server";
-import { Metadata } from "next";
 import { Mail, Linkedin, Twitter } from "lucide-react";
 import { FooterIcons, HomeIcons } from "@/components/icons";
 import { SubTitle } from "@/components/ui/heading";
@@ -10,6 +9,8 @@ import { SectionWrapper } from "@/components/Wrapper";
 import { Member as SanityMember } from "@/sanity.types";
 import { constructMetadata } from "@/lib/utils";
 import DownloadPdf from "@/components/downlaod-pdf";
+import { Button } from "@/components/ui/button";
+import MemberDownloadPdf from "@/components/member-download-button";
 
 // Assuming you have a type for `PageProps` that includes `params`
 interface PageProps {
@@ -78,7 +79,7 @@ export default async function MembersPage({ params, searchParams }: PageProps) {
                     <p className="mt-4">{t("description")}</p>
                 </div>
 
-                <DownloadPdf />
+                <MemberDownloadPdf />
             </div>
 
             <div className="grid grid-cols-1 gap-x-5 gap-y-3 py-5 sm:grid-cols-2 md:grid-cols-3 md:py-16 lg:md:grid-cols-4 xl:grid-cols-5">
