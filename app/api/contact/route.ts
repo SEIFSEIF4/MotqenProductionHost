@@ -12,7 +12,7 @@ const contactFormSchema = z.object({
   email: z.string().email().refine(validator.isEmail),
   phone: z.string().refine(validator.isMobilePhone),
   message: z.string().min(5).max(TEXTAREA_MAX_CHARACTER),
-  turnstileToken: z.string().nonempty(),
+  turnstileToken: z.string().optional(),
 });
 
 export async function POST(request: Request) {
@@ -20,8 +20,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const validatedData = contactFormSchema.parse(body);
 
-    // Verify the Turnstile token
-    const verifyResponse = await fetch(
+    // Verify the Turnstile token (Temporarily disabled)
+    /* const verifyResponse = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
         method: "POST",
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
         { success: false, error: "Captcha verification failed" },
         { status: 400 },
       );
-    }
+    } */
 
     // Create HTML version
     const htmlContent = `

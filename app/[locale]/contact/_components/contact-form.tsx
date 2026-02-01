@@ -80,10 +80,10 @@ export default function ContactForm() {
   }, [watchedMessage]);
 
   async function onSubmit(values: z.infer<typeof contactFormSchema>) {
-    if (!turnstileToken) {
+    /* if (!turnstileToken) {
       toast.error("Please complete the captcha.");
       return;
-    }
+    } */
 
     try {
       const response = await fetch("/api/contact", {
@@ -212,11 +212,11 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-        <Turnstile
+        {/* <Turnstile
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
           onSuccess={(token) => setTurnstileToken(token)}
           onError={() => toast.error("Captcha failed. Please try again.")}
-        />
+        /> */}
         <Button type="submit" className="w-fit">
           {t("submitButton")}
         </Button>
