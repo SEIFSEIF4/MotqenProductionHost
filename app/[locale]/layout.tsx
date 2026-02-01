@@ -13,71 +13,71 @@ import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
 
 const ibmArabic = IBM({
-    subsets: ["arabic"],
-    display: "swap", //Better performance for font loading
-    weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["arabic"],
+  display: "swap", //Better performance for font loading
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 const inter = Inter({
-    subsets: ["latin"],
-    display: "swap",
-    weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata = constructMetadata();
 
 export default async function RootLayout({
-    children,
-    params,
+  children,
+  params,
 }: Readonly<{
-    children: React.ReactNode;
-    params: Promise<{ locale: Locale }>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
-    const { locale } = await params;
-    if (!routing.locales.includes(locale as Locale)) {
-        notFound();
-    }
-    // Providing all messages to the client side is the easiest way to get started
-    const messages = await getMessages();
-    const isArabic = locale === "ar";
-    return (
-        <ViewTransitions>
-            <html lang={locale} dir={isArabic ? "rtl" : "ltr"}>
-                <head>
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        href="favicon-32x32.png"
-                        sizes="32x32"
-                    />
-                    <link
-                        rel="icon"
-                        type="image/png"
-                        href="favicon-16x16.png"
-                        sizes="16x16"
-                    />
-                    <meta name="theme-color" content="white" />
-                    <link rel="manifest" href="/manifest.json" />
-                </head>
-                <body
-                    className={cn(
-                        isArabic ? ibmArabic.className : inter.className,
-                        "flex min-h-screen flex-col bg-background antialiased",
-                    )}
-                >
-                    <NextIntlClientProvider messages={messages}>
-                        <Providers>
-                            <NavbarProvider />
-                            <main className="mx-auto mt-[107px] w-full max-w-base flex-1 overflow-auto">
-                                {children}
-                            </main>
-                        </Providers>
-                        <Footer />
-                    </NextIntlClientProvider>
-                    <Toaster />
-                    <SanityLive />
-                </body>
-            </html>
-        </ViewTransitions>
-    );
+  const { locale } = (await params) as { locale: Locale };
+  if (!routing.locales.includes(locale as Locale)) {
+    notFound();
+  }
+  // Providing all messages to the client side is the easiest way to get started
+  const messages = await getMessages();
+  const isArabic = locale === "ar";
+  return (
+    <ViewTransitions>
+      <html lang={locale} dir={isArabic ? "rtl" : "ltr"}>
+        <head>
+          <link
+            rel="icon"
+            type="image/png"
+            href="favicon-32x32.png"
+            sizes="32x32"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            href="favicon-16x16.png"
+            sizes="16x16"
+          />
+          <meta name="theme-color" content="white" />
+          <link rel="manifest" href="/manifest.json" />
+        </head>
+        <body
+          className={cn(
+            isArabic ? ibmArabic.className : inter.className,
+            "flex min-h-screen flex-col bg-background antialiased",
+          )}
+        >
+          <NextIntlClientProvider messages={messages}>
+            <Providers>
+              <NavbarProvider />
+              <main className="mx-auto mt-[107px] w-full max-w-base flex-1 overflow-auto">
+                {children}
+              </main>
+            </Providers>
+            <Footer />
+          </NextIntlClientProvider>
+          <Toaster />
+          <SanityLive />
+        </body>
+      </html>
+    </ViewTransitions>
+  );
 }
