@@ -12,7 +12,7 @@ const contactFormSchema = z.object({
   email: z.string().email().refine(validator.isEmail),
   phone: z.string().refine(validator.isMobilePhone),
   message: z.string().min(5).max(TEXTAREA_MAX_CHARACTER),
-  turnstileToken: z.string().optional(),
+  turnstileToken: z.string().nullable().optional(),
 });
 
 export async function POST(request: Request) {
